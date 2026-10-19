@@ -1,0 +1,161 @@
+task_id,track_id,unit,interpretation_label,reason,n_measurements,n_formulations,n_series,n_source_groups,n_chemistry_systems,n_source_rows,n_no_shared_chemistry_system,n_exact_formulation_match,n_in_support,n_temperature_outside_training_range,n_concentration_outside_training_range,n_no_nearby_solvent_ratio,frac_rows_familiar_source,n_component_source_groups,n_eligible_groups,reporting_level,n_headline_units
+interp_formulation,molal_w,fold0,supported_comparison,held-out formulations; every test chemistry system present in training,2083,331,90,10,19,,,,,,,,,,,headline,10
+interp_formulation,molal_w,fold1,supported_comparison,held-out formulations; every test chemistry system present in training,2025,330,93,10,19,,,,,,,,,,,headline,10
+interp_formulation,molal_w,fold2,supported_comparison,held-out formulations; every test chemistry system present in training,2135,330,91,10,19,,,,,,,,,,,headline,10
+interp_formulation,molal_w,fold3,supported_comparison,held-out formulations; every test chemistry system present in training,2175,329,90,10,19,,,,,,,,,,,headline,10
+interp_formulation,molal_w,fold4,supported_comparison,held-out formulations; every test chemistry system present in training,2057,329,88,10,17,,,,,,,,,,,headline,10
+interp_formulation,molar_x,fold0,supported_comparison,held-out formulations; every test chemistry system present in training,293,18,15,8,10,,,,,,,,,,,headline,8
+interp_formulation,molar_x,fold1,supported_comparison,held-out formulations; every test chemistry system present in training,202,18,13,7,10,,,,,,,,,,,headline,8
+interp_formulation,molar_x,fold2,supported_comparison,held-out formulations; every test chemistry system present in training,208,18,13,7,10,,,,,,,,,,,headline,8
+interp_formulation,molar_x,fold3,supported_comparison,held-out formulations; every test chemistry system present in training,183,17,13,7,10,,,,,,,,,,,headline,8
+interp_formulation,molar_x,fold4,supported_comparison,held-out formulations; every test chemistry system present in training,159,17,12,5,10,,,,,,,,,,,headline,8
+interp_formulation,molar_v,fold0,supported_comparison,held-out formulations; every test chemistry system present in training,163,32,24,4,22,,,,,,,,,,,case_study,4
+interp_formulation,molar_v,fold1,supported_comparison,held-out formulations; every test chemistry system present in training,201,32,26,4,23,,,,,,,,,,,case_study,4
+interp_formulation,molar_v,fold2,supported_comparison,held-out formulations; every test chemistry system present in training,163,32,24,4,23,,,,,,,,,,,case_study,4
+interp_formulation,molar_v,fold3,supported_comparison,held-out formulations; every test chemistry system present in training,172,32,24,4,22,,,,,,,,,,,case_study,4
+interp_formulation,molar_v,fold4,supported_comparison,held-out formulations; every test chemistry system present in training,166,32,23,4,21,,,,,,,,,,,case_study,4
+source_transfer,molal_w,doi:10.1016/S0378-7753(01)00697-8,insufficient_support,too few source rows inside common support,0,0,0,0,0,45.0,45.0,,,,,,,,,headline,8
+source_transfer,molal_w,doi:10.1016/S0378-7753(03)00153-8,supported_comparison,held-out source scored on common support only,188,165,7,1,2,239.0,,110.0,188.0,48.0,3.0,,,,,headline,8
+source_transfer,molal_w,doi:10.1021/JE020219O,supported_comparison,held-out source scored on common support only,1166,165,14,1,1,2872.0,574.0,372.0,1166.0,1060.0,72.0,,,,,headline,8
+source_transfer,molal_w,doi:10.1021/je0498863,supported_comparison,held-out source scored on common support only,1181,245,7,1,2,1264.0,,726.0,1181.0,,83.0,,,,,headline,8
+source_transfer,molal_w,doi:10.1149/1.1403730,supported_comparison,held-out source scored on common support only,100,26,3,1,1,325.0,,0.0,100.0,130.0,15.0,80.0,,,,headline,8
+source_transfer,molal_w,doi:10.1149/1.1513556,insufficient_support,too few source rows inside common support,0,0,0,0,0,650.0,650.0,,,,,,,,,headline,8
+source_transfer,molal_w,doi:10.1149/1.1630593,supported_comparison,held-out source scored on common support only,1259,292,8,1,2,1510.0,212.0,576.0,1259.0,,39.0,,,,,headline,8
+source_transfer,molal_w,doi:10.1149/1.1833611,supported_comparison,held-out source scored on common support only,292,28,1,1,1,2441.0,2118.0,64.0,292.0,,31.0,,,,,headline,8
+source_transfer,molal_w,doi:10.1149/1.1914757,supported_comparison,held-out source scored on common support only,100,20,1,1,1,810.0,710.0,33.0,100.0,,,,,,,headline,8
+source_transfer,molal_w,doi:10.1149/2.0271802jes,supported_comparison,held-out source scored on common support only,60,11,4,1,1,328.0,248.0,0.0,60.0,,20.0,,,,,headline,8
+source_transfer,molar_x,doi:10.1016/j.electacta.2008.04.023,insufficient_support,too few source rows inside common support,8,8,1,1,1,8.0,,,8.0,,,,,,,case_study,0
+source_transfer,molar_x,doi:10.1016/j.jpowsour.2011.06.030,supported_comparison,held-out source scored on common support only,11,1,1,1,1,39.0,26.0,11.0,11.0,2.0,,,,,,case_study,0
+source_transfer,molar_x,doi:10.1016/j.jpowsour.2011.07.071,supported_comparison,held-out source scored on common support only,53,1,1,1,1,131.0,68.0,0.0,53.0,10.0,,,,,,case_study,0
+source_transfer,molar_x,doi:10.1149/1.1344281,supported_comparison,held-out source scored on common support only,94,4,3,1,3,416.0,312.0,58.0,94.0,10.0,,,,,,case_study,0
+source_transfer,molar_x,doi:10.1149/1.1390879,insufficient_support,too few source rows inside common support,0,0,0,0,0,29.0,29.0,,,,,,,,,case_study,0
+source_transfer,molar_x,doi:10.1149/1.1466857,insufficient_support,too few source rows inside common support,6,1,1,1,1,24.0,12.0,,6.0,6.0,,,,,,case_study,0
+source_transfer,molar_x,doi:10.1149/1.1527939,supported_comparison,held-out source scored on common support only,103,4,2,1,2,616.0,298.0,51.0,103.0,24.0,191.0,,,,,case_study,0
+source_transfer,molar_x,doi:10.1149/2.0571912jes,supported_comparison,held-out source scored on common support only,28,8,1,1,1,119.0,42.0,17.0,28.0,,49.0,,,,,case_study,0
+source_transfer,molar_x,doi:10.1149/2.0641503jes,insufficient_support,too few source rows inside common support,0,0,0,0,0,15.0,15.0,,,,,,,,,case_study,0
+source_transfer,molar_v,doi:10.1016/0378-7753(91)80004-H,insufficient_support,too few source rows inside common support,0,0,0,0,0,1065.0,1065.0,,,,,,,,,case_study,0
+source_transfer,molar_v,doi:10.1016/S0013-4686(99)00431-4,insufficient_support,too few source rows inside common support,0,0,0,0,0,109.0,109.0,,,,,,,,,case_study,0
+source_transfer,molar_v,doi:10.1016/j.jpowsour.2010.12.040,insufficient_support,too few source rows inside common support,0,0,0,0,0,49.0,49.0,,,,,,,,,case_study,0
+source_transfer,molar_v,doi:10.1149/1.1872737,insufficient_support,too few source rows inside common support,0,0,0,0,0,28.0,28.0,,,,,,,,,case_study,0
+source_transfer,molar_v,doi:10.5012/bkcs.2011.32.10.3682,insufficient_support,too few source rows inside common support,0,0,0,0,0,18.0,18.0,,,,,,,,,case_study,0
+component_transfer,molal_w,DEC,insufficient_support,component in too large a share of the track (training would collapse),6082,876,41,5,3,,,,,,,,,,,case_study,0
+component_transfer,molal_w,DMC,combined_shift,component occurs in a single source group: chemistry and source effects cannot be separated,168,39,9,1,4,,,,,,,,1.0,1.0,,case_study,0
+component_transfer,molal_w,DME,combined_shift,100% of held-out rows come from sources absent from training; component occurs in a single source group: chemistry and source effects cannot be separated,45,14,1,1,1,,,,,,,,0.0,1.0,,case_study,0
+component_transfer,molal_w,EA,combined_shift,component occurs in a single source group: chemistry and source effects cannot be separated,710,134,7,1,1,,,,,,,,1.0,1.0,,case_study,0
+component_transfer,molal_w,EC,combined_shift,38% of held-out rows come from sources absent from training; held-out rows extend beyond the training temperature/concentration range,2579,487,40,6,10,,,,,,,,0.6219464908879411,6.0,,case_study,0
+component_transfer,molal_w,EMC,combined_shift,85% of held-out rows come from sources absent from training; held-out rows extend beyond the training temperature/concentration range,1144,226,19,3,6,,,,,,,,0.14772727272727273,3.0,,case_study,0
+component_transfer,molal_w,LiAsF6,combined_shift,100% of held-out rows come from sources absent from training; component occurs in a single source group: chemistry and source effects cannot be separated,45,14,1,1,1,,,,,,,,0.0,1.0,,case_study,0
+component_transfer,molal_w,LiBF4,combined_shift,97% of held-out rows come from sources absent from training,2870,511,22,3,3,,,,,,,,0.033449477351916376,3.0,,case_study,0
+component_transfer,molal_w,LiBOB,insufficient_support,component in too large a share of the track (training would collapse),3251,479,23,2,4,,,,,,,,,,,case_study,0
+component_transfer,molal_w,LiPF6,insufficient_support,component in too large a share of the track (training would collapse),4318,646,51,5,12,,,,,,,,,,,case_study,0
+component_transfer,molal_w,MA,combined_shift,component occurs in a single source group: chemistry and source effects cannot be separated,120,40,6,1,2,,,,,,,,1.0,1.0,,case_study,0
+component_transfer,molal_w,PC,insufficient_support,component in too large a share of the track (training would collapse),9831,1526,76,8,13,,,,,,,,,,,case_study,0
+component_transfer,molal_w,TFP,combined_shift,component occurs in a single source group: chemistry and source effects cannot be separated,540,112,5,1,1,,,,,,,,1.0,1.0,,case_study,0
+component_transfer,molar_x,AN,insufficient_support,fewer formulations than min_formulations,25,1,1,1,1,,,,,,,,,,,case_study,3
+component_transfer,molar_x,DEC,insufficient_support,fewer formulations than min_formulations,15,5,1,1,1,,,,,,,,,,,case_study,3
+component_transfer,molar_x,DMC,combined_shift,19% of held-out rows come from sources absent from training; held-out rows extend beyond the training temperature/concentration range,204,22,16,3,5,,,,,,,,0.8088235294117647,3.0,,case_study,3
+component_transfer,molar_x,DME,combined_shift,held-out rows extend beyond the training temperature/concentration range,367,13,6,2,5,,,,,,,,1.0,2.0,,case_study,3
+component_transfer,molar_x,DMSO,supported_comparison,component unseen; sources and conditions overlap training,140,16,7,2,6,,,,,,,,1.0,2.0,,case_study,3
+component_transfer,molar_x,EC,combined_shift,29% of held-out rows come from sources absent from training; held-out rows extend beyond the training temperature/concentration range,293,44,21,6,8,,,,,,,,0.7064846416382252,6.0,,case_study,3
+component_transfer,molar_x,EMC,combined_shift,28% of held-out rows come from sources absent from training,116,28,5,3,3,,,,,,,,0.7241379310344828,3.0,,case_study,3
+component_transfer,molar_x,FEC,combined_shift,component occurs in a single source group: chemistry and source effects cannot be separated,42,11,1,1,1,,,,,,,,1.0,1.0,,case_study,3
+component_transfer,molar_x,LiBF4,insufficient_support,fewer formulations than min_formulations,12,1,1,1,1,,,,,,,,,,,case_study,3
+component_transfer,molar_x,LiBMB,supported_comparison,component unseen; sources and conditions overlap training,40,11,2,2,1,,,,,,,,1.0,2.0,,case_study,3
+component_transfer,molar_x,LiBOB,insufficient_support,component in too large a share of the track (training would collapse),427,13,6,2,4,,,,,,,,,,,case_study,3
+component_transfer,molar_x,LiBPFPB,combined_shift,held-out rows extend beyond the training temperature/concentration range,318,13,3,2,3,,,,,,,,1.0,2.0,,case_study,3
+component_transfer,molar_x,LiCF3SO3,insufficient_support,fewer formulations than min_formulations,84,3,3,1,3,,,,,,,,,,,case_study,3
+component_transfer,molar_x,LiClO4,insufficient_support,fewer formulations than min_formulations,84,3,3,1,3,,,,,,,,,,,case_study,3
+component_transfer,molar_x,LiPDI,insufficient_support,fewer formulations than min_formulations,13,1,1,1,1,,,,,,,,,,,case_study,3
+component_transfer,molar_x,LiPF6,combined_shift,66% of held-out rows come from sources absent from training; held-out rows extend beyond the training temperature/concentration range,259,44,9,7,5,,,,,,,,0.33976833976833976,7.0,,case_study,3
+component_transfer,molar_x,LiTDI,insufficient_support,fewer formulations than min_formulations,13,1,1,1,1,,,,,,,,,,,case_study,3
+component_transfer,molar_x,LiTFSI,supported_comparison,component unseen; sources and conditions overlap training,147,15,15,2,6,,,,,,,,1.0,2.0,,case_study,3
+component_transfer,molar_x,MOEMC,insufficient_support,fewer formulations than min_formulations,29,3,1,1,1,,,,,,,,,,,case_study,3
+component_transfer,molar_x,PC,insufficient_support,component in too large a share of the track (training would collapse),500,16,6,2,5,,,,,,,,,,,case_study,3
+component_transfer,molar_v,2-MeTHF,combined_shift,component occurs in a single source group: chemistry and source effects cannot be separated,265,29,25,1,14,,,,,,,,1.0,1.0,,case_study,4
+component_transfer,molar_v,3MeOx,insufficient_support,fewer formulations than min_formulations,5,1,1,1,1,,,,,,,,,,,case_study,4
+component_transfer,molar_v,3MeSulfolane,insufficient_support,fewer formulations than min_formulations,34,5,5,1,4,,,,,,,,,,,case_study,4
+component_transfer,molar_v,Benzene,insufficient_support,fewer formulations than min_formulations,9,2,2,1,2,,,,,,,,,,,case_study,4
+component_transfer,molar_v,Cumene,insufficient_support,fewer formulations than min_formulations,8,1,1,1,1,,,,,,,,,,,case_study,4
+component_transfer,molar_v,DCM,combined_shift,component occurs in a single source group: chemistry and source effects cannot be separated,166,22,22,1,8,,,,,,,,1.0,1.0,,case_study,4
+component_transfer,molar_v,DMC,insufficient_support,fewer formulations than min_formulations,28,7,1,1,1,,,,,,,,,,,case_study,4
+component_transfer,molar_v,DME,combined_shift,held-out rows extend beyond the training temperature/concentration range,166,28,26,2,16,,,,,,,,1.0,2.0,,case_study,4
+component_transfer,molar_v,DMF,insufficient_support,fewer formulations than min_formulations,7,1,1,1,1,,,,,,,,,,,case_study,4
+component_transfer,molar_v,DOL,combined_shift,100% of held-out rows come from sources absent from training; component occurs in a single source group: chemistry and source effects cannot be separated,18,18,18,1,6,,,,,,,,0.0,1.0,,case_study,4
+component_transfer,molar_v,Diglyme,combined_shift,75% of held-out rows come from sources absent from training,145,54,14,2,7,,,,,,,,0.2482758620689655,2.0,,case_study,4
+component_transfer,molar_v,EC,insufficient_support,component in too large a share of the track (training would collapse),705,117,59,4,35,,,,,,,,,,,case_study,4
+component_transfer,molar_v,EMC,insufficient_support,fewer formulations than min_formulations,49,3,3,1,3,,,,,,,,,,,case_study,4
+component_transfer,molar_v,Ethylbenzene,insufficient_support,fewer formulations than min_formulations,18,2,2,1,1,,,,,,,,,,,case_study,4
+component_transfer,molar_v,Freon11,insufficient_support,fewer formulations than min_formulations,15,3,3,1,2,,,,,,,,,,,case_study,4
+component_transfer,molar_v,GBL,insufficient_support,fewer formulations than min_formulations,24,3,3,1,3,,,,,,,,,,,case_study,4
+component_transfer,molar_v,LiAsF6,insufficient_support,component in too large a share of the track (training would collapse),927,120,96,1,61,,,,,,,,,,,case_study,4
+component_transfer,molar_v,LiBF4,insufficient_support,fewer formulations than min_formulations,45,4,4,2,4,,,,,,,,,,,case_study,4
+component_transfer,molar_v,LiCF3SO3,supported_comparison,component unseen; sources and conditions overlap training,40,10,10,2,6,,,,,,,,1.0,2.0,,case_study,4
+component_transfer,molar_v,LiClO4,supported_comparison,component unseen; sources and conditions overlap training,76,33,13,2,3,,,,,,,,1.0,2.0,,case_study,4
+component_transfer,molar_v,LiFSI,insufficient_support,fewer formulations than min_formulations,19,1,1,1,1,,,,,,,,,,,case_study,4
+component_transfer,molar_v,LiPF6,combined_shift,25% of held-out rows come from sources absent from training,110,32,6,4,5,,,,,,,,0.7454545454545455,4.0,,case_study,4
+component_transfer,molar_v,LiTFSI,supported_comparison,component unseen; sources and conditions overlap training,52,12,12,2,8,,,,,,,,1.0,2.0,,case_study,4
+component_transfer,molar_v,PC,insufficient_support,component in too large a share of the track (training would collapse),561,67,47,2,30,,,,,,,,,,,case_study,4
+component_transfer,molar_v,Propylsulfone,insufficient_support,fewer formulations than min_formulations,5,1,1,1,1,,,,,,,,,,,case_study,4
+component_transfer,molar_v,Pseudocumene,insufficient_support,fewer formulations than min_formulations,6,1,1,1,1,,,,,,,,,,,case_study,4
+component_transfer,molar_v,Sulfolane,combined_shift,component occurs in a single source group: chemistry and source effects cannot be separated,350,49,39,1,26,,,,,,,,1.0,1.0,,case_study,4
+component_transfer,molar_v,TEOS,insufficient_support,fewer formulations than min_formulations,7,1,1,1,1,,,,,,,,,,,case_study,4
+component_transfer,molar_v,THF,combined_shift,component occurs in a single source group: chemistry and source effects cannot be separated,92,11,11,1,5,,,,,,,,1.0,1.0,,case_study,4
+component_transfer,molar_v,Tetraglyme,supported_comparison,component unseen; sources and conditions overlap training,40,13,11,2,4,,,,,,,,1.0,2.0,,case_study,4
+component_transfer,molar_v,Toluene,insufficient_support,fewer formulations than min_formulations,55,8,8,1,6,,,,,,,,,,,case_study,4
+component_transfer,molar_v,Triglyme,combined_shift,component occurs in a single source group: chemistry and source effects cannot be separated,247,31,27,1,18,,,,,,,,1.0,1.0,,case_study,4
+component_transfer,molar_v,mXylene,insufficient_support,fewer formulations than min_formulations,8,1,1,1,1,,,,,,,,,,,case_study,4
+component_transfer,molar_v,oXylene,insufficient_support,fewer formulations than min_formulations,8,1,1,1,1,,,,,,,,,,,case_study,4
+temp_high,molal_w,all,supported_comparison,same formulations on both sides of a predeclared temperature_K boundary,674,592,67,7,13,,,,,,,,,,592.0,headline,7
+temp_high,molal_w,doi:10.1021/JE020219O,supported_comparison,per-source share of the boundary test set,170,148,17,1,3,,,,,,,,,,,headline,7
+temp_high,molal_w,doi:10.1021/je0498863,supported_comparison,per-source share of the boundary test set,79,76,7,1,2,,,,,,,,,,,headline,7
+temp_high,molal_w,doi:10.1149/1.1403730,supported_comparison,per-source share of the boundary test set,57,31,4,1,1,,,,,,,,,,,headline,7
+temp_high,molal_w,doi:10.1149/1.1513556,supported_comparison,per-source share of the boundary test set,52,29,6,1,2,,,,,,,,,,,headline,7
+temp_high,molal_w,doi:10.1149/1.1630593,supported_comparison,per-source share of the boundary test set,82,82,10,1,3,,,,,,,,,,,headline,7
+temp_high,molal_w,doi:10.1149/1.1833611,supported_comparison,per-source share of the boundary test set,183,182,15,1,3,,,,,,,,,,,headline,7
+temp_high,molal_w,doi:10.1149/1.1914757,supported_comparison,per-source share of the boundary test set,51,51,8,1,2,,,,,,,,,,,headline,7
+temp_high,molar_x,all,supported_comparison,same formulations on both sides of a predeclared temperature_K boundary,384,55,27,6,23,,,,,,,,,,55.0,case_study,3
+temp_high,molar_x,doi:10.1016/j.jpowsour.2011.07.071,supported_comparison,per-source share of the boundary test set,20,2,2,1,2,,,,,,,,,,,case_study,3
+temp_high,molar_x,doi:10.1149/1.1344281,supported_comparison,per-source share of the boundary test set,162,16,15,1,15,,,,,,,,,,,case_study,3
+temp_high,molar_x,doi:10.1149/1.1390879,supported_comparison,per-source share of the boundary test set,7,3,1,1,1,,,,,,,,,,,case_study,3
+temp_high,molar_x,doi:10.1149/1.1466857,supported_comparison,per-source share of the boundary test set,3,2,2,1,2,,,,,,,,,,,case_study,3
+temp_high,molar_x,doi:10.1149/1.1527939,supported_comparison,per-source share of the boundary test set,177,20,4,1,4,,,,,,,,,,,case_study,3
+temp_high,molar_x,doi:10.1149/2.0571912jes,supported_comparison,per-source share of the boundary test set,15,15,3,1,3,,,,,,,,,,,case_study,3
+temp_high,molar_v,all,supported_comparison,same formulations on both sides of a predeclared temperature_K boundary,210,106,84,4,59,,,,,,,,,,106.0,case_study,1
+temp_high,molar_v,doi:10.1016/0378-7753(91)80004-H,supported_comparison,per-source share of the boundary test set,185,93,73,1,54,,,,,,,,,,,case_study,1
+temp_high,molar_v,doi:10.1016/S0013-4686(99)00431-4,supported_comparison,per-source share of the boundary test set,14,7,7,1,1,,,,,,,,,,,case_study,1
+temp_high,molar_v,doi:10.1016/j.jpowsour.2010.12.040,supported_comparison,per-source share of the boundary test set,5,3,3,1,3,,,,,,,,,,,case_study,1
+temp_high,molar_v,doi:10.1149/1.1872737,supported_comparison,per-source share of the boundary test set,6,3,1,1,1,,,,,,,,,,,case_study,1
+temp_low,molal_w,all,supported_comparison,same formulations on both sides of a predeclared temperature_K boundary,1714,617,76,9,14,,,,,,,,,,617.0,headline,8
+temp_low,molal_w,doi:10.1016/S0378-7753(01)00697-8,supported_comparison,per-source share of the boundary test set,6,6,1,1,1,,,,,,,,,,,headline,8
+temp_low,molal_w,doi:10.1016/S0378-7753(03)00153-8,supported_comparison,per-source share of the boundary test set,66,66,7,1,2,,,,,,,,,,,headline,8
+temp_low,molal_w,doi:10.1021/JE020219O,supported_comparison,per-source share of the boundary test set,798,145,20,1,3,,,,,,,,,,,headline,8
+temp_low,molal_w,doi:10.1021/je0498863,supported_comparison,per-source share of the boundary test set,131,71,6,1,1,,,,,,,,,,,headline,8
+temp_low,molal_w,doi:10.1149/1.1403730,supported_comparison,per-source share of the boundary test set,44,30,4,1,1,,,,,,,,,,,headline,8
+temp_low,molal_w,doi:10.1149/1.1513556,supported_comparison,per-source share of the boundary test set,41,41,5,1,2,,,,,,,,,,,headline,8
+temp_low,molal_w,doi:10.1149/1.1630593,supported_comparison,per-source share of the boundary test set,205,125,12,1,3,,,,,,,,,,,headline,8
+temp_low,molal_w,doi:10.1149/1.1833611,supported_comparison,per-source share of the boundary test set,337,181,13,1,3,,,,,,,,,,,headline,8
+temp_low,molal_w,doi:10.1149/1.1914757,supported_comparison,per-source share of the boundary test set,86,44,8,1,2,,,,,,,,,,,headline,8
+temp_low,molar_x,all,supported_comparison,same formulations on both sides of a predeclared temperature_K boundary,246,30,16,4,14,,,,,,,,,,30.0,case_study,2
+temp_low,molar_x,doi:10.1149/1.1344281,supported_comparison,per-source share of the boundary test set,81,10,9,1,9,,,,,,,,,,,case_study,2
+temp_low,molar_x,doi:10.1149/1.1390879,supported_comparison,per-source share of the boundary test set,10,3,1,1,1,,,,,,,,,,,case_study,2
+temp_low,molar_x,doi:10.1149/1.1466857,supported_comparison,per-source share of the boundary test set,8,2,2,1,2,,,,,,,,,,,case_study,2
+temp_low,molar_x,doi:10.1149/1.1527939,supported_comparison,per-source share of the boundary test set,147,17,4,1,4,,,,,,,,,,,case_study,2
+temp_low,molar_v,all,supported_comparison,same formulations on both sides of a predeclared temperature_K boundary,245,92,75,3,47,,,,,,,,,,92.0,case_study,1
+temp_low,molar_v,doi:10.1016/0378-7753(91)80004-H,supported_comparison,per-source share of the boundary test set,241,90,73,1,45,,,,,,,,,,,case_study,1
+temp_low,molar_v,doi:10.1016/S0013-4686(99)00431-4,supported_comparison,per-source share of the boundary test set,3,1,1,1,1,,,,,,,,,,,case_study,1
+temp_low,molar_v,doi:10.1016/j.jpowsour.2010.12.040,supported_comparison,per-source share of the boundary test set,1,1,1,1,1,,,,,,,,,,,case_study,1
+conc_high,molal_w,all,supported_comparison,same solvent_recipes on both sides of a predeclared concentration boundary,1672,269,58,8,10,,,,,,,,,,35.0,headline,5
+conc_high,molal_w,doi:10.1016/S0378-7753(01)00697-8,supported_comparison,per-source share of the boundary test set,3,2,1,1,1,,,,,,,,,,,headline,5
+conc_high,molal_w,doi:10.1016/S0378-7753(03)00153-8,supported_comparison,per-source share of the boundary test set,70,60,7,1,2,,,,,,,,,,,headline,5
+conc_high,molal_w,doi:10.1021/JE020219O,supported_comparison,per-source share of the boundary test set,812,92,19,1,3,,,,,,,,,,,headline,5
+conc_high,molal_w,doi:10.1021/je0498863,supported_comparison,per-source share of the boundary test set,321,65,7,1,2,,,,,,,,,,,headline,5
+conc_high,molal_w,doi:10.1149/1.1403730,supported_comparison,per-source share of the boundary test set,52,8,4,1,1,,,,,,,,,,,headline,5
+conc_high,molal_w,doi:10.1149/1.1513556,supported_comparison,per-source share of the boundary test set,89,19,6,1,2,,,,,,,,,,,headline,5
+conc_high,molal_w,doi:10.1149/1.1630593,supported_comparison,per-source share of the boundary test set,295,62,11,1,2,,,,,,,,,,,headline,5
+conc_high,molal_w,doi:10.1149/2.0271802jes,supported_comparison,per-source share of the boundary test set,30,6,3,1,1,,,,,,,,,,,headline,5
+conc_high,molar_x,all,supported_comparison,same solvent_recipes on both sides of a predeclared concentration boundary,154,18,5,4,4,,,,,,,,,,4.0,case_study,1
+conc_high,molar_x,doi:10.1016/j.electacta.2008.04.023,supported_comparison,per-source share of the boundary test set,3,3,1,1,1,,,,,,,,,,,case_study,1
+conc_high,molar_x,doi:10.1149/1.1527939,supported_comparison,per-source share of the boundary test set,106,5,1,1,1,,,,,,,,,,,case_study,1
+conc_high,molar_x,doi:10.1149/2.0571912jes,supported_comparison,per-source share of the boundary test set,42,10,2,1,2,,,,,,,,,,,case_study,1
+conc_high,molar_x,doi:10.1149/2.0641503jes,supported_comparison,per-source share of the boundary test set,3,1,1,1,1,,,,,,,,,,,case_study,1
+external_rahmanian,molal_w,rahmanian2023,combined_shift,"new source; common_support subset is the supported comparison, remaining rows add chemistry/condition shift",5035,104,504,1,2,,450.0,,153.0,17.0,,4415.0,,,,case_study,1

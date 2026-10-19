@@ -1,0 +1,35 @@
+[project]
+name = "elbench"
+version = "0.1.0"
+description = "Electrolyte generalization benchmark: ionic conductivity of liquid Li electrolytes under source, component and condition shift"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = { text = "MIT (code). Data licences: see DATA.md" }
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.1",
+    "pyarrow>=14",
+    "scikit-learn>=1.4",
+    "scipy>=1.11",
+    "rdkit>=2023.9",
+    "pyyaml>=6",
+    "matplotlib>=3.8",
+    "joblib>=1.3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "nbformat>=5.9", "nbclient>=0.10", "ipykernel>=6.29"]
+
+[project.scripts]
+elbench = "elbench.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/elbench"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

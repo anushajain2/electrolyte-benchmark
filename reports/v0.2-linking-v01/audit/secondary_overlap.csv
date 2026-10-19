@@ -1,0 +1,3 @@
+chemistry_system_id,secondary_rows,secondary_formulations,backbone_rows,backbone_source_groups,shared_formulation_ids,secondary_T_range,backbone_T_range,secondary_c_range,backbone_c_range
+LiPF6|EC+EMC+PC,4585,94,110,10.1149/1.1513556,0,243.1-333.1,243.2-333.1,0.19-2.10,0.42-1.81
+LiPF6|EMC+PC,450,10,0,,0,243.1-333.1,,0.19-2.12,

@@ -1,0 +1,18 @@
+track_id,step,count,cause
+(all),papers in the backbone collection,27,starting material
+(all),papers with >=1 included row,26,curation exclusions
+molal_w,papers in this track,12,concentration and ratio basis (track eligibility)
+molal_w,source groups,7,provenance grouping (R09/R12 links)
+molal_w,author groups,3,reviewed author grouping (sensitivity)
+molal_w,source groups testable in source transfer,4,rows inside common support when held out
+molal_w,author groups testable in author transfer,2,rows inside common support when held out
+molar_v,papers in this track,5,concentration and ratio basis (track eligibility)
+molar_v,source groups,5,provenance grouping (R09/R12 links)
+molar_v,author groups,5,reviewed author grouping (sensitivity)
+molar_v,source groups testable in source transfer,0,rows inside common support when held out
+molar_v,author groups testable in author transfer,0,rows inside common support when held out
+molar_x,papers in this track,9,concentration and ratio basis (track eligibility)
+molar_x,source groups,9,provenance grouping (R09/R12 links)
+molar_x,author groups,7,reviewed author grouping (sensitivity)
+molar_x,source groups testable in source transfer,5,rows inside common support when held out
+molar_x,author groups testable in author transfer,3,rows inside common support when held out

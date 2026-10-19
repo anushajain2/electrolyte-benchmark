@@ -1,0 +1,167 @@
+task_id,track_id,subset,comparison,model,n_groups,group_mean_mae_log10,ci_low,ci_high,diff_vs_reference,diff_ci_low,diff_ci_high,p_model_worse,n_common_rows,note
+component_transfer,molal_w,all,main,extra_trees,9,0.322618,0.179408,0.491044,0.0,0.0,0.0,0.0,6031,
+component_transfer,molal_w,all,main,hist_gb,9,0.347297,0.191714,0.535097,0.024679,0.000845,0.047355,0.9785,6031,
+component_transfer,molal_w,all,main,knn,9,0.37491,0.207201,0.556848,0.052292,-0.010217,0.144351,0.9195,6031,
+component_transfer,molal_w,all,main,median,9,0.482516,0.427733,0.540519,0.159898,0.003989,0.305761,0.976,6031,
+component_transfer,molal_w,all,main,ridge,9,5.502092,0.473737,15.109759,5.179474,0.122305,14.838048,0.998,6031,
+component_transfer,molal_w,combined_folds,main,extra_trees,9,0.322618,0.179408,0.491044,0.0,0.0,0.0,0.0,6031,
+component_transfer,molal_w,combined_folds,main,hist_gb,9,0.347297,0.191714,0.535097,0.024679,0.000845,0.047355,0.9785,6031,
+component_transfer,molal_w,combined_folds,main,knn,9,0.37491,0.207201,0.556848,0.052292,-0.010217,0.144351,0.9195,6031,
+component_transfer,molal_w,combined_folds,main,median,9,0.482516,0.427733,0.540519,0.159898,0.003989,0.305761,0.976,6031,
+component_transfer,molal_w,combined_folds,main,ridge,9,5.502092,0.473737,15.109759,5.179474,0.122305,14.838048,0.998,6031,
+component_transfer,molal_w,familiar_source_rows,main,extra_trees,7,0.191841,0.142165,0.246119,0.0,0.0,0.0,0.0,2989,
+component_transfer,molal_w,familiar_source_rows,main,hist_gb,7,0.206114,0.146669,0.26894,0.014273,-0.019908,0.04459,0.8125,2989,
+component_transfer,molal_w,familiar_source_rows,main,knn,7,0.238893,0.153466,0.344939,0.047052,-0.029118,0.166499,0.754,2989,
+component_transfer,molal_w,familiar_source_rows,main,median,7,0.505489,0.437309,0.575033,0.313648,0.219326,0.388082,1.0,2989,
+component_transfer,molal_w,familiar_source_rows,main,ridge,7,6.398552,0.189595,18.798578,6.206711,-0.035476,18.640042,0.786,2989,
+component_transfer,molar_v,all,main,extra_trees,13,0.236909,0.203922,0.268899,0.0,0.0,0.0,0.0,1041,
+component_transfer,molar_v,all,main,hist_gb,13,0.261333,0.220733,0.305351,0.024424,-0.010119,0.058173,0.9085,1041,
+component_transfer,molar_v,all,main,knn,13,0.332773,0.291758,0.379796,0.095864,0.048131,0.144338,1.0,1041,
+component_transfer,molar_v,all,main,median,13,0.443512,0.379837,0.507211,0.206603,0.142809,0.27089,1.0,1041,
+component_transfer,molar_v,all,main,ridge,13,0.430362,0.342094,0.536204,0.193453,0.099956,0.304835,1.0,1041,
+component_transfer,molar_v,combined_folds,main,extra_trees,9,0.223402,0.193648,0.25331,0.0,0.0,0.0,0.0,1022,
+component_transfer,molar_v,combined_folds,main,hist_gb,9,0.229704,0.202193,0.258549,0.006302,-0.033313,0.051135,0.6045,1022,
+component_transfer,molar_v,combined_folds,main,knn,9,0.31649,0.282205,0.352376,0.093088,0.044408,0.143387,1.0,1022,
+component_transfer,molar_v,combined_folds,main,median,9,0.423124,0.350558,0.496131,0.199723,0.119143,0.281482,1.0,1022,
+component_transfer,molar_v,combined_folds,main,ridge,9,0.425766,0.332929,0.544794,0.202364,0.094384,0.344301,1.0,1022,
+component_transfer,molar_v,familiar_source_rows,main,extra_trees,12,0.222307,0.179104,0.266362,0.0,0.0,0.0,0.0,1013,
+component_transfer,molar_v,familiar_source_rows,main,hist_gb,12,0.258515,0.20679,0.309603,0.036208,0.008363,0.066321,0.994,1013,
+component_transfer,molar_v,familiar_source_rows,main,knn,12,0.323028,0.270947,0.378762,0.100721,0.053174,0.148307,1.0,1013,
+component_transfer,molar_v,familiar_source_rows,main,median,12,0.459908,0.398661,0.522766,0.237601,0.168803,0.298368,1.0,1013,
+component_transfer,molar_v,familiar_source_rows,main,ridge,12,0.391065,0.29401,0.508474,0.168758,0.072331,0.290388,1.0,1013,
+component_transfer,molar_v,supported_folds,main,extra_trees,4,0.267299,0.17881,0.333789,0.0,0.0,0.0,0.0,199,few groups: read group-level results individually
+component_transfer,molar_v,supported_folds,main,hist_gb,4,0.332498,0.220698,0.415169,0.065199,0.044582,0.081481,1.0,199,few groups: read group-level results individually
+component_transfer,molar_v,supported_folds,main,knn,4,0.36941,0.259075,0.479745,0.102111,-0.014434,0.181957,0.945,199,few groups: read group-level results individually
+component_transfer,molar_v,supported_folds,main,median,4,0.489383,0.385743,0.593023,0.222084,0.128884,0.310386,1.0,199,few groups: read group-level results individually
+component_transfer,molar_v,supported_folds,main,ridge,4,0.440703,0.283427,0.619689,0.173404,0.0038,0.34571,0.988,199,few groups: read group-level results individually
+component_transfer,molar_x,all,main,extra_trees,10,0.376272,0.288997,0.473327,0.0,0.0,0.0,0.0,1129,
+component_transfer,molar_x,all,main,hist_gb,10,0.530831,0.355048,0.745077,0.154558,0.014472,0.351828,0.993,1129,
+component_transfer,molar_x,all,main,knn,10,0.364196,0.263917,0.485503,-0.012076,-0.082226,0.054139,0.358,1129,
+component_transfer,molar_x,all,main,median,10,0.412138,0.332605,0.529113,0.035865,-0.051168,0.107033,0.8,1129,
+component_transfer,molar_x,all,main,ridge,10,1.14572,0.450359,2.38529,0.769448,0.144086,1.960612,1.0,1129,
+component_transfer,molar_x,combined_folds,main,extra_trees,7,0.432199,0.329909,0.535072,0.0,0.0,0.0,0.0,976,
+component_transfer,molar_x,combined_folds,main,hist_gb,7,0.644456,0.432332,0.900769,0.212257,0.014989,0.487469,0.9875,976,
+component_transfer,molar_x,combined_folds,main,knn,7,0.414011,0.314187,0.555645,-0.018189,-0.101947,0.071136,0.3275,976,
+component_transfer,molar_x,combined_folds,main,median,7,0.446502,0.344192,0.601446,0.014302,-0.09635,0.126077,0.58,976,
+component_transfer,molar_x,combined_folds,main,ridge,7,1.479061,0.522131,3.178213,1.046862,0.173707,2.714635,1.0,976,
+component_transfer,molar_x,familiar_source_rows,main,extra_trees,10,0.373465,0.291414,0.46362,0.0,0.0,0.0,0.0,1039,
+component_transfer,molar_x,familiar_source_rows,main,hist_gb,10,0.525304,0.352045,0.735755,0.151839,-0.002844,0.354111,0.969,1039,
+component_transfer,molar_x,familiar_source_rows,main,knn,10,0.349229,0.252842,0.469295,-0.024236,-0.104876,0.045703,0.2455,1039,
+component_transfer,molar_x,familiar_source_rows,main,median,10,0.407236,0.329398,0.52244,0.033771,-0.052672,0.10481,0.7875,1039,
+component_transfer,molar_x,familiar_source_rows,main,ridge,10,0.799611,0.451717,1.34533,0.426146,0.145777,0.927495,1.0,1039,
+component_transfer,molar_x,supported_folds,main,extra_trees,3,0.245776,0.176081,0.33398,0.0,0.0,0.0,0.0,267,few groups: read group-level results individually
+component_transfer,molar_x,supported_folds,main,hist_gb,3,0.265704,0.202364,0.354454,0.019928,0.013028,0.026283,1.0,267,few groups: read group-level results individually
+component_transfer,molar_x,supported_folds,main,knn,3,0.247963,0.064641,0.393428,0.002187,-0.11144,0.059448,0.752,267,few groups: read group-level results individually
+component_transfer,molar_x,supported_folds,main,median,3,0.331955,0.253199,0.378744,0.086179,0.044764,0.136654,1.0,267,few groups: read group-level results individually
+component_transfer,molar_x,supported_folds,main,ridge,3,0.367924,0.254022,0.581821,0.122148,0.026755,0.24784,1.0,267,few groups: read group-level results individually
+conc_high,molal_w,all,main,extra_trees,8,0.22924,0.132666,0.347474,0.0,0.0,0.0,0.0,1670,
+conc_high,molal_w,all,main,hist_gb,8,0.210636,0.116078,0.324935,-0.018604,-0.030733,-0.008018,0.0,1670,
+conc_high,molal_w,all,main,knn,8,0.235999,0.142351,0.348542,0.006758,-0.002534,0.015944,0.9155,1670,
+conc_high,molal_w,all,main,median,8,0.548576,0.420218,0.715595,0.319335,0.270621,0.374043,1.0,1670,
+conc_high,molal_w,all,main,ridge,8,0.228983,0.165531,0.313396,-0.000258,-0.07155,0.079478,0.476,1670,
+conc_high,molar_x,all,main,extra_trees,4,0.460559,0.117824,1.058103,0.0,0.0,0.0,0.0,154,few groups: read group-level results individually
+conc_high,molar_x,all,main,hist_gb,4,0.477677,0.144803,1.075256,0.017118,0.000302,0.033934,0.979,154,few groups: read group-level results individually
+conc_high,molar_x,all,main,knn,4,0.482851,0.163112,1.055661,0.022293,-0.000287,0.052737,0.9635,154,few groups: read group-level results individually
+conc_high,molar_x,all,main,median,4,0.464513,0.109746,1.0688,0.003954,-0.070214,0.059333,0.6325,154,few groups: read group-level results individually
+conc_high,molar_x,all,main,ridge,4,0.41946,0.073047,0.892896,-0.041099,-0.159077,0.087314,0.2455,154,few groups: read group-level results individually
+interp_formulation,molal_w,all,main,extra_trees,10,0.060722,0.040785,0.085386,0.0,0.0,0.0,0.0,10472,
+interp_formulation,molal_w,all,main,hist_gb,10,0.064291,0.048566,0.084017,0.003569,-0.001938,0.008441,0.8945,10472,
+interp_formulation,molal_w,all,main,knn,10,0.075005,0.059583,0.094657,0.014283,0.007207,0.021361,1.0,10472,
+interp_formulation,molal_w,all,main,median,10,0.465113,0.401617,0.538628,0.404391,0.33285,0.480359,1.0,10472,
+interp_formulation,molal_w,all,main,ridge,10,0.171407,0.140436,0.203485,0.110685,0.082958,0.139949,1.0,10472,
+interp_formulation,molar_v,all,main,extra_trees,4,0.127579,0.088175,0.172486,0.0,0.0,0.0,0.0,865,few groups: read group-level results individually
+interp_formulation,molar_v,all,main,hist_gb,4,0.109042,0.091817,0.120028,-0.018537,-0.05558,0.008513,0.195,865,few groups: read group-level results individually
+interp_formulation,molar_v,all,main,knn,4,0.154594,0.115522,0.194983,0.027015,-0.014002,0.063733,0.9285,865,few groups: read group-level results individually
+interp_formulation,molar_v,all,main,median,4,0.392449,0.297633,0.493349,0.264871,0.16218,0.367562,1.0,865,few groups: read group-level results individually
+interp_formulation,molar_v,all,main,ridge,4,0.218784,0.164546,0.260516,0.091206,0.063805,0.118606,1.0,865,few groups: read group-level results individually
+interp_formulation,molar_x,all,main,extra_trees,9,0.131282,0.069426,0.209506,0.0,0.0,0.0,0.0,1045,
+interp_formulation,molar_x,all,main,hist_gb,9,0.137754,0.085166,0.191068,0.006472,-0.041757,0.052811,0.6325,1045,
+interp_formulation,molar_x,all,main,knn,9,0.229596,0.112713,0.380165,0.098315,0.03339,0.171303,1.0,1045,
+interp_formulation,molar_x,all,main,median,9,0.430368,0.262517,0.635645,0.299086,0.186775,0.427096,1.0,1045,
+interp_formulation,molar_x,all,main,ridge,9,0.299276,0.168316,0.44018,0.167995,0.091491,0.265814,1.0,1045,
+source_transfer,molal_w,all,main,extra_trees,8,0.098981,0.075611,0.121657,0.0,0.0,0.0,0.0,4344,
+source_transfer,molal_w,all,main,hist_gb,8,0.117111,0.081985,0.153328,0.01813,0.004802,0.033259,0.997,4344,
+source_transfer,molal_w,all,main,knn,8,0.103865,0.071636,0.13801,0.004884,-0.008111,0.019596,0.7455,4344,
+source_transfer,molal_w,all,main,median,8,0.413977,0.379477,0.452354,0.314996,0.269501,0.360592,1.0,4344,
+source_transfer,molal_w,all,main,ridge,8,0.179948,0.152449,0.204807,0.080967,0.060042,0.102638,1.0,4344,
+source_transfer,molal_w,exact_formulation_match,main,extra_trees,6,0.112183,0.08112,0.140427,0.0,0.0,0.0,0.0,1881,
+source_transfer,molal_w,exact_formulation_match,main,hist_gb,6,0.134859,0.096796,0.179049,0.022675,0.007193,0.042698,0.9985,1881,
+source_transfer,molal_w,exact_formulation_match,main,knn,6,0.117912,0.077397,0.159926,0.005729,-0.007804,0.023362,0.7445,1881,
+source_transfer,molal_w,exact_formulation_match,main,median,6,0.401243,0.355891,0.441785,0.28906,0.238501,0.339619,1.0,1881,
+source_transfer,molal_w,exact_formulation_match,main,ridge,6,0.186098,0.158299,0.214297,0.073914,0.049546,0.09901,1.0,1881,
+source_transfer,molar_x,all,main,extra_trees,5,0.065332,0.035876,0.095048,0.0,0.0,0.0,0.0,289,
+source_transfer,molar_x,all,main,hist_gb,5,0.070724,0.04072,0.099146,0.005392,-0.013758,0.022927,0.669,289,
+source_transfer,molar_x,all,main,knn,5,0.063869,0.033686,0.092717,-0.001463,-0.020703,0.015735,0.4495,289,
+source_transfer,molar_x,all,main,median,5,0.338343,0.256622,0.420063,0.27301,0.196397,0.348021,1.0,289,
+source_transfer,molar_x,all,main,ridge,5,0.257331,0.140328,0.375433,0.191999,0.096291,0.302789,1.0,289,
+source_transfer,molar_x,exact_formulation_match,main,extra_trees,4,0.066601,0.035028,0.09648,0.0,0.0,0.0,0.0,137,few groups: read group-level results individually
+source_transfer,molar_x,exact_formulation_match,main,hist_gb,4,0.076088,0.048365,0.09559,0.009487,-0.00089,0.019863,0.9435,137,few groups: read group-level results individually
+source_transfer,molar_x,exact_formulation_match,main,knn,4,0.075634,0.041879,0.094754,0.009033,-0.008905,0.029226,0.862,137,few groups: read group-level results individually
+source_transfer,molar_x,exact_formulation_match,main,median,4,0.42097,0.251756,0.590185,0.354369,0.215034,0.493705,1.0,137,few groups: read group-level results individually
+source_transfer,molar_x,exact_formulation_match,main,ridge,4,0.265953,0.116511,0.405359,0.199352,0.071369,0.337064,1.0,137,few groups: read group-level results individually
+temp_high,molal_w,all,main,extra_trees,7,0.138643,0.126507,0.150334,0.0,0.0,0.0,0.0,674,
+temp_high,molal_w,all,main,hist_gb,7,0.142918,0.13058,0.154934,0.004275,-0.008184,0.016387,0.7545,674,
+temp_high,molal_w,all,main,knn,7,0.149319,0.136242,0.164736,0.010676,-0.001638,0.029102,0.914,674,
+temp_high,molal_w,all,main,median,7,0.574589,0.438854,0.702092,0.435945,0.303282,0.556745,1.0,674,
+temp_high,molal_w,all,main,ridge,7,0.219454,0.186534,0.26074,0.08081,0.046916,0.119275,1.0,674,
+temp_high,molal_w,all,with_local,arrhenius_local,7,0.195959,0.128013,0.301339,0.057315,-0.010697,0.159843,0.9045,674,
+temp_high,molal_w,all,with_local,extra_trees,7,0.138643,0.126507,0.150334,0.0,0.0,0.0,0.0,674,
+temp_high,molal_w,all,with_local,hist_gb,7,0.142918,0.13058,0.154934,0.004275,-0.008184,0.016387,0.7545,674,
+temp_high,molal_w,all,with_local,knn,7,0.149319,0.136242,0.164736,0.010676,-0.001638,0.029102,0.914,674,
+temp_high,molal_w,all,with_local,median,7,0.574589,0.438854,0.702092,0.435945,0.303282,0.556745,1.0,674,
+temp_high,molal_w,all,with_local,ridge,7,0.219454,0.186534,0.26074,0.08081,0.046916,0.119275,1.0,674,
+temp_high,molar_v,all,main,extra_trees,4,0.2165,0.138223,0.332735,0.0,0.0,0.0,0.0,210,few groups: read group-level results individually
+temp_high,molar_v,all,main,hist_gb,4,0.227197,0.142564,0.320214,0.010697,-0.010642,0.038392,0.802,210,few groups: read group-level results individually
+temp_high,molar_v,all,main,knn,4,0.234903,0.139431,0.369852,0.018403,0.001208,0.037117,0.98,210,few groups: read group-level results individually
+temp_high,molar_v,all,main,median,4,0.642608,0.608113,0.692282,0.426108,0.278441,0.548543,1.0,210,few groups: read group-level results individually
+temp_high,molar_v,all,main,ridge,4,0.28354,0.105973,0.406422,0.067041,-0.082726,0.216807,0.762,210,few groups: read group-level results individually
+temp_high,molar_v,all,with_local,arrhenius_local,4,0.149361,0.026162,0.329573,-0.067139,-0.115075,-0.011082,0.004,210,few groups: read group-level results individually
+temp_high,molar_v,all,with_local,extra_trees,4,0.2165,0.138223,0.332735,0.0,0.0,0.0,0.0,210,few groups: read group-level results individually
+temp_high,molar_v,all,with_local,hist_gb,4,0.227197,0.142564,0.320214,0.010697,-0.010642,0.038392,0.802,210,few groups: read group-level results individually
+temp_high,molar_v,all,with_local,knn,4,0.234903,0.139431,0.369852,0.018403,0.001208,0.037117,0.98,210,few groups: read group-level results individually
+temp_high,molar_v,all,with_local,median,4,0.642608,0.608113,0.692282,0.426108,0.278441,0.548543,1.0,210,few groups: read group-level results individually
+temp_high,molar_v,all,with_local,ridge,4,0.28354,0.105973,0.406422,0.067041,-0.082726,0.216807,0.762,210,few groups: read group-level results individually
+temp_high,molar_x,all,main,extra_trees,6,0.249622,0.108251,0.471547,0.0,0.0,0.0,0.0,384,
+temp_high,molar_x,all,main,hist_gb,6,0.243053,0.100005,0.464453,-0.006569,-0.019512,0.010634,0.2135,384,
+temp_high,molar_x,all,main,knn,6,0.253514,0.109932,0.477825,0.003892,-0.006671,0.013841,0.7705,384,
+temp_high,molar_x,all,main,median,6,0.477325,0.374238,0.581294,0.227703,-0.02466,0.418086,0.963,384,
+temp_high,molar_x,all,main,ridge,6,0.37989,0.281998,0.470807,0.130268,-0.108799,0.311911,0.848,384,
+temp_high,molar_x,all,with_local,arrhenius_local,6,0.300742,0.123991,0.514515,0.05112,-0.042515,0.174134,0.7835,384,
+temp_high,molar_x,all,with_local,extra_trees,6,0.249622,0.108251,0.471547,0.0,0.0,0.0,0.0,384,
+temp_high,molar_x,all,with_local,hist_gb,6,0.243053,0.100005,0.464453,-0.006569,-0.019512,0.010634,0.2135,384,
+temp_high,molar_x,all,with_local,knn,6,0.253514,0.109932,0.477825,0.003892,-0.006671,0.013841,0.7705,384,
+temp_high,molar_x,all,with_local,median,6,0.477325,0.374238,0.581294,0.227703,-0.02466,0.418086,0.963,384,
+temp_high,molar_x,all,with_local,ridge,6,0.37989,0.281998,0.470807,0.130268,-0.108799,0.311911,0.848,384,
+temp_low,molal_w,all,main,extra_trees,9,0.612884,0.461444,0.838174,0.0,0.0,0.0,0.0,1713,
+temp_low,molal_w,all,main,hist_gb,9,0.586191,0.420495,0.824154,-0.026693,-0.084532,0.005913,0.224,1713,
+temp_low,molal_w,all,main,knn,9,0.605933,0.437515,0.842606,-0.006951,-0.075732,0.033312,0.3875,1713,
+temp_low,molal_w,all,main,median,9,1.012747,0.799683,1.254252,0.399864,0.291953,0.502234,1.0,1713,
+temp_low,molal_w,all,main,ridge,9,0.248159,0.158349,0.383021,-0.364725,-0.46376,-0.287365,0.0,1713,
+temp_low,molal_w,all,with_local,arrhenius_local,9,0.279998,0.166114,0.431627,-0.332886,-0.423897,-0.255893,0.0,1713,
+temp_low,molal_w,all,with_local,extra_trees,9,0.612884,0.461444,0.838174,0.0,0.0,0.0,0.0,1713,
+temp_low,molal_w,all,with_local,hist_gb,9,0.586191,0.420495,0.824154,-0.026693,-0.084532,0.005913,0.224,1713,
+temp_low,molal_w,all,with_local,knn,9,0.605933,0.437515,0.842606,-0.006951,-0.075732,0.033312,0.3875,1713,
+temp_low,molal_w,all,with_local,median,9,1.012747,0.799683,1.254252,0.399864,0.291953,0.502234,1.0,1713,
+temp_low,molal_w,all,with_local,ridge,9,0.248159,0.158349,0.383021,-0.364725,-0.46376,-0.287365,0.0,1713,
+temp_low,molar_v,all,main,extra_trees,3,0.869021,0.009293,1.941579,0.0,0.0,0.0,0.0,245,few groups: read group-level results individually
+temp_low,molar_v,all,main,hist_gb,3,0.888882,0.055963,1.961549,0.019861,-0.007056,0.046669,0.9655,245,few groups: read group-level results individually
+temp_low,molar_v,all,main,knn,3,0.895807,0.286695,1.744164,0.026786,-0.197415,0.277402,0.644,245,few groups: read group-level results individually
+temp_low,molar_v,all,main,median,3,1.270499,0.413099,2.367612,0.401478,0.374594,0.426033,1.0,245,few groups: read group-level results individually
+temp_low,molar_v,all,main,ridge,3,0.727483,0.058684,1.658896,-0.141538,-0.282683,0.04939,0.0355,245,few groups: read group-level results individually
+temp_low,molar_v,all,with_local,arrhenius_local,3,0.660076,0.101456,1.555689,-0.208945,-0.38589,0.092162,0.0355,245,few groups: read group-level results individually
+temp_low,molar_v,all,with_local,extra_trees,3,0.869021,0.009293,1.941579,0.0,0.0,0.0,0.0,245,few groups: read group-level results individually
+temp_low,molar_v,all,with_local,hist_gb,3,0.888882,0.055963,1.961549,0.019861,-0.007056,0.046669,0.9655,245,few groups: read group-level results individually
+temp_low,molar_v,all,with_local,knn,3,0.895807,0.286695,1.744164,0.026786,-0.197415,0.277402,0.644,245,few groups: read group-level results individually
+temp_low,molar_v,all,with_local,median,3,1.270499,0.413099,2.367612,0.401478,0.374594,0.426033,1.0,245,few groups: read group-level results individually
+temp_low,molar_v,all,with_local,ridge,3,0.727483,0.058684,1.658896,-0.141538,-0.282683,0.04939,0.0355,245,few groups: read group-level results individually
+temp_low,molar_x,all,main,extra_trees,4,0.706328,0.594841,0.848365,0.0,0.0,0.0,0.0,246,few groups: read group-level results individually
+temp_low,molar_x,all,main,hist_gb,4,0.690206,0.588124,0.840272,-0.016122,-0.036876,0.003815,0.0715,246,few groups: read group-level results individually
+temp_low,molar_x,all,main,knn,4,0.751185,0.659969,0.865189,0.044857,-0.004658,0.129302,0.882,246,few groups: read group-level results individually
+temp_low,molar_x,all,main,median,4,1.294816,0.979399,1.795248,0.588488,0.382182,0.946883,1.0,246,few groups: read group-level results individually
+temp_low,molar_x,all,main,ridge,4,0.490351,0.42477,0.566085,-0.215977,-0.299617,-0.126301,0.0,246,few groups: read group-level results individually
+temp_low,molar_x,all,with_local,arrhenius_local,4,0.432508,0.3014,0.559245,-0.27382,-0.316981,-0.21057,0.0,246,few groups: read group-level results individually
+temp_low,molar_x,all,with_local,extra_trees,4,0.706328,0.594841,0.848365,0.0,0.0,0.0,0.0,246,few groups: read group-level results individually
+temp_low,molar_x,all,with_local,hist_gb,4,0.690206,0.588124,0.840272,-0.016122,-0.036876,0.003815,0.0715,246,few groups: read group-level results individually
+temp_low,molar_x,all,with_local,knn,4,0.751185,0.659969,0.865189,0.044857,-0.004658,0.129302,0.882,246,few groups: read group-level results individually
+temp_low,molar_x,all,with_local,median,4,1.294816,0.979399,1.795248,0.588488,0.382182,0.946883,1.0,246,few groups: read group-level results individually
+temp_low,molar_x,all,with_local,ridge,4,0.490351,0.42477,0.566085,-0.215977,-0.299617,-0.126301,0.0,246,few groups: read group-level results individually

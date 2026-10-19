@@ -1,0 +1,56 @@
+dataset_id,raw_name,canonical_id,role,name,smiles,cation_smiles,cation_stoich,anion_smiles,anion_stoich,review_status,review_note
+calisol23,LiPF6,LiPF6,salt,lithium hexafluorophosphate,,[Li+],1,F[P-](F)(F)(F)(F)F,1,verified,
+calisol23,LiBF4,LiBF4,salt,lithium tetrafluoroborate,,[Li+],1,F[B-](F)(F)F,1,verified,
+calisol23,LiFSI,LiFSI,salt,lithium bis(fluorosulfonyl)imide,,[Li+],1,O=S(=O)(F)[N-]S(=O)(=O)F,1,verified,
+calisol23,LiTDI,LiTDI,salt,"lithium 4,5-dicyano-2-(trifluoromethyl)imidazolide",,[Li+],1,N#Cc1nc(C(F)(F)F)[n-]c1C#N,1,verified,"Author SMILES written as neutral Kekule form, rewritten as aromatic imidazolide anion"
+calisol23,LiPDI,LiPDI,salt,"lithium 4,5-dicyano-2-(pentafluoroethyl)imidazolide",,[Li+],1,N#Cc1nc(C(F)(F)C(F)(F)F)[n-]c1C#N,1,verified,"Author SMILES omitted Li and the anionic charge (neutral NH imidazole), corrected"
+calisol23,LiTFSI,LiTFSI,salt,lithium bis(trifluoromethanesulfonyl)imide,,[Li+],1,O=S(=O)([N-]S(=O)(=O)C(F)(F)F)C(F)(F)F,1,verified,"Author SMILES drew a covalent Li-N bond, represented as ions"
+calisol23,LiN(CF3SO2)2,LiTFSI,salt,lithium bis(trifluoromethanesulfonyl)imide,,[Li+],1,O=S(=O)([N-]S(=O)(=O)C(F)(F)F)C(F)(F)F,1,verified,"Same compound as the separate CALiSol label LiTFSI, merged to one identity so component holdouts cannot leak it"
+calisol23,LiClO4,LiClO4,salt,lithium perchlorate,,[Li+],1,[O-]Cl(=O)(=O)=O,1,verified,
+calisol23,LiAsF6,LiAsF6,salt,lithium hexafluoroarsenate,,[Li+],1,F[As-](F)(F)(F)(F)F,1,verified,
+calisol23,LiBOB,LiBOB,salt,lithium bis(oxalato)borate,,[Li+],1,O=C1O[B-]2(OC1=O)OC(=O)C(=O)O2,1,verified,
+calisol23,LiCF3SO3,LiCF3SO3,salt,lithium trifluoromethanesulfonate,,[Li+],1,O=S(=O)([O-])C(F)(F)F,1,verified,
+calisol23,LiBPFPB,LiBPFPB,salt,lithium bis(perfluoropinacolato)borate,,[Li+],1,FC(F)(F)C1(C(F)(F)F)O[B-]2(OC1(C(F)(F)F)C(F)(F)F)OC(C(F)(F)F)(C(F)(F)F)C(O2)(C(F)(F)F)C(F)(F)F,1,verified,"Raw label occurs with and without a leading space, both map here"
+calisol23,LiBMB,LiBMB,salt,lithium bis(malonato)borate,,[Li+],1,O=C1CC(=O)O[B-]2(O1)OC(=O)CC(=O)O2,1,verified,"Author SMILES had an invalid ring-closure reuse, rewritten"
+calisol23,EC,EC,solvent,ethylene carbonate,O=C1OCCO1,,,,,verified,
+calisol23,PC,PC,solvent,propylene carbonate,CC1COC(=O)O1,,,,,verified,
+calisol23,DMC,DMC,solvent,dimethyl carbonate,COC(=O)OC,,,,,verified,
+calisol23,EMC,EMC,solvent,ethyl methyl carbonate,CCOC(=O)OC,,,,,verified,
+calisol23,DEC,DEC,solvent,diethyl carbonate,CCOC(=O)OCC,,,,,verified,
+calisol23,DME,DME,solvent,"1,2-dimethoxyethane",COCCOC,,,,,verified,
+calisol23,DMSO,DMSO,solvent,dimethyl sulfoxide,CS(C)=O,,,,,verified,
+calisol23,AN,AN,solvent,acetonitrile,CC#N,,,,,verified,
+calisol23,MOEMC,MOEMC,solvent,2-methoxyethyl methyl carbonate,COCCOC(=O)OC,,,,,verified,
+calisol23,TFP,TFP,solvent,"tris(2,2,2-trifluoroethyl) phosphate",O=P(OCC(F)(F)F)(OCC(F)(F)F)OCC(F)(F)F,,,,,verified,"Flame-retardant co-solvent, treated as a solvent component because CALiSol stores it as a solvent fraction"
+calisol23,EA,EA,solvent,ethyl acetate,CCOC(C)=O,,,,,verified,
+calisol23,MA,MA,solvent,methyl acetate,COC(C)=O,,,,,verified,
+calisol23,FEC,FEC,solvent,fluoroethylene carbonate,O=C1OCC(F)O1,,,,,verified,
+calisol23,DOL,DOL,solvent,"1,3-dioxolane",C1COCO1,,,,,verified,
+calisol23,2-MeTHF,2-MeTHF,solvent,2-methyltetrahydrofuran,CC1CCCO1,,,,,verified,
+calisol23,DMM,DMM,solvent,unresolved (DMM),,,,,,disputed,"CALiSol maps DMM to dipropylene glycol dimethyl ether, in the 1991 source the abbreviation more commonly denotes dimethoxymethane. Identity unresolved without the original paper -> records quarantined"
+calisol23,Freon 11,Freon11,solvent,trichlorofluoromethane,FC(Cl)(Cl)Cl,,,,,verified,
+calisol23,Methylene chloride,DCM,solvent,dichloromethane,ClCCl,,,,,verified,
+calisol23,THF,THF,solvent,tetrahydrofuran,C1CCOC1,,,,,verified,
+calisol23,Toluene,Toluene,solvent,toluene,Cc1ccccc1,,,,,verified,
+calisol23,Sulfolane,Sulfolane,solvent,sulfolane,O=S1(=O)CCCC1,,,,,verified,
+calisol23,2-Glyme,Diglyme,solvent,diglyme,COCCOCCOC,,,,,verified,
+calisol23,3-Glyme,Triglyme,solvent,triglyme,COCCOCCOCCOC,,,,,verified,
+calisol23,4-Glyme,Tetraglyme,solvent,tetraglyme,COCCOCCOCCOCCOC,,,,,verified,
+calisol23,3-Me-2-Oxazolidinone,3MeOx,solvent,3-methyl-2-oxazolidinone,CN1CCOC1=O,,,,,verified,
+calisol23,3-MeSulfolane,3MeSulfolane,solvent,3-methylsulfolane,CC1CCS(=O)(=O)C1,,,,,verified,
+calisol23,Ethyldiglyme,Ethyldiglyme,solvent,unresolved (ethyl diglyme),,,,,,disputed,"CALiSol maps to 2-(2-ethoxyethoxy)ethanol (an alcohol), 'ethyl diglyme' usually denotes diethylene glycol diethyl ether. Unresolved -> quarantined"
+calisol23,DMF,DMF,solvent,"N,N-dimethylformamide",CN(C)C=O,,,,,verified,
+calisol23,Ethylbenzene,Ethylbenzene,solvent,ethylbenzene,CCc1ccccc1,,,,,verified,
+calisol23,Ethylmonoglyme,Ethylmonoglyme,solvent,unresolved (ethyl monoglyme),,,,,,disputed,"CALiSol maps to 2-methoxyethanol (an alcohol), 'ethyl monoglyme' usually denotes 1,2-diethoxyethane. Unresolved -> quarantined"
+calisol23,Benzene,Benzene,solvent,benzene,c1ccccc1,,,,,verified,
+calisol23,g-Butyrolactone,GBL,solvent,gamma-butyrolactone,O=C1CCCO1,,,,,verified,
+calisol23,Cumene,Cumene,solvent,cumene,CC(C)c1ccccc1,,,,,verified,
+calisol23,Propylsulfone,Propylsulfone,solvent,dipropyl sulfone,CCCS(=O)(=O)CCC,,,,,verified,
+calisol23,Pseudocumeme,Pseudocumene,solvent,"1,2,4-trimethylbenzene",Cc1ccc(C)c(C)c1,,,,,verified,Raw column name misspelled in CALiSol
+calisol23,TEOS,TEOS,solvent,tetraethyl orthosilicate,CCO[Si](OCC)(OCC)OCC,,,,,verified,
+calisol23,m-Xylene,mXylene,solvent,m-xylene,Cc1cccc(C)c1,,,,,verified,
+calisol23,o-Xylene,oXylene,solvent,o-xylene,Cc1ccccc1C,,,,,verified,
+rahmanian2023,PC,PC,solvent,propylene carbonate,CC1COC(=O)O1,,,,,verified,Metadata CAS 108-32-7
+rahmanian2023,EC,EC,solvent,ethylene carbonate,O=C1OCCO1,,,,,verified,Metadata CAS 96-49-1
+rahmanian2023,EMC,EMC,solvent,ethyl methyl carbonate,CCOC(=O)OC,,,,,verified,Metadata CAS 623-53-0
+rahmanian2023,LiPF_6,LiPF6,salt,lithium hexafluorophosphate,,[Li+],1,F[P-](F)(F)(F)(F)F,1,verified,Metadata CAS 21324-40-3

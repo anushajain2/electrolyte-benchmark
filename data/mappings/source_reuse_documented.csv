@@ -1,0 +1,2 @@
+source_doi_a,source_doi_b,status,evidence
+10.1021/JE020219O,10.1149/1.1566019,reported_unverified,"An external reviewer reports that the JCED paper states it complements another publication using the same set of measurements. Not yet checked against the paper text, so this pair stays at the suspected-reuse tier. Set status to 'documented' (with a quotation and page) once verified."

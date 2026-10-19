@@ -1,0 +1,4 @@
+case,task_id,fold_id,formulation_id,chemistry_system_id,source_group_id,n_rows,mae_log10,bias_log10,concentration,T_range_K,solvent_fractions_reported,train_rows_same_system,train_sources_same_system,train_T_range_same_system,train_c_range_same_system,other_source_points_near_conditions,other_source_median_mS_cm,case_median_mS_cm
+1,temp_low,temp_low/all,Ff291e029bb,LiPF6|DEC+PC,doi:10.1016/S0378-7753(03)00153-8,3,2.9122686969024065,2.9122686969024065,2.3225,194.2-332.1,"{""DEC"": 0.1, ""PC"": 0.9}",1488,doi:10.1016/S0378-7753(03)00153-8,263.1-332.1,0.20-2.37,0,,0.4536
+2,component_transfer,component/EC,F3cf3a27b15,LiBOB|EC+PC,doi:10.1149/1.1833611,3,1.38740283935416,1.38740283935416,0.719139637,302.6-322.4,"{""EC"": 0.1, ""PC"": 0.9}",0,,,,0,,0.241622575
+3,component_transfer,component/DME,F7c97bade91,LiAsF6|DME+PC,doi:10.1016/S0378-7753(01)00697-8,6,0.9881544961383412,0.9881544961383412,0.102717889,248.2-298.1,"{""DME"": 0.68, ""PC"": 0.32}",0,,,,0,,0.313571123

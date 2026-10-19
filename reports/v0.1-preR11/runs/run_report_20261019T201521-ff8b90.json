@@ -1,0 +1,30 @@
+{
+  "run_id": "20261019T201521-ff8b90",
+  "command": "report",
+  "package_version": "0.1.0",
+  "benchmark_version": "0.1.0",
+  "config_path": "configs/benchmark_v0.1_preR11.yaml",
+  "config_sha256": "169677fb0bb8406dff74b2e5dfca72613f06a9aa58ea308a6986c0174d82e4e2",
+  "started_utc": "2026-10-19T14:45:21Z",
+  "wall_seconds": 0.855,
+  "cpu_seconds": 0.858,
+  "peak_rss_mb": 1731.8,
+  "python": "3.12.13",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1",
+    "scipy": "1.18.1",
+    "rdkit": "2026.09.1",
+    "pyarrow": "26.0.0"
+  },
+  "inputs": {},
+  "outputs": {
+    "reports/v0.1-preR11/tables/summary.csv": "417be89f5a4b9e50994c9e8aa6f38553301d1373165b6496fb977cd707714584",
+    "reports/v0.1-preR11/tables/bootstrap.csv": "5f840fc8a8cb8a62238ea740569f1da7ccdd772db7356e749862a9d22c7fbba4",
+    "reports/v0.1-preR11/tables/familiarity_contrast.csv": "5ef74b687474139ee39942e598b5617ae49a497862a3146b02bb2609ee1f5f2e",
+    "reports/v0.1-preR11/report.html": "a91aa4bb852a4d096101d9992d6e04f09cb3698676ecfd99f1163f1162bfe746"
+  },
+  "notes": {}
+}

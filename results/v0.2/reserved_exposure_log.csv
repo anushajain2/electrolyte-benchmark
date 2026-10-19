@@ -1,0 +1,4 @@
+utc,run_id,command,what
+2026-10-19T14:56:44Z,20261019T202546-4a4cc9,train,external_rahmanian/molal_w: predictions produced for reserved rows (labels not read by train)
+2026-10-19T14:57:22Z,20261019T202647-5c388f,evaluate,external_rahmanian/molal_w: reserved labels scored
+2026-10-19T14:57:40Z,20261019T202725-fc5189,investigate,source_familiarity confirmation on reserved source

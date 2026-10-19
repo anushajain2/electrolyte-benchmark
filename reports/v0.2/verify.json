@@ -1,0 +1,13 @@
+{
+ "ok": true,
+ "tolerance": 0.005,
+ "checks": [
+  "summary.csv.group_mean_mae_log10: OK (max abs diff 0.00e+00)",
+  "summary.csv.sample_mae_log10: OK (max abs diff 0.00e+00)",
+  "summary.csv.worst_quartile_mae_log10: OK (max abs diff 0.00e+00)",
+  "summary.csv.invalid_rate: OK (max abs diff 0.00e+00)",
+  "bootstrap.csv.group_mean_mae_log10: OK (max abs diff 0.00e+00)",
+  "bootstrap.csv.diff_vs_reference: OK (max abs diff 0.00e+00)",
+  "familiarity_contrast.csv.mean_effect_log10: OK (max abs diff 0.00e+00)"
+ ]
+}

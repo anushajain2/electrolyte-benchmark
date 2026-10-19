@@ -1,0 +1,27 @@
+# environment
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+
+# Raw downloads: CALiSol-23 redistribution rights are not stated, so raw files are
+# re-downloaded by `elbench ingest` (pinned commit + checksums in data/raw/sources.csv).
+data/raw/*/
+data/raw/runs/
+!data/raw/sources.csv
+
+# Derived row-level tables (contain CALiSol measurements); rebuilt by `elbench curate`.
+data/processed/
+data/cache/
+
+# Row-level and large rebuildable outputs, for every version.
+# row_errors.parquet holds per-measurement labels, so it is never committed.
+results/*/predictions/
+results/*/models/
+results/*/tables/row_errors.parquet
+results/*/tables_confirm/row_errors.parquet
+
+# Local run logs
+reports/full_run_log.txt

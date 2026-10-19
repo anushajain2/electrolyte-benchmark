@@ -1,0 +1,27 @@
+{
+  "benchmark_version": "0.2.0",
+  "files": {
+    "eligibility.csv": "baec14cb749ba9cd308aab9a0eefadbf64b6cc6311e082ab0c5ac3f307202b7c",
+    "folds.csv": "7cda559b70479b82551b9d1db6ca41fd5f85c4e9db05ccf9845c85bc5ab445fc",
+    "leakage_checks.json": "cb48163c1986c30be238155c05b5657cbc35ea7ad4d0cb6e178a80d4864b0534",
+    "manifest__author_transfer__molal_w.csv.gz": "2ce6a3b31101148130a82f3ac831804f194696c3fe6d09e5d5712a6e03f2c2e7",
+    "manifest__author_transfer__molar_x.csv.gz": "e84d5f53e3099a59984558ae5c1dc8da981e80106c9d072aeedf807895f26d7b",
+    "manifest__component_transfer__molal_w.csv.gz": "e1020636796f7be6634d181d710225af7bb250e6f9b9e23858061f0e15cc4fa3",
+    "manifest__component_transfer__molar_v.csv.gz": "6276fb7719de960f5a649b60f639ddcef0ae998b5671c8a8c39bf623ea5ee1ee",
+    "manifest__component_transfer__molar_x.csv.gz": "6d920033311c2b35906dd6cd49a9840560b806a16d93fdc221e61e5b54d33e5f",
+    "manifest__conc_high__molal_w.csv.gz": "ed0eb6e8a18f79688728833eaff917e0062ff212381cb5b075af23ab6202754f",
+    "manifest__conc_high__molar_x.csv.gz": "b8a85d76418a0b544a089b534689b353578e499e0bdae0cb9f7bb5dbf6367ef4",
+    "manifest__external_rahmanian__molal_w.csv.gz": "01879ef60ff01221145af6097d75fef3a01aa0b9ddb982e696db98006d65b2a2",
+    "manifest__interp_formulation__molal_w.csv.gz": "2771d1fa164afbe987f7bb652ae39780224807d7b3d2acc260d0bb238c39a398",
+    "manifest__interp_formulation__molar_v.csv.gz": "fb94c690eacb5066057918ef66fbcc1cd4e0365c09307c2a232f7bfea3bf1505",
+    "manifest__interp_formulation__molar_x.csv.gz": "642453bc0a411ce9a5dc3ea881c06a7c46b059b41896b4e8a6343f12136e9de7",
+    "manifest__source_transfer__molal_w.csv.gz": "bd60a698d073e7acff1eb93af2b41228ff6913e724c5de15fd213262b0680542",
+    "manifest__source_transfer__molar_x.csv.gz": "2849bf0fa53ff8a785d396c6490513e1c92cdb80229a1c9c0db79f7d46c1e89d",
+    "manifest__temp_high__molal_w.csv.gz": "7817663bbdf14cdcde6d56cda0e6d19a74303d3ebcd052bb12d5d36c3f813a2f",
+    "manifest__temp_high__molar_v.csv.gz": "9338bce2dec18bef3d332e0f225ef8a2f1d211c20b9790c73a0068169a1f7557",
+    "manifest__temp_high__molar_x.csv.gz": "d3f2623973eaa24c70bb944b40439accfe5832460870acb2ec970fb162a77074",
+    "manifest__temp_low__molal_w.csv.gz": "1f14a235f9031c176d321747cc92226c0e03bf5e258d2017288386a77c09899f",
+    "manifest__temp_low__molar_v.csv.gz": "a4ab1f2413a2c148b00f6a17eecea20f22ba3edc0eb7242c363f9e47ed9fce6d",
+    "manifest__temp_low__molar_x.csv.gz": "f8a46c6f2bd8f0acfc47b97a2fa37e026850f5eefc784928e61e6a83a9b101e0"
+  }
+}

@@ -1,0 +1,5 @@
+source_doi_a,source_doi_b,status,n_matched_points
+10.1021/JE020219O,10.1149/1.1566019,suspected_reuse_linked,48
+10.1021/je0498863,10.1149/1.1630593,isolated_agreement_not_linked,1
+10.1149/1.1344281,10.1149/1.1527939,isolated_agreement_not_linked,1
+10.1149/2.0271802jes,10.1149/2.0981803jes,suspected_reuse_linked,17

@@ -1,0 +1,40 @@
+{
+  "run_id": "20261019T184134-f2c835",
+  "command": "investigate",
+  "package_version": "0.1.0",
+  "benchmark_version": "0.1.0",
+  "config_path": "configs/benchmark_v0.1.yaml",
+  "config_sha256": "dafe2c6a318d0d8e302664857d265afb3c077c1061670ff44edd6a6823b9b5b7",
+  "started_utc": "2026-10-19T13:11:34Z",
+  "wall_seconds": 16.052,
+  "cpu_seconds": 7.162,
+  "peak_rss_mb": 1026.4,
+  "python": "3.12.13",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1",
+    "scipy": "1.18.1",
+    "rdkit": "2026.09.1",
+    "pyarrow": "26.0.0"
+  },
+  "inputs": {},
+  "outputs": {
+    "results/v0.1/investigation/ranking_shift.csv": "d25eca6082895aec4d369702e112d88cdb083e99feca125fa23cbb9277602c42",
+    "results/v0.1/investigation/transfer_gaps.csv": "e0bf4e040a0d56c65b810a86e286e7740c8efe215b0f8223b4f9b47e0ad19e7d",
+    "results/v0.1/investigation/source_familiarity.csv": "6404f96e7eb5477112c4ce7c24a91e9888cc5ca42d3b737631cf3c44e4e0f833",
+    "results/v0.1/investigation/familiarity_contrast.csv": "7452865da0cdc688be7bf460b5d1b56b280ea66bab3e7359b1f37a463ffa6979",
+    "results/v0.1/investigation/source_diversity.csv": "3865aa4fd7c8d1eca13d51193ab285c32441819e7546d0708d2888aa61334a0d",
+    "results/v0.1/investigation/failure_cases.csv": "046917bb570054da162dc6958b5a75c9ed260d65b10b0028f619e61b8fd1869d",
+    "results/v0.1/investigation/failure_records.csv": "db15fe9344a4b114582b64149db265cb5728a524264ba595dfbac187bef230ac"
+  },
+  "notes": {
+    "include_reserved": false,
+    "primary_contrast": {
+      "analysis": "source_familiarity",
+      "model": "extra_trees",
+      "subset": "supported_by_both"
+    }
+  }
+}
