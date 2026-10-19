@@ -90,9 +90,56 @@ class KNNModel(_SklearnAdapter):
         return make_pipeline(StandardScaler(), KNeighborsRegressor(n_neighbors=n, weights=self.params.get("weights", "uniform")))
 
     def fit(self, X, y, meta):
-        # never ask for more neighbours than training rows
+        if self.params.get("tie_policy") == "deterministic":
+            return self._fit_deterministic(X, y)
+        # legacy (v0.1/v0.2): scikit-learn neighbours; never more than training rows
         self.params = {**self.params, "n_neighbors": min(self.params.get("n_neighbors", 5), len(X))}
         return super().fit(X, y, meta)
+
+    def predict(self, X, meta):
+        if self.params.get("tie_policy") == "deterministic":
+            return self._predict_deterministic(X)
+        return super().predict(X, meta)
+
+    # ---- v0.3 deterministic policy -------------------------------------------
+    # 1. Rows with identical inputs (replicate readings) are merged into one
+    #    point carrying their mean log10 conductivity, so replicates never
+    #    occupy several neighbour slots and cannot create exact ties.
+    # 2. Squared distances are summed elementwise (no dot-product shortcut whose
+    #    rounding depends on the BLAS library) and rounded to 1e-9.
+    # 3. Remaining ties are broken by the lexicographic order of the merged
+    #    training points, which does not depend on input row order.
+    # 4. weights="distance": if any selected point has distance 0, only the
+    #    zero-distance points are used (as in scikit-learn).
+    def _fit_deterministic(self, X, y):
+        # canonical row order first, so scaler sums and replicate means are bit-identical
+        order = np.argsort(X.index.to_numpy().astype(str), kind="stable")
+        Xo, yo = X.to_numpy()[order], np.asarray(y, dtype=float)[order]
+        self.scaler = StandardScaler().fit(Xo)
+        Z = self.scaler.transform(Xo)
+        df = pd.DataFrame(Z).assign(_y=np.log10(yo))
+        agg = df.groupby(list(range(Z.shape[1])), sort=True)._y.mean().reset_index()
+        self.points = agg[list(range(Z.shape[1]))].to_numpy(dtype=float)
+        self.targets = agg._y.to_numpy()
+        self.k = min(int(self.params.get("n_neighbors", 5)), len(self.points))
+        return self
+
+    def _predict_deterministic(self, X):
+        Zt = self.scaler.transform(X.to_numpy())
+        order_key = np.arange(len(self.points))
+        out = np.empty(len(Zt))
+        for start in range(0, len(Zt), 16):
+            q = Zt[start : start + 16]
+            d2 = np.round(((q[:, None, :] - self.points[None, :, :]) ** 2).sum(axis=2), 9)
+            for i in range(len(q)):
+                nn = np.lexsort((order_key, d2[i]))[: self.k]
+                if self.params.get("weights", "uniform") == "distance":
+                    d = np.sqrt(d2[i, nn])
+                    w = (d == 0).astype(float) if (d == 0).any() else 1.0 / d
+                    out[start + i] = np.sum(w * self.targets[nn]) / np.sum(w)
+                else:
+                    out[start + i] = self.targets[nn].mean()
+        return _frame(X.index, 10.0**out)
 
 
 class RidgeModel(_SklearnAdapter):

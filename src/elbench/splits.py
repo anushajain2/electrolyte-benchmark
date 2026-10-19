@@ -273,13 +273,24 @@ def build_component_transfer(df, t, rng, solv, cfg) -> tuple[list[Fold], list[di
     return folds, elig
 
 
-def _boundary_fold(df, key, group_key, lo_train, hi_test, min_train, higher_is_test, fold_id) -> tuple[Fold | None, pd.Series]:
+BOUNDARY_EPS = 1e-9
+
+
+def _boundary_fold(df, key, group_key, lo_train, hi_test, min_train, higher_is_test, fold_id, comparison: str = "rounded_0.1") -> tuple[Fold | None, pd.Series]:
     """Train on one side of a numeric boundary, test on the other side for groups
-    that have at least ``min_train`` distinct training-side values."""
-    v = df[key].round(1)
-    train_side = v <= lo_train if higher_is_test else v >= lo_train
-    test_side = v >= hi_test if higher_is_test else v <= hi_test
-    n_train_vals = v[train_side].groupby(df[group_key][train_side]).nunique()
+    that have at least ``min_train`` distinct training-side values.
+
+    comparison="exact" (v0.3+) compares the reported values with the declared
+    boundaries; rounding to 0.1 is used only to count distinct values.
+    "rounded_0.1" reproduces v0.1/v0.2, which compared rounded values (so e.g.
+    313.15 became 313.2 and fell outside "T <= 313.15")."""
+    raw = df[key]
+    counted = raw.round(1)
+    v = raw if comparison == "exact" else counted
+    eps = BOUNDARY_EPS if comparison == "exact" else 0.0
+    train_side = v <= lo_train + eps if higher_is_test else v >= lo_train - eps
+    test_side = v >= hi_test - eps if higher_is_test else v <= hi_test + eps
+    n_train_vals = counted[train_side].groupby(df[group_key][train_side]).nunique()
     has_test = df[group_key][test_side].unique()
     eligible = n_train_vals[n_train_vals >= min_train].index.intersection(has_test)
     te_mask = test_side & df[group_key].isin(eligible)
@@ -303,12 +314,13 @@ def _build_boundary(df, t, kind) -> tuple[list[Fold], list[dict]]:
         args = ("concentration", "solvent_recipe_id", t["train_max"], t["test_min"], t["min_train_concentrations"], True)
         dev_args = ("concentration", "solvent_recipe_id", t["dev_train_max"], t["dev_test_min"], t["min_train_concentrations"], True)
         name = "conc_high"
-    f, eligible = _boundary_fold(df, *args, f"{name}/all")
+    cmp = t.get("boundary_comparison", "rounded_0.1")
+    f, eligible = _boundary_fold(df, *args, f"{name}/all", comparison=cmp)
     if f is None:
         return [], [{"unit": "all", "interpretation_label": LABEL_INSUFFICIENT, "reason": "no group spans the declared boundary", "n_measurements": 0}]
     tr = df[df.measurement_id.isin(f.train)]
     # dev boundary lies entirely inside the outer training side
-    d, _ = _boundary_fold(tr, *dev_args, f"{f.fold_id}::dev0")
+    d, _ = _boundary_fold(tr, *dev_args, f"{f.fold_id}::dev0", comparison=cmp)
     if d is not None:
         f.dev = [d]
     te = df[df.measurement_id.isin(f.test)]
@@ -391,6 +403,14 @@ def check_fold(f: Fold, df: pd.DataFrame, kind: str, cfg: Config, task: dict, te
         c = f.heldout_unit
         require("heldout_component_absent_from_training", not any(c in s for s in component_sets(tr.reset_index())))
         require("heldout_component_in_every_test_row", all(c in s for s in component_sets(te.reset_index())))
+    if task.get("boundary_comparison") == "exact" and test_role == "test":
+        lim = {"temperature_transfer": ("temperature_K", "train_max_K", "test_min_K", True), "temperature_transfer_low": ("temperature_K", "train_min_K", "test_max_K", False), "concentration_transfer": ("concentration", "train_max", "test_min", True)}.get(kind)
+        if lim:
+            col, a, b, hi = lim
+            if hi:
+                require("declared_boundaries_applied", tr[col].max() <= task[a] + BOUNDARY_EPS and te[col].min() >= task[b] - BOUNDARY_EPS)
+            else:
+                require("declared_boundaries_applied", tr[col].min() >= task[a] - BOUNDARY_EPS and te[col].max() <= task[b] + BOUNDARY_EPS)
     if kind == "temperature_transfer":
         require("boundary_respected", tr.temperature_K.max() < te.temperature_K.min())
     if kind == "temperature_transfer_low":

@@ -1,4 +1,4 @@
-"""Command-line entry points: ingest, curate, audit, make-splits, train, evaluate, investigate, report, verify, all."""
+"""Command-line entry points: ingest, curate, audit, make-splits, train, evaluate, investigate, report, verify, reproduce, all."""
 from __future__ import annotations
 
 import argparse
@@ -7,7 +7,7 @@ import time
 
 from .config import load_config
 
-DEFAULT_CONFIG = "configs/benchmark_v0.2.yaml"
+DEFAULT_CONFIG = "configs/benchmark_v0.3.yaml"
 
 
 def _log(msg: str) -> None:
@@ -79,6 +79,13 @@ def cmd_verify(cfg, args):
         sys.exit(1)
 
 
+def cmd_reproduce(cfg, args):
+    from .report import reproduce
+
+    if not reproduce(cfg, workdir=args.workdir):
+        sys.exit(1)
+
+
 def cmd_all(cfg, args):
     for fn in (cmd_ingest, cmd_curate, cmd_audit, cmd_make_splits, cmd_train, cmd_evaluate, cmd_investigate, cmd_report):
         fn(cfg, args)
@@ -104,6 +111,7 @@ def main(argv: list[str] | None = None) -> None:
             help="also run the reserved external evaluation (logged as an exposure of reserved labels)",
         )
         p.add_argument("--write-reference", action="store_true", help=argparse.SUPPRESS)
+        p.add_argument("--workdir", default=None, help=argparse.SUPPRESS if name != "reproduce" else "empty directory for the clean rebuild (default: a new temp dir)")
         return p
 
     add("ingest", cmd_ingest)
@@ -115,6 +123,7 @@ def main(argv: list[str] | None = None) -> None:
     add("investigate", cmd_investigate)
     add("report", cmd_report)
     add("verify", cmd_verify)
+    add("reproduce", cmd_reproduce)
     add("all", cmd_all)
     args = parser.parse_args(argv)
     cfg = load_config(args.config, root=args.root)

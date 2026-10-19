@@ -114,10 +114,10 @@ def write_project(root: Path, seed: int = 0) -> Path:
     (root / "data" / "mappings").mkdir(parents=True)
     shutil.copy(ROOT / "data" / "mappings" / "species.csv", root / "data" / "mappings" / "species.csv")
     (root / "reports").mkdir()
-    (root / "reports" / "findings_v0.2.md").write_text("# Findings\n\nFixture run.\n")
+    (root / "reports" / "findings_v0.3.md").write_text("# Findings\n\nFixture run.\n")
     groups = {"10.1/srcA": "AG1", "10.1/srcB": "AG1", "10.1/srcI": "AG1", "10.1/srcC": "AG2", "10.1/srcD": "AG2", "10.1/srcE": "AG3", "10.1/srcF": "AG4", "10.1/srcG": "AG5", "10.1/srcH": "AG6", "10.1038/s41597-023-01936-3": "AG7"}
     pd.DataFrame({"source_doi": list(groups), "author_group_id": list(groups.values()), "status": "fixture", "evidence": ""}).to_csv(root / "data" / "mappings" / "source_author_groups.csv", index=False)
-    cfg = yaml.safe_load((ROOT / "configs" / "benchmark_v0.2.yaml").read_text())
+    cfg = yaml.safe_load((ROOT / "configs" / "benchmark_v0.3.yaml").read_text())
     cfg.pop("compare_with", None)
     cfg["sources"]["rahmanian2023"].pop("expected_md5")
     cfg["curation"]["quarantine_sources"] = []
@@ -135,7 +135,7 @@ def write_project(root: Path, seed: int = 0) -> Path:
     inv["source_familiarity"].update({"min_source_formulations": 5, "background_size": 150, "repeats": 2})
     inv["source_diversity"].update({"budget": 40, "max_sources": 2, "repeats": 2})
     (root / "configs").mkdir()
-    path = root / "configs" / "benchmark_v0.2.yaml"
+    path = root / "configs" / "benchmark_v0.3.yaml"
     path.write_text(yaml.safe_dump(cfg, sort_keys=False))
     return path
 

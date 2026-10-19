@@ -1,4 +1,4 @@
-# Open issue log (v0.1, v0.2)
+# Issue log (v0.1–v0.3)
 
 Changes that alter rows, unit rules, source groups or split membership require a new benchmark version (v0.2+). Each item states its current handling in v0.1.
 
@@ -23,6 +23,18 @@ Changes that alter rows, unit rules, source groups or split membership require a
 | I-18 | Statistics | Source groups drawn largely from three author groups are not statistically independent; bootstrap intervals are conditional on the grouping. | Wording: source-group-weighted errors with intervals from resampling source groups; per-group results emphasized. | More independent laboratories. |
 | I-10 | Scope | Phase 2 (selective prediction, rejection, molecular model) not implemented. | Phase 2 gate evidence reported in the report. | Separate Phase 2 work with its own development/calibration route. |
 
+## Fixed in v0.3 (found by code review of v0.2)
+
+| ID | Area | Defect | Fix |
+| --- | --- | --- | --- |
+| F-01 | Splits | Temperature and concentration boundaries compared values rounded to 0.1 (313.15 → 313.2, 1.24 → 1.2), so declared boundaries and buffers were not implemented | Boundaries applied to reported values (`boundary_comparison: exact`); leakage check `declared_boundaries_applied`; exact-boundary tests. v0.1/v0.2 configs keep the old comparison so they still reproduce |
+| F-02 | Evaluation | `score_predictions` could compare models on different cases; cases were keyed by measurement only | One common set of (fold, measurement) cases, with case counts; incomplete baselines listed and excluded. Consequence for history: rebuilding v0.2 with v0.3 code reproduces every v0.2 metric exactly, but `n_common_rows` for component transfer now counts cases (a measurement tested in two folds counts twice) instead of unique measurements, so the strict `verify` reports those counts as different. The v0.2 metrics were always computed over all cases; only the reported count was understated |
+| F-03 | Evaluation | Models with invalid predictions could be ranked on their valid subset | Any invalid prediction in a subset excludes the model from comparisons and rankings (`complete` column) |
+| F-04 | Release | `verify` passed when a metric became NaN | Missingness, finiteness, duplicate keys and counts checked; `elbench reproduce` rebuilds in a clean copy |
+| F-05 | Cache | Cache key ignored data values | Key includes a hash of features and targets |
+| F-06 | Models | k-NN predictions could depend on row order (ties among replicates, BLAS-dependent distances) | `tie_policy: deterministic`: replicates merged, direct distances, fixed tie order |
+| F-07 | Docs | README claimed configs were frozen before test errors and called reserved data untouched; no LICENSE | Wording corrected; MIT `LICENSE` and `CITATION.cff` added |
+
 ## Public-data exposure
 
-`results/v0.1/reserved_exposure_log.csv` records every run that scored or trained on reserved labels. Any design choice made after reading those results makes later reserved-data results exploratory.
+`results/<version>/reserved_exposure_log.csv` records every run that scored or trained on reserved labels. Any design choice made after reading those results makes later reserved-data results exploratory.

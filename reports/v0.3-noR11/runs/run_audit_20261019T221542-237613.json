@@ -1,0 +1,41 @@
+{
+  "run_id": "20261019T221542-237613",
+  "command": "audit",
+  "package_version": "0.1.0",
+  "benchmark_version": "0.3.0",
+  "config_path": "configs/benchmark_v0.3_noR11.yaml",
+  "config_sha256": "2d8a1fbce0afeac83fad7f8b9c7eb068dac5b366601c9782e1cb2d08e4725da6",
+  "started_utc": "2026-10-19T16:45:42Z",
+  "wall_seconds": 3.888,
+  "cpu_seconds": 3.797,
+  "peak_rss_mb": 662.0,
+  "python": "3.12.13",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1",
+    "scipy": "1.18.1",
+    "rdkit": "2026.09.1",
+    "pyarrow": "26.0.0"
+  },
+  "inputs": {
+    "data/processed/v0.3-noR11/measurements.parquet": "c691486bc02175ecd1232e21af338f04836a2f4859d683695a51650015cab77f",
+    "data/processed/v0.3-noR11/components.parquet": "b0747d4de609290ebda080ee0d97de8dfd6519626088067db869eb779c8c0037",
+    "data/processed/v0.3-noR11/exclusions.csv": "fb03e4f396a3224820074a971d87159df1233c029e0cd40c9bee7145dad08a76",
+    "data/processed/v0.3-noR11/copy_links.csv": "3c753d6e36469d169a1b032c9d427b02caafe56d567ef95f87e210d14e3977cb"
+  },
+  "outputs": {
+    "reports/v0.3-noR11/coverage.html": "1e3bbe97db6545feed4fdcac3c87703991ed66b571fdfee29942ad66745aa2ab",
+    "reports/v0.3-noR11/eligibility.csv": "7a5eb83b650d420dccba9c0691623df130fdac4c3f0cecb75022089e6360b644",
+    "reports/v0.3-noR11/audit/component_source_counts.csv": "3b62468cc68cd5b5215ed93463bae198444abb01d63eabfb551f9aded6507922",
+    "reports/v0.3-noR11/audit/coverage_counts.csv": "df4bc59aa70096950bf6107f2ea675ac992676bbabd3b6b88154048c441acfbc",
+    "reports/v0.3-noR11/audit/exclusion_impact.csv": "c5eebb0bcdf1094ea1f593e6a2b02d4cbeed2a96ae045048d619d40c1b34cb35",
+    "reports/v0.3-noR11/audit/secondary_overlap.csv": "f67c98f67c462d0fb7bff3d9fd4a5042b056437ee6c1bd2269d2feed0a0e5ff3",
+    "reports/v0.3-noR11/audit/source_component__molal_w.csv": "75bc1813eef08bcd83c150cca1f206f79443bc943757d0ee9f5bab93e82c6651",
+    "reports/v0.3-noR11/audit/source_component__molar_v.csv": "0a46be0658b3a66d6adfa1f45f14daf6252a1ce5fa1772caef6a9a0adb2e3be9",
+    "reports/v0.3-noR11/audit/source_component__molar_x.csv": "eca04d2e5a0d6fe8aa5dee503aa4eb7bd1430574978e95b2a94fb4f09c5bc471",
+    "reports/v0.3-noR11/audit/source_links.csv": "3beda5e5f5b29a2aa666da586e3ea2c5fce150b5084c506caa848218f6521dee"
+  },
+  "notes": {}
+}

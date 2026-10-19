@@ -26,6 +26,12 @@ REFERENCE_TABLES = {
     "bootstrap.csv": ("tables/bootstrap.csv", ["task_id", "track_id", "subset", "comparison", "model"], ["group_mean_mae_log10", "diff_vs_reference"]),
     "familiarity_contrast.csv": ("investigation/familiarity_contrast.csv", ["model", "reserved_target", "subset"], ["mean_effect_log10"]),
 }
+# count columns that must match exactly (when present in both tables)
+REFERENCE_COUNTS = {
+    "summary.csv": ["n_rows", "n_groups"],
+    "bootstrap.csv": ["n_groups", "n_common_rows"],
+    "familiarity_contrast.csv": ["n_target_sources", "n_sources_positive"],
+}
 
 
 # --------------------------------------------------------------------------
@@ -525,8 +531,54 @@ def report(cfg: Config) -> Path:
     return path
 
 
+def compare_tables(a: pd.DataFrame, b: pd.DataFrame, keys: list[str], vals: list[str], counts: list[str], tol: float, name: str) -> tuple[bool, list[str]]:
+    """Strict comparison of a reference table (a) and a regenerated table (b).
+
+    Fails on duplicate keys, rows present in only one table, a value missing on
+    one side only, a non-finite value that differs, a value differing by more
+    than tol, or any count column that differs."""
+    ok, lines = True, []
+    for side, t in (("reference", a), ("new", b)):
+        dup = int(t.duplicated(keys).sum())
+        if dup:
+            ok = False
+            lines.append(f"{name}: {dup} duplicate keys in {side} table")
+    m = a.merge(b, on=keys, how="outer", suffixes=("_ref", "_new"), indicator=True)
+    only = int((m._merge != "both").sum())
+    if only:
+        ok = False
+        lines.append(f"{name}: {only} rows present in only one table")
+    both = m[m._merge == "both"]
+    for v in vals:
+        x, y = both[f"{v}_ref"].to_numpy(dtype=float), both[f"{v}_new"].to_numpy(dtype=float)
+        nx, ny = np.isnan(x), np.isnan(y)
+        miss = int((nx ^ ny).sum())
+        finite = np.isfinite(x) & np.isfinite(y)
+        inf_mismatch = int(((~finite) & ~nx & ~ny & (x != y)).sum())  # e.g. inf vs finite
+        d = np.abs(x[finite] - y[finite])
+        bad = int((d > tol).sum())
+        if miss or inf_mismatch or bad:
+            ok = False
+            lines.append(f"{name}.{v}: {miss} missing on one side, {inf_mismatch} infinite mismatches, {bad} values differ by more than {tol} (max {d.max() if len(d) else 0:.4g})")
+        else:
+            lines.append(f"{name}.{v}: OK ({int(nx.sum())} missing on both sides, max abs diff {d.max() if len(d) else 0:.2e})")
+    for c in counts:
+        if f"{c}_ref" in both and f"{c}_new" in both:
+            diff = int((both[f"{c}_ref"].fillna(-1) != both[f"{c}_new"].fillna(-1)).sum())
+            if diff:
+                ok = False
+                lines.append(f"{name}.{c}: {diff} counts differ")
+            else:
+                lines.append(f"{name}.{c}: counts identical")
+    return ok, lines
+
+
 def verify_reproduction(cfg: Config, write_reference: bool = False) -> bool:
-    """Compare freshly generated report tables with the published reference tables."""
+    """Compare the report tables currently on disk with the published reference tables.
+
+    This checks committed or existing tables; it does not rerun anything. To
+    verify that a fresh run reproduces the reference, use `elbench reproduce`,
+    which rebuilds the benchmark in a clean copy and then runs this check there."""
     tol = cfg["evaluation"]["reproduction_tolerance_log10"]
     cur = cfg.p("reports") / "tables"
     ref = cfg.p("reference_tables")
@@ -537,24 +589,45 @@ def verify_reproduction(cfg: Config, write_reference: bool = False) -> bool:
         print(f"reference tables written to {ref}")
         return True
     ok = True
-    lines = []
+    lines = [f"mode: compare {cur} with {ref} (no rerun)"]
     for name, (_, keys, vals) in REFERENCE_TABLES.items():
-        a = pd.read_csv(ref / name)
-        b = pd.read_csv(cur / name)
-        m = a.merge(b, on=keys, how="outer", suffixes=("_ref", "_new"), indicator=True)
-        if (m._merge != "both").any():
-            ok = False
-            lines.append(f"{name}: {int((m._merge != 'both').sum())} rows present in only one table")
-        both = m[m._merge == "both"]
-        for v in vals:
-            d = (both[f"{v}_ref"] - both[f"{v}_new"]).abs()
-            bad = d > tol
-            if bad.any():
-                ok = False
-                lines.append(f"{name}.{v}: {int(bad.sum())} values differ by more than {tol} (max {d.max():.4g})")
-            else:
-                lines.append(f"{name}.{v}: OK (max abs diff {d.max() if len(d) else 0:.2e})")
+        good, ls = compare_tables(pd.read_csv(ref / name), pd.read_csv(cur / name), keys, vals, REFERENCE_COUNTS.get(name, []), tol, name)
+        ok &= good
+        lines.extend(ls)
     print("\n".join(lines))
     print("REPRODUCTION OK" if ok else "REPRODUCTION FAILED")
     (cfg.p("reports") / "verify.json").write_text(json.dumps({"ok": ok, "tolerance": tol, "checks": lines}, indent=1))
     return ok
+
+
+def reproduce(cfg: Config, workdir: str | None = None) -> bool:
+    """Rebuild the benchmark from raw inputs in a clean copy and verify it there."""
+    import shutil
+    import subprocess
+    import sys
+    import tempfile
+
+    work = Path(workdir) if workdir else Path(tempfile.mkdtemp(prefix="elbench-reproduce-"))
+    if work.exists() and any(work.iterdir()):
+        raise FileExistsError(f"{work} is not empty")
+    work.mkdir(parents=True, exist_ok=True)
+    skip = {".venv", ".git", "results", "splits"}
+    for item in cfg.root.iterdir():
+        if item.name in skip:
+            continue
+        if item.is_dir():
+            shutil.copytree(item, work / item.name, ignore=shutil.ignore_patterns("processed", "cache", "__pycache__"))
+        else:
+            shutil.copy2(item, work / item.name)
+    # drop generated report folders but keep reference tables and findings
+    for d in (work / "reports").glob("v*"):
+        if d.is_dir():
+            shutil.rmtree(d)
+    rel = cfg.path.relative_to(cfg.root)
+    print(f"reproducing in {work}", flush=True)
+    for cmd in (["all"], ["verify"]):
+        r = subprocess.run([sys.executable, "-m", "elbench.cli", "--config", str(work / rel), *cmd], cwd=work)
+        if r.returncode:
+            print(f"REPRODUCE FAILED at {cmd[0]}")
+            return False
+    return True

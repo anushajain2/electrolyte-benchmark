@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this benchmark or its evaluation package, please cite it as below, and cite the underlying datasets (see references)."
+title: "Electrolyte generalization benchmark: a coverage-aware benchmark and audit of ionic conductivity prediction for liquid Li electrolytes"
+type: software
+authors:
+  - family-names: Jain
+    given-names: Anusha
+version: "0.3.0"
+date-released: "2026-10-19"
+license: MIT
+repository-code: "https://github.com/anushajain2/electrolyte-benchmark"
+keywords:
+  - electrolytes
+  - ionic conductivity
+  - benchmark
+  - distribution shift
+  - data provenance
+references:
+  - type: article
+    title: "CALiSol-23: Experimental electrolyte conductivity data for various Li-salts and solvent combinations"
+    authors:
+      - family-names: De Blasio
+    journal: "Scientific Data"
+    volume: 11
+    start: 750
+    year: 2024
+    doi: "10.1038/s41597-024-03575-8"
+  - type: article
+    title: "Conductivity experiments for electrolyte formulations and their automated analysis"
+    authors:
+      - family-names: Rahmanian
+        given-names: Fuzhan
+    journal: "Scientific Data"
+    volume: 10
+    start: 43
+    year: 2023
+    doi: "10.1038/s41597-023-01936-3"

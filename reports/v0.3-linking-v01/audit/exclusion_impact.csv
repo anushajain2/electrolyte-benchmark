@@ -1,0 +1,8 @@
+reason,rows_with_reason,rows_only_this_reason,datasets,sources_touched,source_groups_lost,chemistry_systems_lost,components_lost
+missing_conductivity,523,479,calisol23,3,,,
+unresolved_component,140,96,calisol23,1,,LiAsF6|2-MeTHF+DMM+EC+PC; LiAsF6|Diglyme+Ethyldiglyme+Sulfolane; LiAsF6|EC+Ethylmonoglyme; LiAsF6|Ethyldiglyme+Sulfolane; LiAsF6|Ethylmonoglyme+GBL; LiAsF6|Ethylmonoglyme+PC; LiAsF6|Ethylmonoglyme+Sulfolane; LiCF3SO3|EC+Ethylmonoglyme; LiTFSI|EC+Ethylmonoglyme; LiTFSI|Ethylmonoglyme+GBL; LiTFSI|Ethylmonoglyme+Sulfolane,DMM; Ethyldiglyme; Ethylmonoglyme
+negative_conductivity_nonphysical,27,27,calisol23,5,,,
+source_quarantine,23,23,calisol23,1,doi:10.1007/s10008-002-0300-9,LiBF4|DEC+DMC+EC; LiPF6|DEC+DMC+EC,
+reported_zero_conductivity,8,5,calisol23,3,,,
+zero_salt_concentration,3,0,calisol23,1,,,
+negative_concentration_nonphysical,1,1,calisol23,1,,,

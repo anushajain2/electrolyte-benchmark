@@ -1,0 +1,41 @@
+{
+  "run_id": "20261019T222441-647035",
+  "command": "investigate",
+  "package_version": "0.1.0",
+  "benchmark_version": "0.3.0",
+  "config_path": "configs/benchmark_v0.3_noR11.yaml",
+  "config_sha256": "2d8a1fbce0afeac83fad7f8b9c7eb068dac5b366601c9782e1cb2d08e4725da6",
+  "started_utc": "2026-10-19T16:54:41Z",
+  "wall_seconds": 8.059,
+  "cpu_seconds": 4.387,
+  "peak_rss_mb": 899.4,
+  "python": "3.12.13",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1",
+    "scipy": "1.18.1",
+    "rdkit": "2026.09.1",
+    "pyarrow": "26.0.0"
+  },
+  "inputs": {},
+  "outputs": {
+    "results/v0.3-noR11/investigation/ranking_shift.csv": "aebd75381138d9ee54d89de2b55ab3d01ed27179dbf7b6b492bc27076ac35232",
+    "results/v0.3-noR11/investigation/extrapolation_profile.csv": "a0bd75acfc53810ce87564e78b2a576825cb724dc3ddd6f6124421479a7b9fc2",
+    "results/v0.3-noR11/investigation/transfer_gaps.csv": "daef9f4327083b21245575e94065978f7b99df2477acdcf415d9ed31f046789d",
+    "results/v0.3-noR11/investigation/source_familiarity.csv": "900796dbec8815257af79617ddf8143cfc80e4348b3cd4d273271dbf9b88a394",
+    "results/v0.3-noR11/investigation/familiarity_contrast.csv": "60251ce8b2037d05588f7692ee0715e80304e3b76db5b9cd59a447dc2b72a1ce",
+    "results/v0.3-noR11/investigation/source_diversity.csv": "a1a43197df2576def79168474aafce29ce59ad5ffdab40e3d855e1832c5b86b4",
+    "results/v0.3-noR11/investigation/failure_cases.csv": "a362e4d7ab8a0608261423bbbeafb4f3d5a385cd80ca048057241590fa044198",
+    "results/v0.3-noR11/investigation/failure_records.csv": "2aabf51aff8d19e30b1fac1b66ba56b598b7ae7c2cf7f320dcf41505c5e18a0b"
+  },
+  "notes": {
+    "include_reserved": false,
+    "primary_contrast": {
+      "analysis": "source_familiarity",
+      "model": "extra_trees",
+      "subset": "supported_by_both"
+    }
+  }
+}

@@ -25,7 +25,7 @@ import pandas as pd
 
 from .config import Config
 from .curate import load_processed
-from .evaluate import check_prediction_ids, _group_keys
+from .evaluate import MAIN_MODELS, check_prediction_ids, _group_keys
 from .features import track_features
 from .metrics import group_table, paired_bootstrap, row_errors, summarize
 from .splits import load_folds, load_manifest
@@ -88,7 +88,7 @@ def iter_folds(cfg: Config, task_id: str, track_id: str, include_dev: bool = Tru
         yield fd
 
 
-def score_predictions(cfg: Config, task_id: str, track_id: str, predictions: pd.DataFrame, compare_to_baselines: bool = True) -> dict[str, pd.DataFrame]:
+def score_predictions(cfg: Config, task_id: str, track_id: str, predictions: pd.DataFrame, compare_to_baselines: bool = True, baselines: tuple[str, ...] = tuple(MAIN_MODELS)) -> dict[str, pd.DataFrame]:
     """Score a submission with the benchmark's metrics and paired bootstrap."""
     meas, _ = load_processed(cfg)
     meta = meas.set_index("measurement_id")
@@ -109,16 +109,38 @@ def score_predictions(cfg: Config, task_id: str, track_id: str, predictions: pd.
         p = predictions[predictions.fold_id == f.fold_id]
         check_prediction_ids(p, test, f"submission/{f.fold_id}")
         e = row_errors(p.set_index("measurement_id").loc[test].reset_index(), truth)
+        e["fold_id"] = f.fold_id
         e["group"] = _group_keys(f.kind, f.score_group, f.heldout_unit, meta.loc[test]).to_numpy()
         errs.append(e)
     e = pd.concat(errs, ignore_index=True)
     gt = group_table(e, e.group)
     out = {"summary": pd.DataFrame([summarize(e, gt)]), "groups": gt.reset_index()}
     if compare_to_baselines:
-        rows = pd.read_parquet(cfg.p("results") / "tables" / "row_errors.parquet")
-        rows = rows[(rows.task_id == task_id) & (rows.track_id == track_id) & rows.valid]
-        common = set(rows.measurement_id) & set(e.measurement_id[e.valid])
-        G = rows[rows.measurement_id.isin(common)].groupby(["group", "model"]).abs_log_err.mean().unstack()
-        G["submission"] = e[e.measurement_id.isin(common)].groupby("group").abs_log_err.mean()
-        out["comparison"] = paired_bootstrap(G, cfg["evaluation"]["n_bootstrap"], cfg["evaluation"]["bootstrap_seed"], reference="submission")
+        out["comparison"], out["comparison_cases"] = compare_on_common_cases(cfg, task_id, track_id, e, baselines)
     return out
+
+
+def compare_on_common_cases(cfg: Config, task_id: str, track_id: str, sub: pd.DataFrame, baselines) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Paired comparison on one common set of cases.
+
+    A case is (fold_id, measurement_id). Only cases with a valid prediction from
+    the submission AND every compared baseline are used, so every model is
+    scored on exactly the same cases; baselines with any invalid prediction are
+    left out (incomplete). Returns the bootstrap table and a case-count table."""
+    rows = pd.read_parquet(cfg.p("results") / "tables" / "row_errors.parquet")
+    rows = rows[(rows.task_id == task_id) & (rows.track_id == track_id) & rows.model.isin(baselines)]
+    complete = [m for m, g in rows.groupby("model") if bool(g.valid.all())]
+    incomplete = sorted(set(rows.model) - set(complete))
+    rows = rows[rows.model.isin(complete)]
+    keys = ["fold_id", "measurement_id"]
+    cases = set(map(tuple, sub.loc[sub.valid, keys].to_numpy()))
+    for _, g in rows.groupby("model"):
+        cases &= set(map(tuple, g.loc[g.valid, keys].to_numpy()))
+    idx = pd.MultiIndex.from_tuples(sorted(cases), names=keys)
+    frames = {m: g.set_index(keys).reindex(idx) for m, g in rows.groupby("model")}
+    frames["submission"] = sub.set_index(keys).reindex(idx)
+    G = pd.DataFrame({m: f.groupby("group").abs_log_err.mean() for m, f in frames.items()})
+    counts = pd.DataFrame([{"model": m, "cases_used": int(f.abs_log_err.notna().sum())} for m, f in frames.items()])
+    counts["common_cases"] = len(idx)
+    counts["excluded_incomplete_baselines"] = ",".join(incomplete)
+    return paired_bootstrap(G, cfg["evaluation"]["n_bootstrap"], cfg["evaluation"]["bootstrap_seed"], reference="submission"), counts

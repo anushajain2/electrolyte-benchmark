@@ -7,7 +7,7 @@ cells = []
 md = lambda s: cells.append(nbf.v4.new_markdown_cell(s))  # noqa: E731
 code = lambda s: cells.append(nbf.v4.new_code_cell(s))  # noqa: E731
 
-md("""# Electrolyte generalization benchmark v0.2: example usage
+md("""# Electrolyte generalization benchmark v0.3: example usage
 
 This notebook shows how to (1) inspect the curated data and its provenance, (2) read the frozen evaluation design,
 (3) evaluate **your own model** on a frozen task with the benchmark's metrics, and (4) trace an error back to the raw record.
@@ -20,7 +20,7 @@ from elbench.config import load_config
 from elbench.curate import load_processed
 
 root = pathlib.Path.cwd() if (pathlib.Path.cwd() / "configs").exists() else pathlib.Path.cwd().parent
-cfg = load_config(root / "configs" / "benchmark_v0.2.yaml")
+cfg = load_config(root / "configs" / "benchmark_v0.3.yaml")
 meas, comps = load_processed(cfg)
 pd.set_option("display.width", 160)
 meas.inclusion_status.value_counts()""")
@@ -73,8 +73,8 @@ sub = submission.merge(meas[["measurement_id", "source_group_id", "conductivity_
 sub = sub[sub.source_group_id == worst_source]
 sub["abs_log_err"] = np.abs(np.log10(sub.prediction_mS_cm) - np.log10(sub.conductivity_mS_cm))
 sub.sort_values("abs_log_err", ascending=False).head(5)""")
-md("""The baseline report (`reports/v0.2/report.html`) contains the full results, the source-familiarity investigation and three inspected failure cases.
-The coverage audit (`reports/v0.2/coverage.html`) shows which comparisons the data can support.""")
+md("""The baseline report (`reports/v0.3/report.html`) contains the full results, the source-familiarity investigation and three inspected failure cases.
+The coverage audit (`reports/v0.3/coverage.html`) shows which comparisons the data can support.""")
 
 nb = nbf.v4.new_notebook(cells=cells, metadata={"kernelspec": {"name": "python3", "display_name": "Python 3", "language": "python"}})
 out = Path(__file__).resolve().parents[1] / "notebooks" / "example_usage.ipynb"

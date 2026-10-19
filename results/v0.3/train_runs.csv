@@ -1,0 +1,7 @@
+run_id,task_id,track_id,fold_id,model,n_train,n_test,n_configs,wall_s,cpu_s,worker_peak_rss_mb,chosen_config,n_failures,failed_seeds
+20261019T220507-cbc14e,external_rahmanian,molal_w,external/rahmanian2023,median,10481,5035,1,0.053,0.052,285.7,{},0,0
+20261019T220507-cbc14e,external_rahmanian,molal_w,external/rahmanian2023,knn,10481,5035,10,5.058,5.056,432.8,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261019T220507-cbc14e,external_rahmanian,molal_w,external/rahmanian2023,ridge,10481,5035,7,0.273,0.273,319.0,"{""alpha"": 100.0}",0,0
+20261019T220507-cbc14e,external_rahmanian,molal_w,external/rahmanian2023,ridge_raw,10481,5035,7,0.271,0.271,322.0,"{""alpha"": 1.0}",0,0
+20261019T220507-cbc14e,external_rahmanian,molal_w,external/rahmanian2023,extra_trees,10481,5035,9,55.673,55.658,1501.2,"{""max_features"": 0.66, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261019T220507-cbc14e,external_rahmanian,molal_w,external/rahmanian2023,hist_gb,10481,5035,12,29.884,29.875,325.1,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0

@@ -1,0 +1,30 @@
+{
+  "run_id": "20261019T222449-255e05",
+  "command": "report",
+  "package_version": "0.1.0",
+  "benchmark_version": "0.3.0",
+  "config_path": "configs/benchmark_v0.3_noR11.yaml",
+  "config_sha256": "2d8a1fbce0afeac83fad7f8b9c7eb068dac5b366601c9782e1cb2d08e4725da6",
+  "started_utc": "2026-10-19T16:54:49Z",
+  "wall_seconds": 0.886,
+  "cpu_seconds": 0.889,
+  "peak_rss_mb": 906.7,
+  "python": "3.12.13",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1",
+    "scipy": "1.18.1",
+    "rdkit": "2026.09.1",
+    "pyarrow": "26.0.0"
+  },
+  "inputs": {},
+  "outputs": {
+    "reports/v0.3-noR11/tables/summary.csv": "93ddbb1ac3d97256f658b82418a1ff60c0a9d6d54da85c23521ee3a2d1ca8f7f",
+    "reports/v0.3-noR11/tables/bootstrap.csv": "9f5bf6a8c068ff3adca3a27344b3eeeedd23418ef417f69dd5638456420f11ba",
+    "reports/v0.3-noR11/tables/familiarity_contrast.csv": "05222bdb0c9f3cb7dd0afbd8d90800a63ba142c76076ec7249520796224fbf99",
+    "reports/v0.3-noR11/report.html": "d45f975d6dae7ffc1690bc2d10976a94dade19804fe7a19b9ea59a15f1b673c9"
+  },
+  "notes": {}
+}

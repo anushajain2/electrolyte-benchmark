@@ -36,6 +36,8 @@ from .train import log_reserved_exposure
 # --------------------------------------------------------------------------
 def ranking_shift(summary: pd.DataFrame, track: str) -> pd.DataFrame:
     s = summary[(summary.track_id == track) & (summary.subset == "all") & summary.model.isin(MAIN_MODELS)]
+    if "complete" in s:
+        s = s[s.complete.astype(bool)]  # incomplete models are never ranked
     piv = s.pivot(index="task_id", columns="model", values="group_mean_mae_log10")
     ranks = piv.rank(axis=1, method="min")
     base = ranks.loc["interp_formulation"] if "interp_formulation" in ranks.index else None

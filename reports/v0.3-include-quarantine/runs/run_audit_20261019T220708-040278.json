@@ -1,0 +1,41 @@
+{
+  "run_id": "20261019T220708-040278",
+  "command": "audit",
+  "package_version": "0.1.0",
+  "benchmark_version": "0.3.0",
+  "config_path": "configs/benchmark_v0.3_include_quarantine.yaml",
+  "config_sha256": "b547bf69550f13df6bf356539734cb86fda19ee2ac5d174812a23e5c428424a1",
+  "started_utc": "2026-10-19T16:37:08Z",
+  "wall_seconds": 3.318,
+  "cpu_seconds": 3.328,
+  "peak_rss_mb": 680.1,
+  "python": "3.12.13",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1",
+    "scipy": "1.18.1",
+    "rdkit": "2026.09.1",
+    "pyarrow": "26.0.0"
+  },
+  "inputs": {
+    "data/processed/v0.3-include-quarantine/measurements.parquet": "3c49285f681bb0c2bcc305ecdb489eeb487cf5cf69e16eb9d7ed09d16b042ecb",
+    "data/processed/v0.3-include-quarantine/components.parquet": "b0747d4de609290ebda080ee0d97de8dfd6519626088067db869eb779c8c0037",
+    "data/processed/v0.3-include-quarantine/exclusions.csv": "cb6b8bee562845c847a701b4393c0ca19061f02dfcc6817bbc1ec3db6c8d16e6",
+    "data/processed/v0.3-include-quarantine/copy_links.csv": "3c753d6e36469d169a1b032c9d427b02caafe56d567ef95f87e210d14e3977cb"
+  },
+  "outputs": {
+    "reports/v0.3-include-quarantine/coverage.html": "1a2699ace3d94c01e0e7e51ea1e38895dcb822348e77999fdc9cf13602bf90d2",
+    "reports/v0.3-include-quarantine/eligibility.csv": "4965e96f9c86fa4cddf51c77d851e2fb4b6d55fc7b7ca8da23fd9ba4ff9c453f",
+    "reports/v0.3-include-quarantine/audit/component_source_counts.csv": "a3ba0ffdf685628303303f1d6ff757ad1e55cc9fdab709e1f3d87697a38f3f18",
+    "reports/v0.3-include-quarantine/audit/coverage_counts.csv": "f553915fa3bee7dd8ae18b0566569b9dbba10357d6f19da919b9ed4ed4e9d7a7",
+    "reports/v0.3-include-quarantine/audit/exclusion_impact.csv": "50a2beb723050924034c0ccc81156574d2c0458202bbdb6eb288c63e8d4370f5",
+    "reports/v0.3-include-quarantine/audit/secondary_overlap.csv": "f67c98f67c462d0fb7bff3d9fd4a5042b056437ee6c1bd2269d2feed0a0e5ff3",
+    "reports/v0.3-include-quarantine/audit/source_component__molal_w.csv": "e9edd112b7c10de10c8836b2fe68e5e8be398d2572e9ee428133e50e805755ec",
+    "reports/v0.3-include-quarantine/audit/source_component__molar_v.csv": "0a46be0658b3a66d6adfa1f45f14daf6252a1ce5fa1772caef6a9a0adb2e3be9",
+    "reports/v0.3-include-quarantine/audit/source_component__molar_x.csv": "eca04d2e5a0d6fe8aa5dee503aa4eb7bd1430574978e95b2a94fb4f09c5bc471",
+    "reports/v0.3-include-quarantine/audit/source_links.csv": "3beda5e5f5b29a2aa666da586e3ea2c5fce150b5084c506caa848218f6521dee"
+  },
+  "notes": {}
+}

@@ -159,19 +159,28 @@ def evaluate(cfg: Config, include_reserved: bool = False) -> dict[str, pd.DataFr
                 gt = group_table(rm.rename(columns={}), rm.group)
                 G[model] = gt.mae_log10
                 s = summarize(rm, gt)
-                summary_rows.append({"task_id": task, "track_id": track, "subset": subset, "model": model, "reporting_level": level.get((task, track), ""), **s})
+                summary_rows.append({"task_id": task, "track_id": track, "subset": subset, "model": model, "reporting_level": level.get((task, track), ""), **s, "complete": bool(rm.valid.all())})
                 if subset == "all":
                     lab = rm.groupby("group").interpretation_label.first()
                     group_rows.append(gt.assign(task_id=task, track_id=track, model=model, interpretation_label=lab).reset_index())
             # paired bootstrap on rows valid for every compared model
+            # Ranking policy: a model with any invalid prediction in this subset is
+            # incomplete and is excluded from paired comparisons and rankings (its
+            # summary row and invalid rate are still reported).
+            complete = {m for m, rm in r.groupby("model") if bool(rm.valid.all())}
             for family_set, name in [(MAIN_MODELS, "main"), (MAIN_MODELS + LOCAL_MODELS, "with_local")]:
-                present = [m for m in family_set if m in G]
-                if name == "with_local" and not any(m in G for m in LOCAL_MODELS):
+                present = [m for m in family_set if m in G and m in complete]
+                excluded = [m for m in family_set if m in G and m not in complete]
+                if name == "with_local" and not any(m in present for m in LOCAL_MODELS):
                     continue
                 rr = r[r.model.isin(present)]
-                ok = rr.groupby("measurement_id").valid.all()
+                # cases are (fold, measurement): a measurement can be tested in several folds
+                ok = rr.groupby(["fold_id", "measurement_id"]).valid.all()
                 common = ok[ok].index
-                rr = rr[rr.measurement_id.isin(common)]
+                key = pd.MultiIndex.from_frame(rr[["fold_id", "measurement_id"]])
+                rr = rr[key.isin(common)]
+                if rr.groupby("model").size().nunique() > 1:
+                    raise ValueError(f"{task}/{track}/{subset}: models scored on different case sets")
                 Gm = rr.groupby(["group", "model"]).abs_log_err.mean().unstack()[present]
                 b = paired_bootstrap(Gm, nb, bs, reference=ref)
                 b.insert(0, "comparison", name)
@@ -179,7 +188,12 @@ def evaluate(cfg: Config, include_reserved: bool = False) -> dict[str, pd.DataFr
                 b.insert(0, "track_id", track)
                 b.insert(0, "task_id", task)
                 b["n_common_rows"] = len(common)
-                b["note"] = "few groups: read group-level results individually" if len(Gm.dropna()) < cfg["reporting"]["headline_min_units"] else ""
+                notes = []
+                if len(Gm.dropna()) < cfg["reporting"]["headline_min_units"]:
+                    notes.append("few groups: read group-level results individually")
+                if excluded:
+                    notes.append("excluded as incomplete: " + ",".join(excluded))
+                b["note"] = "; ".join(notes)
                 boot_rows.append(b)
                 if subset == "all" and name in ("main", "with_local"):
                     pg_rows.extend(_paired_and_jackknife(Gm, ref, task, track, name, loo_rows))

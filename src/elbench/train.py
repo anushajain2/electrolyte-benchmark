@@ -142,6 +142,18 @@ def _run_job(job, X, meta, manifest, cfg_models, out_dir, models_dir):
     return record
 
 
+def data_hash(X: pd.DataFrame, meta: pd.DataFrame) -> str:
+    """Hash of the inputs actually used for fitting: feature values (descriptors
+    included), row identities and targets. Part of every cache key, so a data
+    correction that keeps split membership still invalidates cached predictions."""
+    h = hashlib.sha256()
+    h.update(np.ascontiguousarray(X.to_numpy(dtype=float)).tobytes())
+    h.update("|".join(map(str, X.columns)).encode())
+    h.update("|".join(X.index).encode())
+    h.update(np.ascontiguousarray(meta.loc[X.index, "conductivity_mS_cm"].to_numpy(dtype=float)).tobytes())
+    return h.hexdigest()
+
+
 def train(cfg: Config, tasks: list[str] | None = None, models: list[str] | None = None, n_jobs: int = -1, include_reserved: bool = False) -> pd.DataFrame:
     man = RunManifest("train", cfg)
     meas, comps = load_processed(cfg)
@@ -162,11 +174,12 @@ def train(cfg: Config, tasks: list[str] | None = None, models: list[str] | None 
         meta = meas.set_index("measurement_id").loc[X.index, meta_cols[1:]]
         manifest = load_manifest(cfg, task_id, track)
         man_sha = sha256_file(cfg.p("splits") / f"manifest__{task_id}__{track}.csv.gz")
+        data_sha = data_hash(X, meta)
         fams = families_for(cfg, task_id, models)
         jobs = []
         for fold_id, score_group in zip(fg.fold_id, fg.score_group):
             for fam in fams:
-                key = hashlib.sha256(json.dumps([cfg["models"], man_sha, code_hash, __version__, fold_id, fam], sort_keys=True, default=str).encode()).hexdigest()[:16]
+                key = hashlib.sha256(json.dumps([cfg["models"], man_sha, data_sha, code_hash, __version__, fold_id, fam], sort_keys=True, default=str).encode()).hexdigest()[:16]
                 jobs.append({"run_id": man.run_id, "task_id": task_id, "track_id": track, "fold_id": fold_id, "model": fam, "score_group": score_group, "cache_key": key})
         print(f"  train {task_id}/{track}: {len(fg)} folds x {len(fams)} families", flush=True)
         recs = Parallel(n_jobs=n_jobs, backend="loky")(

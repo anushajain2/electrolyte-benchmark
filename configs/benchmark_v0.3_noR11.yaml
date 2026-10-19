@@ -1,0 +1,249 @@
+# Sensitivity run: v0.3 without rule R11 (suspected numerical artifacts included).
+# Electrolyte generalization benchmark, version 0.3 (Phase 1 correction release).
+# v0.3 fixes implementation defects found in a code review of v0.2; it does not
+# change the research design. Like v0.2 it was made after earlier test results
+# had been seen. Changes from v0.2:
+#   - temperature and concentration boundaries are applied to the reported
+#     values (v0.2 compared values rounded to 0.1, e.g. 313.15 -> 313.2)
+#   - paired comparisons use one common set of (fold, measurement) cases;
+#     models with any invalid prediction are excluded from rankings
+#   - deterministic k-NN tie policy (replicates merged, direct distances)
+#   - training cache keyed on feature and target values as well as manifests
+#   - inclusion/exclusion sensitivity runs for consequential exclusions
+benchmark_version: "0.3.0"
+seed: 20261019
+
+paths:
+  raw: data/raw
+  mappings: data/mappings/species.csv
+  processed: data/processed/v0.3-noR11
+  cache: data/cache
+  splits: splits/v0.3-noR11
+  results: results/v0.3-noR11
+  reports: reports/v0.3-noR11
+  reference_tables: reports/reference/v0.3
+  author_groups: data/mappings/source_author_groups.csv
+
+sources:
+  calisol23:
+    title: "CALiSol-23: experimental electrolyte conductivity data"
+    kind: github
+    repo: Pele0599/CALiSol-23
+    commit: 02334f51d581b45d6760fa02048ffa0d84c056d8
+    files: ["CALiSol-23 Dataset.csv", "calisolsmile.csv", "CALiSol-23.ipynb"]
+    data_file: "CALiSol-23 Dataset.csv"
+    article_doi: 10.1038/s41597-024-03575-8
+    licence: "No licence file in the author repository (checked at commit above). The article is CC BY 4.0, but rights to redistribute the compiled rows are not stated."
+    redistribute_raw: false
+    role: backbone
+  rahmanian2023:
+    title: "Dataset of 5035 conductivity experiments for Li-ion electrolyte formulations"
+    kind: zenodo
+    record: 7244939
+    files: ["Conductivtiy_experiment.csv"]
+    data_file: "Conductivtiy_experiment.csv"
+    expected_md5: {"Conductivtiy_experiment.csv": "f84cfeb764e5d4db22cdb8b1253a0935"}
+    article_doi: 10.1038/s41597-023-01936-3
+    dataset_doi: 10.5281/zenodo.7244939
+    licence: "CC-BY-4.0 (Zenodo record metadata)"
+    redistribute_raw: true
+    role: reserved_external_evaluation
+
+curation:
+  # Physical plausibility window; values outside are quarantined, never clipped.
+  temperature_K_range: [150.0, 500.0]
+  # Values below this are float noise around a digitized zero (1.11e-16 occurs),
+  # ~6 orders of magnitude below any electrolyte impedance measurement here.
+  float_zero_threshold_mS_cm: 0.0  # sensitivity: R11 disabled
+  max_concentration: 10.0
+  # Formulation identity tolerances (rounding grid applied to keys only; the
+  # reported values are kept untouched in the measurement table).
+  formulation_ratio_decimals: 2
+  formulation_concentration_decimals: 2
+  # Replicate / repeated-reading cluster inside one source and formulation.
+  replicate_temperature_bin_K: 1.0
+  # Copy rule (identical chemistry plus all tolerances). Inside one source only
+  # exact value copies (within_source_exact_rel) are collapsed; across sources,
+  # tolerance matches mark suspected reuse and merge the two source groups when
+  # the pair shares at least min_cross_source_matches points (an isolated
+  # agreement can be coincidence and is logged but not linked).
+  copy_tolerance: {ratio_abs: 0.005, concentration_abs: 0.001, temperature_abs_K: 0.05, conductivity_rel: 0.005, within_source_exact_rel: 1.0e-9, min_cross_source_matches: 3}
+  # Source-level quarantine decided from a check against other
+  # sources at matched conditions (see DATA.md, issue I-01).
+  quarantine_sources:
+    - doi: 10.1007/s10008-002-0300-9
+      reason: "conductivity_scale_suspect: ~1 mol/kg LiPF6 in EC/DMC/DEC near 298 K reported at ~0.1, while other source groups report 6-12 mS/cm for comparable carbonate blends (several share authors with this paper, so the comparison is not independent); unit of the original figure not verified"
+  rahmanian_exclude_suspected_error: true
+  # R12: experimental-campaign linking. Thresholds were set after the v0.1
+  # review had shown pairwise agreement rates (0.92, 0.86, 0.70 for the pairs that
+  # are linked; 0.30 for the strongest pair that is not), so they are reported
+  # with two alternative provenance-based grouping schemes: v0.1 linking
+  # (configs/benchmark_v0.2_linking_v01.yaml) and author-group holdouts (task author_transfer).
+  campaign_linking: {enabled: true, temperature_abs_K: 1.0, concentration_abs: 0.03, ratio_abs: 0.02, conductivity_rel: 0.05, min_comparable: 20, min_agreement: 0.5}
+
+# Named support definitions. "primary" is used by every task in v0.2; the others
+# are sensitivity variants. Local support needs a training point of a nearby
+# recipe within the (T, c) window, so unmeasured combinations inside broad
+# marginal ranges are not treated as supported. Windows match the typical grid
+# spacing of the sources (10 K steps; concentration steps of 0.1-0.3 mol/kg).
+support_definitions:
+  primary: {mode: local, ratio_tolerance: 0.10, temperature_window_K: 10.0, concentration_window: 0.25}
+  marginal_v01: {mode: marginal, ratio_tolerance: 0.10}
+  local_tol05: {mode: local, ratio_tolerance: 0.05, temperature_window_K: 10.0, concentration_window: 0.25}
+  local_tol20: {mode: local, ratio_tolerance: 0.20, temperature_window_K: 10.0, concentration_window: 0.25}
+  local_narrow: {mode: local, ratio_tolerance: 0.10, temperature_window_K: 5.0, concentration_window: 0.10}
+
+tracks:
+  # Separate basis-specific tracks; concentrations and ratio bases are never mixed.
+  molal_w:
+    description: "Molality (mol salt / kg solvent) with solvent mass fractions; mole fractions computed exactly from molecular weights."
+    concentration_basis: molality
+    ratio_bases: [w]
+    composition_weight: mole_fraction
+    primary: true
+  molar_x:
+    description: "Molarity (mol/L solution) with solvent mole fractions (reported as mole, or converted exactly from mass)."
+    concentration_basis: molarity
+    ratio_bases: [mol, w]
+    composition_weight: mole_fraction
+    primary: false
+  molar_v:
+    description: "Molarity with solvent volume fractions. Volume-to-mole conversion needs densities, so descriptors are volume-fraction weighted."
+    concentration_basis: molarity
+    ratio_bases: [v]
+    composition_weight: volume_fraction
+    primary: false
+
+reporting:
+  # Pragmatic headline rules (not statistical guarantees).
+  headline_min_units: 5
+  headline_min_formulations_per_unit: 10
+  min_test_measurements_per_unit: 10
+
+tasks:
+  interp_formulation:
+    kind: grouped_interpolation
+    tracks: [molal_w, molar_x, molar_v]
+    n_outer_folds: 5
+    n_dev_folds: 3
+    score_group: source_group_id
+  source_transfer:
+    kind: source_transfer
+    tracks: [molal_w, molar_x, molar_v]
+    # Common-support rule; derived from reporting resolution of ratios (0.01)
+    # and from training-input coverage only.
+    # Common-support rule (see support_definitions).
+    support: primary
+    n_dev_sources: 3
+    score_group: source_group_id
+  author_transfer:
+    # Sensitivity: hold out a whole author group (reviewed mapping from Crossref
+    # author lists; affiliations not verified) instead of one source group.
+    kind: source_transfer
+    group_column: author_group_id
+    fold_prefix: authors
+    tracks: [molal_w, molar_x, molar_v]
+    support: primary
+    n_dev_sources: 3
+    score_group: author_group_id
+  component_transfer:
+    kind: component_transfer
+    tracks: [molal_w, molar_x, molar_v]
+    min_formulations: 10
+    max_measurement_share: 0.30
+    n_dev_components: 3
+    score_group: heldout_component
+  temp_high:
+    kind: temperature_transfer
+    tracks: [molal_w, molar_x, molar_v]
+    train_max_K: 313.15
+    test_min_K: 323.15
+    dev_train_max_K: 293.15
+    dev_test_min_K: 303.15
+    min_train_temperatures: 3
+    boundary_comparison: exact
+    score_group: source_group_id
+  temp_low:
+    kind: temperature_transfer_low
+    tracks: [molal_w, molar_x, molar_v]
+    train_min_K: 263.15
+    test_max_K: 253.15
+    dev_train_min_K: 283.15
+    dev_test_max_K: 273.15
+    min_train_temperatures: 3
+    boundary_comparison: exact
+    score_group: source_group_id
+  conc_high:
+    kind: concentration_transfer
+    tracks: [molal_w, molar_x]
+    train_max: 1.2
+    test_min: 1.5
+    dev_train_max: 0.8
+    dev_test_min: 1.0
+    min_train_concentrations: 3
+    boundary_comparison: exact
+    score_group: source_group_id
+  external_rahmanian:
+    kind: external
+    tracks: [molal_w]
+    test_dataset: rahmanian2023
+    reserved: true
+    score_group: chemistry_system_id
+
+models:
+  tuning_seed: 0
+  seeds: [0, 1, 2]
+  max_configs_per_family: 12
+  families:
+    median: {stochastic: false, grid: {}}
+    knn:
+      stochastic: false
+      fixed: {tie_policy: deterministic}
+      grid: {n_neighbors: [1, 3, 5, 10, 20], weights: [uniform, distance]}
+    ridge:
+      stochastic: false
+      grid: {alpha: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]}
+    ridge_raw:
+      stochastic: false
+      diagnostic: "Raw-scale target; nonpositive predictions are counted as invalid for log scoring."
+      grid: {alpha: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]}
+    extra_trees:
+      stochastic: true
+      fixed: {n_estimators: 200}
+      grid: {max_features: [0.33, 0.66, 1.0], min_samples_leaf: [1, 3, 10]}
+    hist_gb:
+      stochastic: true
+      fixed: {max_iter: 300}
+      grid: {learning_rate: [0.05, 0.1], max_leaf_nodes: [15, 31, 63], l2_regularization: [0.0, 1.0]}
+    arrhenius_local:
+      stochastic: false
+      only_tasks: [temp_high, temp_low]
+      grid: {}
+  reference_model: extra_trees
+
+evaluation:
+  n_bootstrap: 2000
+  bootstrap_seed: 7
+  reproduction_tolerance_log10: 0.005
+
+investigation:
+  primary_track: molal_w
+  # Predeclared primary contrast: source familiarity effect = MAE(train without
+  # target-source data) - MAE(train with it), extra_trees, on target test rows
+  # inside the common support of BOTH training sets; averaged over eligible
+  # target sources with a paired bootstrap over sources.
+  primary_contrast: {analysis: source_familiarity, model: extra_trees, subset: supported_by_both}
+  fixed_configs:
+    extra_trees: {n_estimators: 200, max_features: 0.66, min_samples_leaf: 3}
+    ridge: {alpha: 1.0}
+  source_familiarity:
+    min_source_formulations: 20
+    test_fraction: 0.3
+    background_size: 1500
+    repeats: 5
+    models: [extra_trees, ridge]
+  source_diversity:
+    budget: 300
+    max_sources: 4
+    repeats: 5
+
