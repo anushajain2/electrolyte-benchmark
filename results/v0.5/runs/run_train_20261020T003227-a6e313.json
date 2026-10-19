@@ -1,0 +1,31 @@
+{
+  "run_id": "20261020T003227-a6e313",
+  "command": "train",
+  "package_version": "0.3.0",
+  "benchmark_version": "0.5.0",
+  "config_path": "configs/benchmark_v0.5.yaml",
+  "config_sha256": "a9c97addafc4c8f43a87068f884a2fe39f1a56d0720b318a986a438184530c1f",
+  "started_utc": "2026-10-19T19:02:27Z",
+  "wall_seconds": 493.675,
+  "cpu_seconds": 4.016,
+  "peak_rss_mb": 732.9,
+  "python": "3.12.13",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1",
+    "scipy": "1.18.1",
+    "rdkit": "2026.09.1",
+    "pyarrow": "26.0.0"
+  },
+  "inputs": {},
+  "outputs": {
+    "results/v0.5/train_runs.csv": "c65464e43ef47fe11716e8ed55cd4b49f0d7c190bf12a0bc08f3bb38eb0433b7"
+  },
+  "notes": {
+    "n_jobs": 420,
+    "total_cpu_s": 2803.21,
+    "failed_seed_fits": 0
+  }
+}

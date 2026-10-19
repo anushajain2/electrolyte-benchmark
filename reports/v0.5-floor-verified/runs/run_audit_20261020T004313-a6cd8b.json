@@ -1,0 +1,41 @@
+{
+  "run_id": "20261020T004313-a6cd8b",
+  "command": "audit",
+  "package_version": "0.3.0",
+  "benchmark_version": "0.5.0",
+  "config_path": "configs/benchmark_v0.5_floor_verified.yaml",
+  "config_sha256": "1d9469bee879e16cd26939724044253d03ebfd773ab0f1959e3a600a340a5825",
+  "started_utc": "2026-10-19T19:13:13Z",
+  "wall_seconds": 4.072,
+  "cpu_seconds": 3.945,
+  "peak_rss_mb": 662.0,
+  "python": "3.12.13",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1",
+    "scipy": "1.18.1",
+    "rdkit": "2026.09.1",
+    "pyarrow": "26.0.0"
+  },
+  "inputs": {
+    "data/processed/v0.5-floor-verified/measurements.parquet": "5204a2a9d74d339325614112053a49d7f88080d006ae605f27f2c9b9d8b41b16",
+    "data/processed/v0.5-floor-verified/components.parquet": "b0747d4de609290ebda080ee0d97de8dfd6519626088067db869eb779c8c0037",
+    "data/processed/v0.5-floor-verified/exclusions.csv": "8ddbd39d038ed99e7d8738a878dd3e30e346a8cadefe016723e8847756b10f5e",
+    "data/processed/v0.5-floor-verified/copy_links.csv": "3c753d6e36469d169a1b032c9d427b02caafe56d567ef95f87e210d14e3977cb"
+  },
+  "outputs": {
+    "reports/v0.5-floor-verified/coverage.html": "a51ccd9f862c85fc8c5f62ab158ca666a64db052ae8eb3e718a9a74bf514d8f5",
+    "reports/v0.5-floor-verified/eligibility.csv": "0d79d618ef7a31c0585f75d87e5269d0512d89c8645112ca4759e3565d2f0557",
+    "reports/v0.5-floor-verified/audit/component_source_counts.csv": "492f15828b4d8cc60e088e1c551b2d5c7b50b8e91657d90213641883113d766b",
+    "reports/v0.5-floor-verified/audit/coverage_counts.csv": "5f4ac1c9d842e9fb32d1b35bb7dee813bd1c4053c95ecbaa92598aa3be9d3940",
+    "reports/v0.5-floor-verified/audit/exclusion_impact.csv": "1d62e69845aed38183a18e8f9978aad07ea4cadc292ad0774b04c1dc39fd6c4f",
+    "reports/v0.5-floor-verified/audit/secondary_overlap.csv": "f67c98f67c462d0fb7bff3d9fd4a5042b056437ee6c1bd2269d2feed0a0e5ff3",
+    "reports/v0.5-floor-verified/audit/source_component__molal_w.csv": "8fb55d7ad8192291c86f50d67b07632e1e29d2ae42dd070201831117cd9e2fd6",
+    "reports/v0.5-floor-verified/audit/source_component__molar_v.csv": "0a46be0658b3a66d6adfa1f45f14daf6252a1ce5fa1772caef6a9a0adb2e3be9",
+    "reports/v0.5-floor-verified/audit/source_component__molar_x.csv": "eca04d2e5a0d6fe8aa5dee503aa4eb7bd1430574978e95b2a94fb4f09c5bc471",
+    "reports/v0.5-floor-verified/audit/source_links.csv": "3beda5e5f5b29a2aa666da586e3ea2c5fce150b5084c506caa848218f6521dee"
+  },
+  "notes": {}
+}

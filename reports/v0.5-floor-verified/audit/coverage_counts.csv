@@ -1,0 +1,8 @@
+track_id,dataset_id,n_measurements,n_formulations,n_series,n_replicate_groups,n_source_groups,n_chemistry_systems
+molal_w,(all),15380,1749,601,10570,8,21
+molal_w,calisol23,10345,1645,97,9531,7,20
+molal_w,rahmanian2023,5035,104,504,1039,1,2
+molar_v,(all),1269,212,142,1241,5,88
+molar_v,calisol23,1269,212,142,1241,5,88
+molar_x,(all),1397,105,44,1379,9,28
+molar_x,calisol23,1397,105,44,1379,9,28

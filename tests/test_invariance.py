@@ -32,7 +32,7 @@ def test_component_column_order_does_not_change_identities(project, tmp_path):
     pd.testing.assert_frame_equal(X1, X2.loc[X1.index], rtol=1e-12)
 
 
-@pytest.mark.parametrize("model,params", [("ridge", {"alpha": 1.0}), ("knn", {"n_neighbors": 5}), ("median", {}), ("extra_trees", {"n_estimators": 20}), ("hist_gb", {"max_iter": 30})])
+@pytest.mark.parametrize("model,params", [("ridge", {"alpha": 1.0}), ("knn", {"n_neighbors": 5, "tie_policy": "deterministic"}), ("median", {}), ("extra_trees", {"n_estimators": 20}), ("hist_gb", {"max_iter": 30})])
 def test_row_order_does_not_change_predictions(project, model, params):
     meas, comps = load_processed(project)
     desc = pd.read_parquet(project.p("cache") / "descriptors.parquet")
@@ -44,4 +44,4 @@ def test_row_order_does_not_change_predictions(project, model, params):
     p1 = make_model(model, 0, params).fit(X.iloc[:n], y[:n], meta.iloc[:n]).predict(X.iloc[n:], meta.iloc[n:]).set_index("measurement_id")
     perm_tr, perm_te = rng.permutation(n), n + rng.permutation(len(X) - n)
     p2 = make_model(model, 0, params).fit(X.iloc[perm_tr], y[perm_tr], meta.iloc[perm_tr]).predict(X.iloc[perm_te], meta.iloc[perm_te]).set_index("measurement_id")
-    np.testing.assert_allclose(np.log10(p1.prediction_mS_cm), np.log10(p2.loc[p1.index].prediction_mS_cm), atol=1e-6)
+    np.testing.assert_allclose(np.log10(p1.prediction_mS_cm), np.log10(p2.loc[p1.index].prediction_mS_cm), atol=0 if model == "knn" else 1e-6)

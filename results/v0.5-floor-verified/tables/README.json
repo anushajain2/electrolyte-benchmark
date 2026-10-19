@@ -1,0 +1,6 @@
+{
+ "primary_metric": "group_mean_mae_log10: MAE of log10(conductivity / mS cm^-1) averaged within each score group, then equally across groups",
+ "seeds": "stochastic models: metrics are computed per seed; row_errors averages errors over seeds",
+ "bootstrap": "paired over groups, same resampled groups for every model, restricted to rows valid for all compared models",
+ "invalid": "rows with status != ok or nonpositive predictions count as invalid and are excluded from log metrics; see invalid_rate"
+}

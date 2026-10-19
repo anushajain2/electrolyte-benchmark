@@ -1,0 +1,25 @@
+{
+ "track": "molal_w",
+ "analyses": [
+  "ranking_shift",
+  "extrapolation_profile",
+  "transfer_gaps",
+  "source_familiarity",
+  "familiarity_contrast",
+  "source_diversity",
+  "failure_cases",
+  "failure_records",
+  "familiarity_logo",
+  "support_sensitivity",
+  "support_sensitivity_summary",
+  "condition_logo",
+  "ridge_audit",
+  "ridge_audit_contributions",
+  "label_evaluation_filtering",
+  "label_cases_removed",
+  "label_training_cleaning",
+  "selective_risk_coverage",
+  "selective_dev_threshold",
+  "selective_rejection"
+ ]
+}

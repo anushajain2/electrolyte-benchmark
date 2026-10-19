@@ -114,10 +114,10 @@ def write_project(root: Path, seed: int = 0) -> Path:
     (root / "data" / "mappings").mkdir(parents=True)
     shutil.copy(ROOT / "data" / "mappings" / "species.csv", root / "data" / "mappings" / "species.csv")
     (root / "reports").mkdir()
-    (root / "reports" / "findings_v0.3.md").write_text("# Findings\n\nFixture run.\n")
+    (root / "reports" / "findings_v0.5.md").write_text("# Findings\n\nFixture run.\n")
     groups = {"10.1/srcA": "AG1", "10.1/srcB": "AG1", "10.1/srcI": "AG1", "10.1/srcC": "AG2", "10.1/srcD": "AG2", "10.1/srcE": "AG3", "10.1/srcF": "AG4", "10.1/srcG": "AG5", "10.1/srcH": "AG6", "10.1038/s41597-023-01936-3": "AG7"}
     pd.DataFrame({"source_doi": list(groups), "author_group_id": list(groups.values()), "status": "fixture", "evidence": ""}).to_csv(root / "data" / "mappings" / "source_author_groups.csv", index=False)
-    cfg = yaml.safe_load((ROOT / "configs" / "benchmark_v0.3.yaml").read_text())
+    cfg = yaml.safe_load((ROOT / "configs" / "benchmark_v0.5.yaml").read_text())
     cfg.pop("compare_with", None)
     cfg["sources"]["rahmanian2023"].pop("expected_md5")
     cfg["curation"]["quarantine_sources"] = []
@@ -130,12 +130,18 @@ def write_project(root: Path, seed: int = 0) -> Path:
     fam["hist_gb"]["fixed"] = {"max_iter": 30}
     fam["hist_gb"]["grid"] = {"learning_rate": [0.1], "max_leaf_nodes": [7, 15], "l2_regularization": [0.0]}
     cfg["evaluation"]["n_bootstrap"] = 200
+    # label-effect analyses: srcA plays a verified linear-axis source; fixture
+    # conductivities are higher than real ones, so thresholds are scaled up
+    pd.DataFrame([{"source_doi": "10.1/srcA", "presentation": "linear_axis_figure", "status": "verified", "evidence": "fixture"},
+                  {"source_doi": "10.1/srcB", "presentation": "linear_axis_figure", "status": "inferred_from_values", "evidence": "fixture"}]).to_csv(root / "data" / "mappings" / "source_presentation.csv", index=False)
+    cfg["investigation"]["label_effects"].update({"thresholds": [1.0, 2.0], "training_threshold": 1.0})
+    cfg["investigation"]["selective"]["random_repeats"] = 20
     inv = cfg["investigation"]
     inv["fixed_configs"]["extra_trees"]["n_estimators"] = 20
     inv["source_familiarity"].update({"min_source_formulations": 5, "background_size": 150, "repeats": 2})
     inv["source_diversity"].update({"budget": 40, "max_sources": 2, "repeats": 2})
     (root / "configs").mkdir()
-    path = root / "configs" / "benchmark_v0.3.yaml"
+    path = root / "configs" / "benchmark_v0.5.yaml"
     path.write_text(yaml.safe_dump(cfg, sort_keys=False))
     return path
 

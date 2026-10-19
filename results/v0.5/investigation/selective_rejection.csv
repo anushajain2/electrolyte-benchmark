@@ -1,0 +1,91 @@
+task_id,model,signal,by,value,cases,rejection_rate
+temp_low,extra_trees,condition_distance,source_group,doi:10.1016/S0378-7753(01)00697-8,6,0.0
+temp_low,extra_trees,condition_distance,source_group,doi:10.1016/S0378-7753(03)00153-8,1200,0.4083333333333333
+temp_low,extra_trees,condition_distance,source_group,doi:10.1149/1.1403730,73,0.3150684931506849
+temp_low,extra_trees,condition_distance,source_group,doi:10.1149/1.1513556,86,0.0
+temp_low,extra_trees,condition_distance,source_group,doi:10.1149/1.1833611,336,0.01488095238095238
+temp_low,extra_trees,condition_distance,source_group,doi:10.1149/1.1914757,86,0.011627906976744186
+temp_low,extra_trees,condition_distance,temperature_band,233-243 K,641,0.0514820592823713
+temp_low,extra_trees,condition_distance,temperature_band,243-253 K,670,0.014925373134328358
+temp_low,extra_trees,condition_distance,temperature_band,<=233 K,476,1.0
+temp_low,extra_trees,feature_distance,source_group,doi:10.1016/S0378-7753(01)00697-8,6,0.0
+temp_low,extra_trees,feature_distance,source_group,doi:10.1016/S0378-7753(03)00153-8,1200,0.23833333333333334
+temp_low,extra_trees,feature_distance,source_group,doi:10.1149/1.1403730,73,0.0
+temp_low,extra_trees,feature_distance,source_group,doi:10.1149/1.1513556,86,0.0
+temp_low,extra_trees,feature_distance,source_group,doi:10.1149/1.1833611,336,0.0
+temp_low,extra_trees,feature_distance,source_group,doi:10.1149/1.1914757,86,0.0
+temp_low,extra_trees,feature_distance,temperature_band,233-243 K,641,0.0
+temp_low,extra_trees,feature_distance,temperature_band,243-253 K,670,0.0
+temp_low,extra_trees,feature_distance,temperature_band,<=233 K,476,0.6008403361344538
+temp_low,extra_trees,ensemble_spread,source_group,doi:10.1016/S0378-7753(01)00697-8,6,1.0
+temp_low,extra_trees,ensemble_spread,source_group,doi:10.1016/S0378-7753(03)00153-8,1200,0.004166666666666667
+temp_low,extra_trees,ensemble_spread,source_group,doi:10.1149/1.1403730,73,0.0410958904109589
+temp_low,extra_trees,ensemble_spread,source_group,doi:10.1149/1.1513556,86,0.0
+temp_low,extra_trees,ensemble_spread,source_group,doi:10.1149/1.1833611,336,0.005952380952380952
+temp_low,extra_trees,ensemble_spread,source_group,doi:10.1149/1.1914757,86,0.0
+temp_low,extra_trees,ensemble_spread,temperature_band,233-243 K,641,0.0062402496099844
+temp_low,extra_trees,ensemble_spread,temperature_band,243-253 K,670,0.016417910447761194
+temp_low,extra_trees,ensemble_spread,temperature_band,<=233 K,476,0.0021008403361344537
+temp_low,ridge,condition_distance,source_group,doi:10.1016/S0378-7753(01)00697-8,6,0.0
+temp_low,ridge,condition_distance,source_group,doi:10.1016/S0378-7753(03)00153-8,1200,0.4083333333333333
+temp_low,ridge,condition_distance,source_group,doi:10.1149/1.1403730,73,0.3150684931506849
+temp_low,ridge,condition_distance,source_group,doi:10.1149/1.1513556,86,0.0
+temp_low,ridge,condition_distance,source_group,doi:10.1149/1.1833611,336,0.01488095238095238
+temp_low,ridge,condition_distance,source_group,doi:10.1149/1.1914757,86,0.011627906976744186
+temp_low,ridge,condition_distance,temperature_band,233-243 K,641,0.0514820592823713
+temp_low,ridge,condition_distance,temperature_band,243-253 K,670,0.014925373134328358
+temp_low,ridge,condition_distance,temperature_band,<=233 K,476,1.0
+temp_low,ridge,feature_distance,source_group,doi:10.1016/S0378-7753(01)00697-8,6,0.0
+temp_low,ridge,feature_distance,source_group,doi:10.1016/S0378-7753(03)00153-8,1200,0.23833333333333334
+temp_low,ridge,feature_distance,source_group,doi:10.1149/1.1403730,73,0.0
+temp_low,ridge,feature_distance,source_group,doi:10.1149/1.1513556,86,0.0
+temp_low,ridge,feature_distance,source_group,doi:10.1149/1.1833611,336,0.0
+temp_low,ridge,feature_distance,source_group,doi:10.1149/1.1914757,86,0.0
+temp_low,ridge,feature_distance,temperature_band,233-243 K,641,0.0
+temp_low,ridge,feature_distance,temperature_band,243-253 K,670,0.0
+temp_low,ridge,feature_distance,temperature_band,<=233 K,476,0.6008403361344538
+temp_low,arrhenius_local,condition_distance,source_group,doi:10.1016/S0378-7753(01)00697-8,6,0.0
+temp_low,arrhenius_local,condition_distance,source_group,doi:10.1016/S0378-7753(03)00153-8,1200,0.4083333333333333
+temp_low,arrhenius_local,condition_distance,source_group,doi:10.1149/1.1403730,73,0.3150684931506849
+temp_low,arrhenius_local,condition_distance,source_group,doi:10.1149/1.1513556,86,0.0
+temp_low,arrhenius_local,condition_distance,source_group,doi:10.1149/1.1833611,336,0.01488095238095238
+temp_low,arrhenius_local,condition_distance,source_group,doi:10.1149/1.1914757,86,0.011627906976744186
+temp_low,arrhenius_local,condition_distance,temperature_band,233-243 K,641,0.0514820592823713
+temp_low,arrhenius_local,condition_distance,temperature_band,243-253 K,670,0.014925373134328358
+temp_low,arrhenius_local,condition_distance,temperature_band,<=233 K,476,1.0
+temp_high,extra_trees,condition_distance,source_group,doi:10.1016/S0378-7753(03)00153-8,331,0.07854984894259819
+temp_high,extra_trees,condition_distance,source_group,doi:10.1149/1.1403730,57,0.543859649122807
+temp_high,extra_trees,condition_distance,source_group,doi:10.1149/1.1513556,69,0.4492753623188406
+temp_high,extra_trees,condition_distance,source_group,doi:10.1149/1.1833611,181,0.011049723756906077
+temp_high,extra_trees,condition_distance,source_group,doi:10.1149/1.1914757,51,0.09803921568627451
+temp_high,extra_trees,condition_distance,temperature_band,>323 K,689,0.1378809869375907
+temp_high,extra_trees,feature_distance,source_group,doi:10.1016/S0378-7753(03)00153-8,331,0.0
+temp_high,extra_trees,feature_distance,source_group,doi:10.1149/1.1403730,57,0.0
+temp_high,extra_trees,feature_distance,source_group,doi:10.1149/1.1513556,69,0.0
+temp_high,extra_trees,feature_distance,source_group,doi:10.1149/1.1833611,181,0.0
+temp_high,extra_trees,feature_distance,source_group,doi:10.1149/1.1914757,51,0.0
+temp_high,extra_trees,feature_distance,temperature_band,>323 K,689,0.0
+temp_high,extra_trees,ensemble_spread,source_group,doi:10.1016/S0378-7753(03)00153-8,331,0.8942598187311178
+temp_high,extra_trees,ensemble_spread,source_group,doi:10.1149/1.1403730,57,0.0
+temp_high,extra_trees,ensemble_spread,source_group,doi:10.1149/1.1513556,69,0.043478260869565216
+temp_high,extra_trees,ensemble_spread,source_group,doi:10.1149/1.1833611,181,0.9392265193370166
+temp_high,extra_trees,ensemble_spread,source_group,doi:10.1149/1.1914757,51,0.43137254901960786
+temp_high,extra_trees,ensemble_spread,temperature_band,>323 K,689,0.7126269956458636
+temp_high,ridge,condition_distance,source_group,doi:10.1016/S0378-7753(03)00153-8,331,0.07854984894259819
+temp_high,ridge,condition_distance,source_group,doi:10.1149/1.1403730,57,0.543859649122807
+temp_high,ridge,condition_distance,source_group,doi:10.1149/1.1513556,69,0.4492753623188406
+temp_high,ridge,condition_distance,source_group,doi:10.1149/1.1833611,181,0.011049723756906077
+temp_high,ridge,condition_distance,source_group,doi:10.1149/1.1914757,51,0.09803921568627451
+temp_high,ridge,condition_distance,temperature_band,>323 K,689,0.1378809869375907
+temp_high,ridge,feature_distance,source_group,doi:10.1016/S0378-7753(03)00153-8,331,0.0
+temp_high,ridge,feature_distance,source_group,doi:10.1149/1.1403730,57,0.0
+temp_high,ridge,feature_distance,source_group,doi:10.1149/1.1513556,69,0.0
+temp_high,ridge,feature_distance,source_group,doi:10.1149/1.1833611,181,0.0
+temp_high,ridge,feature_distance,source_group,doi:10.1149/1.1914757,51,0.0
+temp_high,ridge,feature_distance,temperature_band,>323 K,689,0.0
+temp_high,arrhenius_local,condition_distance,source_group,doi:10.1016/S0378-7753(03)00153-8,331,0.07854984894259819
+temp_high,arrhenius_local,condition_distance,source_group,doi:10.1149/1.1403730,57,0.543859649122807
+temp_high,arrhenius_local,condition_distance,source_group,doi:10.1149/1.1513556,69,0.4492753623188406
+temp_high,arrhenius_local,condition_distance,source_group,doi:10.1149/1.1833611,181,0.011049723756906077
+temp_high,arrhenius_local,condition_distance,source_group,doi:10.1149/1.1914757,51,0.09803921568627451
+temp_high,arrhenius_local,condition_distance,temperature_band,>323 K,689,0.1378809869375907

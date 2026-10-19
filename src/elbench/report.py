@@ -145,6 +145,31 @@ def _familiarity_fig(fam: pd.DataFrame, model: str):
     return fig
 
 
+def _risk_coverage_fig(rc: pd.DataFrame):
+    import matplotlib.pyplot as plt
+
+    tasks = list(dict.fromkeys(rc.task_id))
+    models = list(dict.fromkeys(rc.model))
+    fig, axes = plt.subplots(len(tasks), len(models), figsize=(3.4 * len(models), 2.8 * len(tasks)), squeeze=False)
+    styles = {"condition_distance": "-o", "feature_distance": "-s", "ensemble_spread": "-^", "random": "--", "oracle": ":"}
+    for i, t in enumerate(tasks):
+        for j, m in enumerate(models):
+            ax = axes[i][j]
+            g = rc[(rc.task_id == t) & (rc.model == m)]
+            for sgl, h in g.groupby("signal"):
+                h = h.sort_values("target_coverage")
+                ax.plot(h.target_coverage, h.group_mean_mae_log10, styles.get(sgl, "-"), ms=3, lw=1.1, label=sgl, color="0.5" if sgl in ("random", "oracle") else None)
+            ax.invert_xaxis()
+            ax.set_title(f"{t} / {m}", fontsize=8)
+            ax.set_xlabel("coverage", fontsize=7)
+            ax.set_ylabel("MAE log10 (retained)", fontsize=7)
+            ax.tick_params(labelsize=7)
+            ax.grid(color="0.92")
+    axes[0][0].legend(fontsize=6)
+    fig.tight_layout()
+    return fig
+
+
 def _diversity_fig(div: pd.DataFrame):
     import matplotlib.pyplot as plt
 
@@ -351,6 +376,31 @@ def _sensitivity_sections(cfg: Config, track: str) -> list[str]:
         defs = cfg.get("support_definitions") or {}
         if defs:
             B.append(H.table(pd.DataFrame([{"definition": k, **v} for k, v in defs.items()])))
+    if (inv / "label_evaluation_filtering.csv").exists():
+        ef = pd.read_csv(inv / "label_evaluation_filtering.csv")
+        B.append("<h3>K. Label reliability: evaluation filtering versus training cleaning</h3>")
+        B.append("<p><b>Evaluation filtering</b> holds every model's predictions fixed and rescores them on the cases a digitization floor would keep, so any change comes only from the evaluated population. "
+                 "<b>Training cleaning</b> refits the same outer folds with and without the floored training rows and scores both on the identical retained (audited) test cases, so any change comes only from training labels. Fold membership is the reference version's.</p>")
+        main = ef[ef.model.isin(["extra_trees", "ridge", "arrhenius_local"])]
+        B.append(H.table(main.pivot_table(index=["task_id", "model"], columns="definition", values="change").reset_index()))
+        B.append("<p>Coverage (share of test cases retained):</p>" + H.table(ef[ef.model == "extra_trees"].pivot_table(index="task_id", columns="definition", values="coverage").reset_index()))
+        if (inv / "label_cases_removed.csv").exists():
+            B.append("<p>What the floor removes from each task's test set:</p>" + H.table(pd.read_csv(inv / "label_cases_removed.csv")))
+        if (inv / "label_training_cleaning.csv").exists():
+            tc = pd.read_csv(inv / "label_training_cleaning.csv")
+            if len(tc):
+                B.append("<p>Training cleaning on identical audited test cases (negative <code>training_effect</code>: cleaning the training labels helped):</p>" + H.table(tc))
+    if (inv / "selective_risk_coverage.csv").exists():
+        rc = pd.read_csv(inv / "selective_risk_coverage.csv")
+        B.append("<h3>L. Selective prediction for condition extrapolation (exploratory)</h3>")
+        B.append("<p>Can unreliable predictions be identified before their labels are known? Each base model's test predictions are ranked by a confidence signal and the least confident are rejected. "
+                 "<code>oracle</code> sorts by the actual error and is only a bound. All test labels here were inspected in earlier versions, so these results are exploratory.</p>")
+        B.append(H.fig_img(_risk_coverage_fig(rc), "risk coverage"))
+        if (inv / "selective_dev_threshold.csv").exists():
+            B.append("<p>Thresholds fixed on the development fold for 75% coverage, then applied to the test cases:</p>" + H.table(pd.read_csv(inv / "selective_dev_threshold.csv")))
+        if (inv / "selective_rejection.csv").exists():
+            rj = pd.read_csv(inv / "selective_rejection.csv")
+            B.append("<p>Who gets rejected (development-fixed threshold):</p>" + H.table(rj.pivot_table(index=["task_id", "by", "value"], columns=["model", "signal"], values="rejection_rate").reset_index()))
     if (inv / "ridge_audit.csv").exists():
         B.append("<h3>J. Ridge numerical audit (component holdout; post-hoc diagnostic)</h3>")
         B.append("<p>Scaler statistics are checked against the training rows; z-scores show how far the held-out component's descriptors lie outside the training distribution; "

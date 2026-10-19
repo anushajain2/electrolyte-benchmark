@@ -1,0 +1,41 @@
+{
+  "run_id": "20261020T010033-c9dbd4",
+  "command": "investigate",
+  "package_version": "0.3.0",
+  "benchmark_version": "0.5.0",
+  "config_path": "configs/benchmark_v0.5_floor_inferred.yaml",
+  "config_sha256": "2dcc578e17339419856c6373007c7b35bd3cc278aaa01ca8c494488886474536",
+  "started_utc": "2026-10-19T19:30:33Z",
+  "wall_seconds": 8.89,
+  "cpu_seconds": 4.543,
+  "peak_rss_mb": 829.7,
+  "python": "3.12.13",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1",
+    "scipy": "1.18.1",
+    "rdkit": "2026.09.1",
+    "pyarrow": "26.0.0"
+  },
+  "inputs": {},
+  "outputs": {
+    "results/v0.5-floor-inferred/investigation/ranking_shift.csv": "415008f5f12274c3131f4f627c1cc710a559705a50226c4a1318c4cb3d08d28a",
+    "results/v0.5-floor-inferred/investigation/extrapolation_profile.csv": "8119d0eb61a126377d57f851fe840db79adb9e21a1d79709951b70793a35a4d1",
+    "results/v0.5-floor-inferred/investigation/transfer_gaps.csv": "2707e795543641ef7270444fac537912ebf53a291e357d4846a97b0950fe9389",
+    "results/v0.5-floor-inferred/investigation/source_familiarity.csv": "81ac759104e178ba76634737c3867020c4ea2575c5c0b582c122e10eb9947ad4",
+    "results/v0.5-floor-inferred/investigation/familiarity_contrast.csv": "2b9bb51731eed0f779f72809c274efd8efd42f2c803af6610faa8adb3f6fae92",
+    "results/v0.5-floor-inferred/investigation/source_diversity.csv": "9263a96e70907afedee256b043f9f52fed0e861e17ed496c303b289fd9e91e0a",
+    "results/v0.5-floor-inferred/investigation/failure_cases.csv": "a5e6db4e580076f04b89c6830fc3bb55bff2ff1dfc4817dbe5929f571f24139f",
+    "results/v0.5-floor-inferred/investigation/failure_records.csv": "2b3c9e7076f448402de35228bf3afe4809d9b4b284b8415eb0a461392fcbf8ac"
+  },
+  "notes": {
+    "include_reserved": false,
+    "primary_contrast": {
+      "analysis": "source_familiarity",
+      "model": "extra_trees",
+      "subset": "supported_by_both"
+    }
+  }
+}

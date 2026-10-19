@@ -88,8 +88,34 @@ def iter_folds(cfg: Config, task_id: str, track_id: str, include_dev: bool = Tru
         yield fd
 
 
-def score_predictions(cfg: Config, task_id: str, track_id: str, predictions: pd.DataFrame, compare_to_baselines: bool = True, baselines: tuple[str, ...] = tuple(MAIN_MODELS)) -> dict[str, pd.DataFrame]:
-    """Score a submission with the benchmark's metrics and paired bootstrap."""
+COVERAGE_LEVELS = (1.0, 0.9, 0.75, 0.5)
+
+
+def score_predictions(
+    cfg: Config,
+    task_id: str,
+    track_id: str,
+    predictions: pd.DataFrame,
+    compare_to_baselines: bool = True,
+    baselines: tuple[str, ...] = tuple(MAIN_MODELS),
+    mode: str = "full_coverage",
+) -> dict[str, pd.DataFrame]:
+    """Score a submission with the benchmark's metrics and paired bootstrap.
+
+    Prediction status values: "ok", "abstain" (an intentional refusal to
+    predict) and anything else (an execution failure, e.g. "failed").
+
+    mode="full_coverage" (default): every case needs a valid prediction. An
+        incomplete submission (any abstention or failure) receives diagnostics
+        but no ranked comparison, matching the policy applied to baselines.
+    mode="selective": abstentions are allowed and scored as selective
+        prediction. Requires a "confidence" column (higher = more confident),
+        whose rejection thresholds must have been fixed on development folds.
+        Returns error-versus-coverage results; execution failures are reported
+        separately and block any ranked comparison.
+    """
+    if mode not in ("full_coverage", "selective"):
+        raise ValueError(f"unknown mode {mode!r}")
     meas, _ = load_processed(cfg)
     meta = meas.set_index("measurement_id")
     truth = meta.conductivity_mS_cm
@@ -100,6 +126,8 @@ def score_predictions(cfg: Config, task_id: str, track_id: str, predictions: pd.
     if "status" not in predictions:
         predictions["status"] = "ok"
     predictions["seed"] = predictions.get("seed", 0)
+    if mode == "selective" and "confidence" not in predictions:
+        raise ValueError("selective mode needs a 'confidence' column")
     unknown = set(predictions.fold_id) - set(folds.fold_id)
     if unknown:
         raise ValueError(f"unknown fold ids {sorted(unknown)[:3]}")
@@ -108,16 +136,59 @@ def score_predictions(cfg: Config, task_id: str, track_id: str, predictions: pd.
         test = man[(man.fold_id == f.fold_id) & (man.role == "test")].measurement_id.to_numpy()
         p = predictions[predictions.fold_id == f.fold_id]
         check_prediction_ids(p, test, f"submission/{f.fold_id}")
-        e = row_errors(p.set_index("measurement_id").loc[test].reset_index(), truth)
+        p = p.set_index("measurement_id").loc[test].reset_index()
+        e = row_errors(p, truth)
         e["fold_id"] = f.fold_id
+        e["status"] = p.status.to_numpy()
+        if "confidence" in p:
+            e["confidence"] = p.confidence.to_numpy()
         e["group"] = _group_keys(f.kind, f.score_group, f.heldout_unit, meta.loc[test]).to_numpy()
         errs.append(e)
     e = pd.concat(errs, ignore_index=True)
-    gt = group_table(e, e.group)
-    out = {"summary": pd.DataFrame([summarize(e, gt)]), "groups": gt.reset_index()}
-    if compare_to_baselines:
+    n = len(e)
+    n_abstain = int((e.status == "abstain").sum())
+    n_failed = int((~e.valid & (e.status != "abstain")).sum())
+    diag = pd.DataFrame([{"mode": mode, "cases": n, "valid": int(e.valid.sum()), "abstained": n_abstain, "failed": n_failed, "coverage": float(e.valid.mean()) if n else np.nan}])
+    gt = group_table(e[e.valid], e.group[e.valid])
+    out = {"diagnostics": diag, "summary": pd.DataFrame([summarize(e[e.valid], gt)]), "groups": gt.reset_index()}
+    if mode == "full_coverage":
+        if n_abstain or n_failed:
+            out["comparison_status"] = f"not ranked: incomplete submission ({n_abstain} abstentions, {n_failed} failures); use mode='selective' for intentional abstention"
+        elif compare_to_baselines:
+            out["comparison"], out["comparison_cases"] = compare_on_common_cases(cfg, task_id, track_id, e, baselines)
+            out["comparison_status"] = "ranked: full coverage"
+        return out
+    # selective prediction
+    out["risk_coverage"] = risk_coverage(e)
+    if n_failed:
+        out["comparison_status"] = f"not ranked: {n_failed} execution failures (failures are not abstentions)"
+    elif compare_to_baselines:
         out["comparison"], out["comparison_cases"] = compare_on_common_cases(cfg, task_id, track_id, e, baselines)
+        out["comparison_status"] = (
+            f"matched cases only: baselines are scored on the {int(e.valid.sum())} cases the submission chose to keep "
+            f"(coverage {e.valid.mean():.2f}); this favours the submission and is not a full-coverage ranking"
+        )
     return out
+
+
+def risk_coverage(e: pd.DataFrame, levels=COVERAGE_LEVELS) -> pd.DataFrame:
+    """Retained-set error when the least confident predictions are rejected.
+
+    Coverage is relative to all cases; abstentions count as rejected. Levels
+    above the submission's own coverage cannot be reached and are reported as such."""
+    n = len(e)
+    kept = e[e.valid].sort_values("confidence", ascending=False, kind="stable")
+    rows = []
+    for c in levels:
+        k = int(round(c * n))
+        if k > len(kept):
+            rows.append({"target_coverage": c, "achieved": False, "cases": len(kept), "group_mean_mae_log10": np.nan, "sample_mae_log10": np.nan})
+            continue
+        sub = kept.iloc[:k]
+        g = sub.groupby("group").abs_log_err.mean()
+        rows.append({"target_coverage": c, "achieved": True, "cases": k, "group_mean_mae_log10": float(g.mean()) if len(g) else np.nan, "sample_mae_log10": float(sub.abs_log_err.mean()) if k else np.nan})
+    rows.append({"target_coverage": "realized", "achieved": True, "cases": len(kept), "group_mean_mae_log10": float(kept.groupby("group").abs_log_err.mean().mean()) if len(kept) else np.nan, "sample_mae_log10": float(kept.abs_log_err.mean()) if len(kept) else np.nan})
+    return pd.DataFrame(rows)
 
 
 def compare_on_common_cases(cfg: Config, task_id: str, track_id: str, sub: pd.DataFrame, baselines) -> tuple[pd.DataFrame, pd.DataFrame]:

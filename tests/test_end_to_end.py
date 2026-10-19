@@ -43,6 +43,14 @@ def test_fresh_run_reproduces_reference(tmp_path):
     for rel in ["tables/paired_group_differences.csv", "tables/leave_one_group_out.csv", "investigation/support_sensitivity_summary.csv",
                 "investigation/condition_logo.csv", "investigation/familiarity_logo.csv", "investigation/ridge_audit_contributions.csv"]:
         assert (a.p("results") / rel).exists(), rel
+    for rel in ["investigation/label_evaluation_filtering.csv", "investigation/label_training_cleaning.csv", "investigation/selective_risk_coverage.csv", "investigation/selective_dev_threshold.csv"]:
+        assert (a.p("results") / rel).exists(), rel
+    lf = pd.read_csv(a.p("results") / "investigation" / "label_evaluation_filtering.csv")
+    assert (lf.coverage <= 1).all() and (lf.cases_retained <= lf.cases_all).all()
+    tc = pd.read_csv(a.p("results") / "investigation" / "label_training_cleaning.csv")
+    assert len(tc) and {"trained_on_all", "trained_on_cleaned"} <= set(tc.columns)
+    rc = pd.read_csv(a.p("results") / "investigation" / "selective_risk_coverage.csv")
+    assert {"condition_distance", "random", "oracle"} <= set(rc.signal)
     cl = pd.read_csv(a.p("results") / "investigation" / "condition_logo.csv")
     assert set(cl.left_out_group) > {"(none)"}
 

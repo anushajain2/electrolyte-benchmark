@@ -1,0 +1,53 @@
+{
+  "run_id": "20261020T004115-dd847b",
+  "command": "investigate",
+  "package_version": "0.3.0",
+  "benchmark_version": "0.5.0",
+  "config_path": "configs/benchmark_v0.5.yaml",
+  "config_sha256": "a9c97addafc4c8f43a87068f884a2fe39f1a56d0720b318a986a438184530c1f",
+  "started_utc": "2026-10-19T19:11:15Z",
+  "wall_seconds": 109.057,
+  "cpu_seconds": 33.062,
+  "peak_rss_mb": 1715.2,
+  "python": "3.12.13",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1",
+    "scipy": "1.18.1",
+    "rdkit": "2026.09.1",
+    "pyarrow": "26.0.0"
+  },
+  "inputs": {},
+  "outputs": {
+    "results/v0.5/investigation/ranking_shift.csv": "749985eec68f8641d8a9ef3f735baa6bac4bccbd88916a961591d1fb2641a346",
+    "results/v0.5/investigation/extrapolation_profile.csv": "5ac3420e5962d84ce3cc6fe9162a3e263d6fb3165deba646bf3c6a07507ea138",
+    "results/v0.5/investigation/transfer_gaps.csv": "7aee57f43b8ce4eb41e527061233cfb1f478996eec6206bed7ef4991ababe3ef",
+    "results/v0.5/investigation/source_familiarity.csv": "23c85f52c617bca2618e13c6c9dc069615b6aacbc7b522490c20b41041db7f22",
+    "results/v0.5/investigation/familiarity_contrast.csv": "fd86182cd2d208af2366405257ba92af80055d3edc4de0e9525f7db2a0f6029c",
+    "results/v0.5/investigation/source_diversity.csv": "78335a46640a760c0c583738e4e507aad5b49730c29790bf05f56d1b9dbacf3f",
+    "results/v0.5/investigation/failure_cases.csv": "c1218e7fe3a9da2bdf725d5141f7f96ec3bb9d62a33a58c07e6568cef8cd9bbf",
+    "results/v0.5/investigation/failure_records.csv": "dc1285594e1ec783b42abf90e7a81b14d871371b2fcf8ad4449383c1841aa42b",
+    "results/v0.5/investigation/familiarity_logo.csv": "3dc17cdb3882b1bc0f46b5f35d414109cfcb1bd5c5d15cd65344afb03ba68ecb",
+    "results/v0.5/investigation/support_sensitivity.csv": "d71936cdc6aa8c84652232e8c71fd7c57c11001672355d7fcb1f196e37d2c4ee",
+    "results/v0.5/investigation/support_sensitivity_summary.csv": "560ce81849c993d75491234f513e9c35c11fddf1fed8979bfb14aa0aa8e34b05",
+    "results/v0.5/investigation/condition_logo.csv": "8ee2dae4b32ef94ab5244cbb4441d27ce68ca0f050b9eb54e2423c494f592c01",
+    "results/v0.5/investigation/ridge_audit.csv": "c41609e7ae8fd5d37cf696d55daa02cea5167e2cc8e339ac9269cb75e4fb2bf1",
+    "results/v0.5/investigation/ridge_audit_contributions.csv": "8e12415ddf8e27721752b6b360e117b8181fa0e855dd282a41dc508f439c0fec",
+    "results/v0.5/investigation/label_evaluation_filtering.csv": "ff3a29f658dade7eabf756db2a73f8167b7e1f2876e4a43dd2c9702ee6e86d0c",
+    "results/v0.5/investigation/label_cases_removed.csv": "f2340e972536bc0ab500f64615466f70bade05dba1b1f0f3f30b11941d554747",
+    "results/v0.5/investigation/label_training_cleaning.csv": "1868c8dfb5b822889ba81ff414f24ba0236fdff3707d1d83a94abeffd679f26c",
+    "results/v0.5/investigation/selective_risk_coverage.csv": "3d47b133a4434aea5116c1bf37d8c06d3673f86115e41c7b3da986ac017f8490",
+    "results/v0.5/investigation/selective_dev_threshold.csv": "6ddf5ce0f1c8a0cf2fc13b51846772f32a9357f45d4119826557b6e20fd4890f",
+    "results/v0.5/investigation/selective_rejection.csv": "1e18715654e4bb2f4ecf59da9d46e9bfd652b00b349d75dc53c77c3064f081e8"
+  },
+  "notes": {
+    "include_reserved": false,
+    "primary_contrast": {
+      "analysis": "source_familiarity",
+      "model": "extra_trees",
+      "subset": "supported_by_both"
+    }
+  }
+}

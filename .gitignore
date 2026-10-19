@@ -28,3 +28,6 @@ reports/full_run_log.txt
 
 # Row-level evidence tables contain CALiSol values; rebuilt by scripts/check_ding2005_libob.py
 reports/evidence/*_rows.csv
+
+# Local tool configuration (machine-specific paths)
+.claude/

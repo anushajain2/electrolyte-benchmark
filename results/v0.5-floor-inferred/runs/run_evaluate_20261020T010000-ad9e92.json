@@ -1,0 +1,37 @@
+{
+  "run_id": "20261020T010000-ad9e92",
+  "command": "evaluate",
+  "package_version": "0.3.0",
+  "benchmark_version": "0.5.0",
+  "config_path": "configs/benchmark_v0.5_floor_inferred.yaml",
+  "config_sha256": "2dcc578e17339419856c6373007c7b35bd3cc278aaa01ca8c494488886474536",
+  "started_utc": "2026-10-19T19:30:00Z",
+  "wall_seconds": 33.417,
+  "cpu_seconds": 33.135,
+  "peak_rss_mb": 823.5,
+  "python": "3.12.13",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1",
+    "scipy": "1.18.1",
+    "rdkit": "2026.09.1",
+    "pyarrow": "26.0.0"
+  },
+  "inputs": {},
+  "outputs": {
+    "results/v0.5-floor-inferred/tables/summary.csv": "6be4819fae2d72f52d09b2444ee6fd8866b96751df224a932a4fd9111e2c3662",
+    "results/v0.5-floor-inferred/tables/group_metrics.csv": "b8eacf5b294a3869e3cc860fff177ab28e07287cc697092225a065076ec51c40",
+    "results/v0.5-floor-inferred/tables/bootstrap.csv": "037c395fa8642d14ae96f62725898b482f19ff0a4afac895f23cc7e58a383212",
+    "results/v0.5-floor-inferred/tables/group_rankings.csv": "63ff611296211f46acf71fef93326e38e90009fe109e6983c1d2c6050301f763",
+    "results/v0.5-floor-inferred/tables/seed_group_metrics.csv": "2410937a534f07475a0358d9c39d0d4515b2253de2dc446a1f4a725feb7e29da",
+    "results/v0.5-floor-inferred/tables/paired_group_differences.csv": "5f3874a4d8687e102182c29e705252ddd32764492b3f9697cb5819c55812c0bf",
+    "results/v0.5-floor-inferred/tables/leave_one_group_out.csv": "8a0d864412ebe0735ff4554b626bd6c38526b8134f40ff33ef360ccdae8fa2e3",
+    "results/v0.5-floor-inferred/tables/row_errors.parquet": "57438198f4886221f3ffc9af11e854ce91a2251e4fd0b70f3839c9d78c698a90"
+  },
+  "notes": {
+    "include_reserved": false,
+    "n_scored_rows": 182353
+  }
+}

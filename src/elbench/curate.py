@@ -130,7 +130,10 @@ class Normalizer:
         self.floor_threshold, self.floor_sources = None, set()
         if floor:
             pres = pd.read_csv(cfg.root / floor["presentation_map"])
-            self.floor_sources = set(pres[pres.presentation.isin(floor["apply_to_presentation"])].source_doi)
+            sel = pres.presentation.isin(floor["apply_to_presentation"])
+            if "apply_to_status" in floor:  # v0.5+: evidence tier (verified / inferred_*)
+                sel &= pres.status.isin(floor["apply_to_status"])
+            self.floor_sources = set(pres[sel].source_doi)
             self.floor_threshold = float(floor["threshold_mS_cm"])
 
     def _sp(self, dataset_id: str, raw: str):

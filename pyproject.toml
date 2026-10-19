@@ -19,6 +19,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "nbformat>=5.9", "nbclient>=0.10", "ipykernel>=6.29"]
+workbench = ["streamlit>=1.38"]
 
 [project.scripts]
 elbench = "elbench.cli:main"

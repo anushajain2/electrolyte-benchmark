@@ -547,6 +547,15 @@ def investigate(cfg: Config, n_jobs: int = -1, include_reserved: bool = False) -
         res["support_sensitivity_summary"] = support_sensitivity_summary(res["support_sensitivity"], cfg)
         res["condition_logo"] = pd.concat([condition_logo(cfg, meas, X, n_jobs, t) for t in cfg["investigation"]["sensitivity"].get("condition_logo_tasks", ["temp_low"])], ignore_index=True)
         res["ridge_audit"], res["ridge_audit_contributions"] = ridge_audit(cfg, meas, X)
+    if "label_effects" in cfg["investigation"] and not include_reserved:
+        from .label_effects import evaluation_filtering, training_cleaning
+
+        res["label_evaluation_filtering"], res["label_cases_removed"] = evaluation_filtering(cfg, meas)
+        res["label_training_cleaning"] = training_cleaning(cfg, meas, X, n_jobs)
+    if "selective" in cfg["investigation"] and not include_reserved:
+        from .selective import run_selective
+
+        res["selective_risk_coverage"], res["selective_dev_threshold"], res["selective_rejection"] = run_selective(cfg, meas, X)
     suffix = "__confirm" if include_reserved else ""
     for name, df in res.items():
         p = out / f"{name}{suffix}.csv" if name in ("source_familiarity", "familiarity_contrast") else out / f"{name}.csv"

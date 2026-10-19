@@ -1,4 +1,4 @@
-"""Command-line entry points: ingest, curate, audit, make-splits, train, evaluate, investigate, report, verify, reproduce, all."""
+"""Command-line entry points: ingest, curate, audit, make-splits, train, evaluate, investigate, report, verify, reproduce, workbench, all."""
 from __future__ import annotations
 
 import argparse
@@ -7,7 +7,7 @@ import time
 
 from .config import load_config
 
-DEFAULT_CONFIG = "configs/benchmark_v0.3.yaml"
+DEFAULT_CONFIG = "configs/benchmark_v0.5.yaml"
 
 
 def _log(msg: str) -> None:
@@ -86,6 +86,12 @@ def cmd_reproduce(cfg, args):
         sys.exit(1)
 
 
+def cmd_workbench(cfg, args):
+    from .workbench import launch
+
+    launch(str(cfg.path))
+
+
 def cmd_all(cfg, args):
     for fn in (cmd_ingest, cmd_curate, cmd_audit, cmd_make_splits, cmd_train, cmd_evaluate, cmd_investigate, cmd_report):
         fn(cfg, args)
@@ -124,6 +130,7 @@ def main(argv: list[str] | None = None) -> None:
     add("report", cmd_report)
     add("verify", cmd_verify)
     add("reproduce", cmd_reproduce)
+    add("workbench", cmd_workbench)
     add("all", cmd_all)
     args = parser.parse_args(argv)
     cfg = load_config(args.config, root=args.root)

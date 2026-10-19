@@ -80,6 +80,8 @@ Only one of the five papers needed for the open data issues was freely readable:
 * 10 rows carry wrong temperatures (rule R13);
 * the stored 1.78e-15 value is a near-axis reading of a value the fit puts at ~0.02 mS/cm.
 
+PC-DEC half (v0.5): the paper's Table I cannot be used as printed, because its "-" entries are lost numbers (its own temperature column prints −10.0 to −39.4 °C as "-"; with blanks as zero it predicts 17.7 mS/cm where Fig. 2 shows ~7.3). Both halves were therefore also checked by internal consistency, which needs no fit (conductivity rises with temperature at fixed composition; exact copies across temperatures). That check recovers all 10 confirmed PC-EC errors and finds none in the PC-DEC half. Each correction has a review record in `data/evidence/corrections_review_record.csv`.
+
 Still paywalled: `S0378-7753(03)00153-8` (rows 417–418, overview of several campaigns), `10.1007/s10008-002-0300-9` (quarantined source), `10.1021/je020219o` (reported companion-paper statement), `10.1016/0378-7753(91)80004-H` (disputed solvent names).
 
 ## Known limitations

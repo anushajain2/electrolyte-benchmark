@@ -15,7 +15,14 @@ measures CALiSol's digitization error and finds mis-assigned temperatures.
     uv run python scripts/check_ding2005_libob.py [processed_dir]
 
 Writes reports/evidence/ding2005_libob_rows.csv (per row), _by_level.csv
-(error by conductivity level) and _temperature_mislabels.csv.
+(error by conductivity level), _temperature_mislabels.csv and
+_internal_consistency.csv, plus data/evidence/corrections_review_record.csv.
+
+The PC-DEC half cannot be checked against the paper's Table I: as printed, its
+"-" entries are lost numbers (the negative temperatures in its first column are
+also printed as "-"), and the transcribed table disagrees with the paper's own
+Fig. 2 by orders of magnitude (data/evidence/ding2005_libob_pc_dec_tableI_as_printed.csv).
+Both halves are therefore also checked by internal consistency, which needs no fit.
 """
 from __future__ import annotations
 
@@ -83,8 +90,90 @@ def main(processed: Path) -> None:
     mis = x[x.mislabel_rule != ""]
     mis[cols + ["mislabel_rule"]].to_csv(out / "ding2005_libob_temperature_mislabels.csv", index=False)
     print(by.round(3).to_string(index=False))
+    ic = internal_consistency(meas)
+    ic.to_csv(out / "ding2005_libob_internal_consistency.csv", index=False)
+    rec = write_review_record(mis, ic, meas)
+    rec.to_csv(ROOT / "data" / "evidence" / "corrections_review_record.csv", index=False)
+    print("internal-consistency flags by half:", ic.groupby("half").size().to_dict(), "| recall of fit-confirmed rows:", int(mis.measurement_id.isin(ic.measurement_id).sum()), "/", len(mis))
     print(f"rows compared: {len(x)}; nonpositive: {int((~pos).sum())}; temperature mislabels: {len(mis)}")
     print(mis[["original_row_id", "temperature_K", "concentration", "conductivity_original", "kappa_fit_mS_cm", "best_matching_theta_C", "mislabel_rule"]].round(3).to_string(index=False))
+
+
+def internal_consistency(meas: pd.DataFrame) -> pd.DataFrame:
+    """Checks that need no fitted equation, applied to both halves of the paper.
+
+    (1) conductivity must rise with temperature at (nearly) fixed composition:
+        flag a row whose value is > 2x below a colder row within 0.015 mol/kg;
+    (2) a value copied exactly from another temperature, where rows at its own
+        temperature and composition are > 1.4x higher.
+    Values below 0.02 mS/cm are not judged (digitization noise)."""
+    x = meas[(meas.source_doi == DOI) & (meas.conductivity_mS_cm > 0)].copy()
+    fr = x.solvent_fractions_reported.map(json.loads)
+    x["half"] = fr.map(lambda f: "PC-DEC" if "DEC" in f else ("PC-EC" if "EC" in f else "PC"))
+    x["w"] = fr.map(lambda f: f.get("DEC", f.get("EC", 0.0)))
+    flags: dict = {}
+    for _, g in x.groupby(["half", "w"]):
+        for i, r in g.iterrows():
+            colder = g[(abs(g.concentration - r.concentration) <= 0.015) & (g.temperature_K < r.temperature_K - 5)]
+            if len(colder) and r.conductivity_mS_cm > 0.02 and np.log10(colder.conductivity_mS_cm.max() / r.conductivity_mS_cm) > 0.3:
+                flags.setdefault(i, []).append("lower_than_a_colder_row")
+    for _, g in x.groupby("conductivity_original"):
+        if len(g) > 1 and g.temperature_K.round(1).nunique() > 1:
+            for i, r in g.iterrows():
+                same = x[(x.half == r.half) & (x.w == r.w) & (abs(x.concentration - r.concentration) <= 0.015) & (abs(x.temperature_K - r.temperature_K) < 1) & (x.index != i)]
+                if len(same) and np.log10(same.conductivity_mS_cm.median() / r.conductivity_mS_cm) > 0.15:
+                    flags.setdefault(i, []).append("exact_copy_inconsistent_with_same_temperature")
+    out = x.loc[sorted(flags), ["measurement_id", "original_row_id", "half", "w", "temperature_K", "concentration", "conductivity_original"]].copy()
+    out["flags"] = [";".join(flags[i]) for i in out.index]
+    return out
+
+
+def write_review_record(mis: pd.DataFrame, ic: pd.DataFrame, meas: pd.DataFrame) -> pd.DataFrame:
+    """One row per correction or trace, with the paper reference and review status."""
+    rows = []
+    ic_ids = set(ic.measurement_id)
+    for r in mis.itertuples():
+        rows.append(
+            {
+                "correction_id": f"C-{r.original_row_id}",
+                "dataset_id": "calisol23",
+                "original_row_id": r.original_row_id,
+                "source_doi": DOI,
+                "issue": "temperature mislabel" if r.mislabel_rule == "value_matches_other_temperature" else "value copied from another temperature",
+                "stored_temperature_K": r.temperature_K,
+                "stored_value_mS_cm": r.conductivity_original,
+                "paper_fit_at_stored_temperature_mS_cm": round(r.kappa_fit_mS_cm, 4),
+                "best_matching_temperature_C": r.best_matching_theta_C,
+                "paper_reference": "Ding, Xu & Jow, J. Electrochem. Soc. 152, A132 (2005): Fig. 2 panel (LiBOB)m-PC0.9EC0.1; Table II fitted functions",
+                "independent_check": "flagged by internal-consistency check" if r.measurement_id in ic_ids else "not flagged",
+                "action": "exclude (rule R13, v0.5 reference)",
+                "status": "confirmed",
+                "reviewed_by": "automated check (scripts/check_ding2005_libob.py); human review pending",
+                "review_date": "2026-10-20",
+            }
+        )
+    tr = meas[(meas.source_doi == DOI) & (meas.original_row_id == "9968")]
+    if len(tr):
+        rows.append(
+            {
+                "correction_id": "T-9968",
+                "dataset_id": "calisol23",
+                "original_row_id": 9968,
+                "source_doi": DOI,
+                "issue": "near-axis reading stored as 1.78e-15 (suspected numerical artifact, R11)",
+                "stored_temperature_K": float(tr.temperature_K.iat[0]),
+                "stored_value_mS_cm": float(tr.conductivity_original.iat[0]),
+                "paper_fit_at_stored_temperature_mS_cm": 0.0214,
+                "best_matching_temperature_C": -39.4,
+                "paper_reference": "Fig. 2 panel (LiBOB)m-PC on a linear 0-10 mS/cm axis; Table II at -39.4 C, w = 0",
+                "independent_check": "value is 2^-49, a floating-point artifact",
+                "action": "exclude (rule R11, since v0.1)",
+                "status": "traced",
+                "reviewed_by": "automated check; human review pending",
+                "review_date": "2026-10-20",
+            }
+        )
+    return pd.DataFrame(rows)
 
 
 if __name__ == "__main__":

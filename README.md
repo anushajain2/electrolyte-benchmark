@@ -1,4 +1,6 @@
-# Electrolyte generalization benchmark (v0.3, Phase 1)
+# Electrolyte generalization benchmark (v0.5)
+
+[![tests](https://github.com/anushajain2/electrolyte-benchmark/actions/workflows/tests.yml/badge.svg)](https://github.com/anushajain2/electrolyte-benchmark/actions/workflows/tests.yml)
 
 An open benchmark and evaluation tool for predicting the **measured ionic conductivity of liquid lithium electrolytes**, built to test transfer across **experimental sources**, **chemical components** and **operating conditions** separately wherever the data supports that separation, and to say plainly where it does not.
 
@@ -10,15 +12,17 @@ The release contains data provenance, curated tables (rebuilt locally from pinne
 
 | Version | Config | Results | What changed |
 | --- | --- | --- | --- |
-| **v0.3** (current) | `configs/benchmark_v0.3.yaml` | `results/v0.3`, `reports/v0.3/report.html` | Correction release: temperature and concentration boundaries applied to reported values (v0.2 compared values rounded to 0.1); paired comparisons on one common set of (fold, measurement) cases; incomplete models excluded from rankings; deterministic k-NN ties; stricter `verify` and a `reproduce` command; cache keyed on data values |
-| v0.4 (label-reliability sensitivity) | `configs/benchmark_v0.4.yaml`, `_rows_only.yaml` | `results/v0.4`, `results/v0.4-rows-only`, `reports/v0.4/report.html` | Adds R13 (10 rows with confirmed wrong temperatures) and R14 (values below 0.2 mS/cm excluded for linear-axis sources), based on reading one original paper. Reported as a sensitivity release; v0.3 remains the reference |
+| **v0.5** (current reference) | `configs/benchmark_v0.5.yaml` | `results/v0.5`, `reports/v0.5/report.html` | v0.3 + confirmed corrections only (R13, 10 rows checked against the original paper, with a review record); controlled label-effect comparisons; exploratory selective prediction for cold extrapolation; explicit full-coverage / selective scoring modes; local workbench |
+| v0.5 floor sensitivity | `configs/benchmark_v0.5_floor_verified.yaml`, `_floor_inferred.yaml` | `results/v0.5-floor-*` | Digitization floor (R14) applied to the verified source only, and to verified + inferred sources |
+| v0.3 | `configs/benchmark_v0.3.yaml` | `results/v0.3`, `reports/v0.3/report.html` | Correction release: temperature and concentration boundaries applied to reported values (v0.2 compared values rounded to 0.1); paired comparisons on one common set of (fold, measurement) cases; incomplete models excluded from rankings; deterministic k-NN ties; stricter `verify` and a `reproduce` command; cache keyed on data values |
+| v0.4 (superseded by v0.5) | `configs/benchmark_v0.4.yaml`, `_rows_only.yaml` | `results/v0.4`, `results/v0.4-rows-only`, `reports/v0.4/report.html` | Adds R13 (10 rows with confirmed wrong temperatures) and R14 (values below 0.2 mS/cm excluded for linear-axis sources), based on reading one original paper. Reported as a sensitivity release; v0.3 remains the reference |
 | v0.3 sensitivity runs | `configs/benchmark_v0.3_include_quarantine.yaml`, `_noR11.yaml`, `_linking_v01.yaml` | `results/v0.3-*` | Quarantined source included; R11 disabled; v0.1 source linking |
 | v0.2 (superseded, tag `v0.2`) | `configs/benchmark_v0.2.yaml` | `results/v0.2` | Provenance-based source grouping (R12) with evidence tiers, author-group holdout, local (T, c) support, robustness analyses, ridge audit |
 | v0.2, v0.1 linking | `configs/benchmark_v0.2_linking_v01.yaml` | `results/v0.2-linking-v01` | Sensitivity run for v0.2 |
 | v0.1 | `configs/benchmark_v0.1.yaml` | `results/v0.1` | Original release plus rule R11 (suspected numerical artifacts) |
 | v0.1 pre-R11 | `configs/benchmark_v0.1_preR11.yaml` | `results/v0.1-preR11` | The original v0.1 run, regenerated without R11 |
 
-Only the v0.1 thresholds were fixed before any test error was seen. v0.2 (after an external review) and v0.3 (after a code review) were made after earlier test results had been seen, so they are revisions, not blind re-evaluations. Every earlier version is kept and rebuilds from its own config. The v0.3 report shows the versions side by side. Findings: `reports/findings_v0.3.md` (reference) and `reports/findings_v0.4.md` (label-reliability sensitivity); `findings_v0.2.md` and `findings_v0.1.md` are superseded records. Checks against original papers: `DATA.md`, `reports/evidence/`.
+Only the v0.1 thresholds were fixed before any test error was seen. v0.2 (after an external review) and v0.3 (after a code review) were made after earlier test results had been seen, so they are revisions, not blind re-evaluations. Every earlier version is kept and rebuilds from its own config. The v0.3 report shows the versions side by side. Findings: `reports/findings_v0.5.md` (current); `findings_v0.3.md` holds the provenance, component and ridge-audit findings that v0.5 carries over; `findings_v0.4.md`, `findings_v0.2.md` and `findings_v0.1.md` are superseded records. Checks against original papers: `DATA.md`, `reports/evidence/`.
 
 ## Quick start
 
@@ -27,10 +31,11 @@ uv sync --extra dev          # Python 3.12, versions pinned in uv.lock
 uv run elbench all           # ingest -> curate -> audit -> make-splits -> train -> evaluate -> investigate -> report
 uv run elbench verify        # compare the report tables on disk with the published reference tables (no rerun)
 uv run elbench reproduce     # rebuild everything from the raw files in a clean copy, then verify there
+uv sync --extra workbench && uv run elbench workbench   # local evaluation workbench (after `elbench all`)
 uv run pytest                # scientific-invariant tests and a small end-to-end fixture run
 ```
 
-A full run takes about 20-30 minutes on a 12-core laptop CPU (no GPU). Every command accepts `--config` (default `configs/benchmark_v0.3.yaml`) and writes a machine-readable run manifest (`runs/run_<command>_<id>.json`: config hash, input and output checksums, package versions, wall/CPU time, peak memory).
+A full run takes about 20-30 minutes on a 12-core laptop CPU (no GPU). Every command accepts `--config` (default `configs/benchmark_v0.5.yaml`) and writes a machine-readable run manifest (`runs/run_<command>_<id>.json`: config hash, input and output checksums, package versions, wall/CPU time, peak memory).
 
 Outputs to read first:
 
@@ -90,6 +95,14 @@ Each fold has an interpretation label (`supported_comparison`, `combined_shift`,
 **Metrics.** Primary: MAE of log10(conductivity / mS cm⁻¹) averaged within score groups (source groups unless stated), then equally across groups. Also sample-weighted MAE, MAE in mS/cm, per-group median and worst quartile, fraction within a factor of two, and the invalid-prediction rate. Uncertainty: paired bootstrap that resamples groups, never rows; intervals are conditional on the grouping, not population-level uncertainty across laboratories. Paired comparisons use one common set of (fold, measurement) cases; a model with any invalid prediction in a subset is reported but excluded from comparisons and rankings.
 
 ## Evaluate your own model
+
+Scoring modes (`score_predictions(..., mode=...)`):
+
+* `full_coverage` (default): every frozen case needs a valid prediction. A submission with any abstention or failure gets diagnostics but no ranked comparison, the same policy applied to the baselines.
+* `selective`: intentional abstentions (`status="abstain"`) with a `confidence` column (thresholds fixed on development folds). Returns error versus coverage; execution failures are reported separately and block a ranked comparison; comparisons on the retained cases are labelled as favouring the submission.
+
+The workbench (`elbench workbench`) wraps the same API: what each setting can establish, published baselines, upload and validation (IDs, units, failures), provenance and label-quality inspection, and an exportable summary. It runs locally because scoring needs CALiSol labels, which are not redistributed.
+
 
 ```python
 from elbench.config import load_config

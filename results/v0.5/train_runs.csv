@@ -1,0 +1,421 @@
+run_id,task_id,track_id,fold_id,model,n_train,n_test,n_configs,wall_s,cpu_s,worker_peak_rss_mb,chosen_config,n_failures,failed_seeds
+20261020T003227-a6e313,author_transfer,molal_w,authors/AG_ARL_Ding_Jow,median,373,100,1,0.073,0.056,249.2,{},0,0
+20261020T003227-a6e313,author_transfer,molal_w,authors/AG_ARL_Ding_Jow,knn,373,100,10,0.058,0.057,253.5,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",1,0
+20261020T003227-a6e313,author_transfer,molal_w,authors/AG_ARL_Ding_Jow,ridge,373,100,7,0.076,0.066,250.6,"{""alpha"": 0.001}",1,0
+20261020T003227-a6e313,author_transfer,molal_w,authors/AG_ARL_Ding_Jow,ridge_raw,373,100,7,0.072,0.059,253.6,"{""alpha"": 0.001}",1,0
+20261020T003227-a6e313,author_transfer,molal_w,authors/AG_ARL_Ding_Jow,extra_trees,373,100,9,0.297,0.296,272.3,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",1,0
+20261020T003227-a6e313,author_transfer,molal_w,authors/AG_ARL_Ding_Jow,hist_gb,373,100,12,0.374,0.373,254.5,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 15}",1,0
+20261020T003227-a6e313,author_transfer,molal_w,authors/AG_Dahn_2018,median,10143,60,1,0.052,0.052,257.5,{},0,0
+20261020T003227-a6e313,author_transfer,molal_w,authors/AG_Dahn_2018,knn,10143,60,10,0.141,0.112,311.5,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",1,0
+20261020T003227-a6e313,author_transfer,molal_w,authors/AG_Dahn_2018,ridge,10143,60,7,0.06,0.06,259.1,"{""alpha"": 0.001}",1,0
+20261020T003227-a6e313,author_transfer,molal_w,authors/AG_Dahn_2018,ridge_raw,10143,60,7,0.07,0.062,259.8,"{""alpha"": 0.001}",1,0
+20261020T003227-a6e313,author_transfer,molal_w,authors/AG_Dahn_2018,extra_trees,10143,60,9,5.179,4.838,966.5,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",1,0
+20261020T003227-a6e313,author_transfer,molal_w,authors/AG_Dahn_2018,hist_gb,10143,60,12,2.113,1.992,267.0,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 15}",1,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Landesfeind_Gasteiger,median,1278,13,1,0.006,0.006,250.6,{},0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Landesfeind_Gasteiger,knn,1278,13,10,0.243,0.225,259.1,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Landesfeind_Gasteiger,ridge,1278,13,7,0.076,0.074,267.0,"{""alpha"": 0.001}",0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Landesfeind_Gasteiger,ridge_raw,1278,13,7,0.074,0.071,966.5,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Landesfeind_Gasteiger,extra_trees,1278,13,9,4.719,4.246,318.4,"{""max_features"": 0.66, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Landesfeind_Gasteiger,hist_gb,1278,13,12,8.256,7.75,250.6,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Lemordant,median,1266,53,1,0.007,0.006,253.6,{},0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Lemordant,knn,1266,53,10,0.256,0.232,253.5,"{""n_neighbors"": 3, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Lemordant,ridge,1266,53,7,0.092,0.08,249.2,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Lemordant,ridge_raw,1266,53,7,0.105,0.095,311.5,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Lemordant,extra_trees,1266,53,9,5.235,4.718,318.1,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Lemordant,hist_gb,1266,53,12,7.839,7.28,259.8,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Niedzicki_Wieczorek,median,1358,11,1,0.008,0.008,272.3,{},0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Niedzicki_Wieczorek,knn,1358,11,10,0.259,0.247,272.3,"{""n_neighbors"": 3, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Niedzicki_Wieczorek,ridge,1358,11,7,0.102,0.086,254.5,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Niedzicki_Wieczorek,ridge_raw,1358,11,7,0.115,0.093,267.0,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Niedzicki_Wieczorek,extra_trees,1358,11,9,5.454,4.91,966.5,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,author_transfer,molar_x,authors/AG_Niedzicki_Wieczorek,hist_gb,1358,11,12,8.663,8.169,311.5,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/DMC,median,10303,168,1,0.103,0.035,249.2,{},0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/DMC,knn,10303,168,10,49.203,33.691,269.6,"{""n_neighbors"": 20, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/DMC,ridge,10303,168,7,0.6,0.408,318.1,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/DMC,ridge_raw,10303,168,7,0.685,0.415,259.1,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/DMC,extra_trees,10303,168,9,106.029,71.669,755.3,"{""max_features"": 1.0, ""min_samples_leaf"": 10, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/DMC,hist_gb,10303,168,12,45.517,34.103,249.2,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/DME,median,10426,45,1,0.053,0.027,267.0,{},0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/DME,knn,10426,45,10,39.802,29.883,303.4,"{""n_neighbors"": 20, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/DME,ridge,10426,45,7,0.516,0.405,259.8,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/DME,ridge_raw,10426,45,7,0.776,0.422,253.5,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/DME,extra_trees,10426,45,9,105.858,70.8,966.5,"{""max_features"": 0.66, ""min_samples_leaf"": 10, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/DME,hist_gb,10426,45,12,56.773,39.012,318.4,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EA,median,9761,710,1,0.047,0.029,250.6,{},0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EA,knn,9761,710,10,37.203,27.646,276.3,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EA,ridge,9761,710,7,0.687,0.375,250.6,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EA,ridge_raw,9761,710,7,0.718,0.367,318.1,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EA,extra_trees,9761,710,9,100.771,67.225,801.6,"{""max_features"": 0.66, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EA,hist_gb,9761,710,12,56.473,39.196,259.1,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EC,median,7902,2569,1,0.056,0.021,253.5,{},0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EC,knn,7902,2569,10,20.168,13.856,285.0,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EC,ridge,7902,2569,7,0.469,0.341,250.6,"{""alpha"": 0.001}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EC,ridge_raw,7902,2569,7,0.393,0.331,318.1,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EC,extra_trees,7902,2569,9,92.151,61.131,631.0,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EC,hist_gb,7902,2569,12,52.699,36.252,318.1,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EMC,median,9327,1144,1,0.015,0.014,285.0,{},0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EMC,knn,9327,1144,10,36.221,24.933,320.8,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EMC,ridge,9327,1144,7,0.334,0.292,301.3,"{""alpha"": 0.001}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EMC,ridge_raw,9327,1144,7,0.321,0.29,309.1,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EMC,extra_trees,9327,1144,9,69.588,52.114,632.4,"{""max_features"": 0.33, ""min_samples_leaf"": 10, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/EMC,hist_gb,9327,1144,12,42.22,31.687,327.3,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/LiAsF6,median,10426,45,1,0.012,0.012,249.2,{},0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/LiAsF6,knn,10426,45,10,38.761,28.984,263.1,"{""n_neighbors"": 20, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/LiAsF6,ridge,10426,45,7,0.591,0.416,284.3,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/LiAsF6,ridge_raw,10426,45,7,0.571,0.412,305.4,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/LiAsF6,extra_trees,10426,45,9,88.081,65.84,727.9,"{""max_features"": 0.66, ""min_samples_leaf"": 10, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/LiAsF6,hist_gb,10426,45,12,57.476,39.732,318.1,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/LiBF4,median,7601,2870,1,0.025,0.024,318.4,{},0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/LiBF4,knn,7601,2870,10,27.238,17.697,318.4,"{""n_neighbors"": 5, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/LiBF4,ridge,7601,2870,7,0.983,0.403,259.1,"{""alpha"": 0.01}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/LiBF4,ridge_raw,7601,2870,7,0.597,0.384,320.8,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/LiBF4,extra_trees,7601,2870,9,71.204,52.125,568.1,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/LiBF4,hist_gb,7601,2870,12,50.207,34.255,320.8,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/MA,median,10351,120,1,0.03,0.019,327.3,{},0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/MA,knn,10351,120,10,35.499,28.231,327.3,"{""n_neighbors"": 20, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/MA,ridge,10351,120,7,0.361,0.314,316.3,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/MA,ridge_raw,10351,120,7,0.58,0.445,318.4,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/MA,extra_trees,10351,120,9,67.112,57.27,683.6,"{""max_features"": 1.0, ""min_samples_leaf"": 10, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/MA,hist_gb,10351,120,12,46.366,37.106,318.4,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/TFP,median,9931,540,1,0.026,0.024,631.0,{},0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/TFP,knn,9931,540,10,33.002,26.931,631.0,"{""n_neighbors"": 20, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/TFP,ridge,9931,540,7,0.693,0.5,238.1,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/TFP,ridge_raw,9931,540,7,0.906,0.491,755.3,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/TFP,extra_trees,9931,540,9,62.626,57.002,966.5,"{""max_features"": 0.66, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molal_w,component/TFP,hist_gb,9931,540,12,35.608,32.571,755.3,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/2-MeTHF,median,1004,265,1,0.013,0.012,268.0,{},0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/2-MeTHF,knn,1004,265,10,1.148,0.634,318.4,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/2-MeTHF,ridge,1004,265,7,0.111,0.099,632.4,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/2-MeTHF,ridge_raw,1004,265,7,0.167,0.135,568.1,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/2-MeTHF,extra_trees,1004,265,9,10.212,7.453,327.3,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/2-MeTHF,hist_gb,1004,265,12,15.361,10.57,318.1,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DCM,median,1103,166,1,0.01,0.01,727.9,{},0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DCM,knn,1103,166,10,1.42,0.773,268.0,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DCM,ridge,1103,166,7,0.16,0.129,631.0,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DCM,ridge_raw,1103,166,7,0.187,0.153,320.8,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DCM,extra_trees,1103,166,9,11.747,8.146,727.9,"{""max_features"": 0.66, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DCM,hist_gb,1103,166,12,10.33,8.541,683.6,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DME,median,1103,166,1,0.008,0.008,755.3,{},0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DME,knn,1103,166,10,1.275,0.736,755.3,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DME,ridge,1103,166,7,0.084,0.082,632.4,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DME,ridge_raw,1103,166,7,0.123,0.106,568.1,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DME,extra_trees,1103,166,9,12.637,8.629,631.0,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DME,hist_gb,1103,166,12,11.258,9.155,632.4,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DOL,median,1251,18,1,0.006,0.006,320.8,{},0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DOL,knn,1251,18,10,1.451,0.849,320.8,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DOL,ridge,1251,18,7,0.246,0.208,214.2,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DOL,ridge_raw,1251,18,7,0.151,0.088,568.1,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DOL,extra_trees,1251,18,9,14.341,9.945,568.1,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/DOL,hist_gb,1251,18,12,17.056,11.987,318.4,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Diglyme,median,1124,145,1,0.012,0.012,755.3,{},0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Diglyme,knn,1124,145,10,1.03,0.868,755.3,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Diglyme,ridge,1124,145,7,0.101,0.095,268.0,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Diglyme,ridge_raw,1124,145,7,0.164,0.126,268.0,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Diglyme,extra_trees,1124,145,9,12.965,8.894,320.8,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Diglyme,hist_gb,1124,145,12,13.05,10.806,320.8,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiCF3SO3,median,1229,40,1,0.008,0.008,268.0,{},0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiCF3SO3,knn,1229,40,10,0.969,0.842,268.0,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiCF3SO3,ridge,1229,40,7,0.119,0.112,755.3,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiCF3SO3,ridge_raw,1229,40,7,0.178,0.141,755.3,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiCF3SO3,extra_trees,1229,40,9,14.131,9.82,268.0,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiCF3SO3,hist_gb,1229,40,12,14.334,12.234,268.0,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiClO4,median,1193,76,1,0.004,0.004,755.3,{},0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiClO4,knn,1193,76,10,1.753,0.942,755.3,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiClO4,ridge,1193,76,7,0.354,0.149,755.3,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiClO4,ridge_raw,1193,76,7,0.221,0.154,755.3,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiClO4,extra_trees,1193,76,9,13.331,9.359,755.3,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiClO4,hist_gb,1193,76,12,13.321,11.798,755.3,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiPF6,median,1159,110,1,0.006,0.005,214.2,{},0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiPF6,knn,1159,110,10,1.122,0.881,229.5,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiPF6,ridge,1159,110,7,0.172,0.144,229.9,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiPF6,ridge_raw,1159,110,7,0.149,0.118,230.0,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiPF6,extra_trees,1159,110,9,12.566,9.025,305.4,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiPF6,hist_gb,1159,110,12,12.909,11.389,305.4,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiTFSI,median,1217,52,1,0.009,0.008,327.3,{},0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiTFSI,knn,1217,52,10,1.279,0.868,327.3,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiTFSI,ridge,1217,52,7,0.124,0.1,683.6,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiTFSI,ridge_raw,1217,52,7,0.092,0.085,683.6,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiTFSI,extra_trees,1217,52,9,12.318,9.439,683.6,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/LiTFSI,hist_gb,1217,52,12,11.265,10.571,683.6,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Sulfolane,median,919,350,1,0.005,0.005,632.4,{},0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Sulfolane,knn,919,350,10,0.484,0.423,632.4,"{""n_neighbors"": 20, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Sulfolane,ridge,919,350,7,0.158,0.128,327.3,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Sulfolane,ridge_raw,919,350,7,0.111,0.094,327.3,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Sulfolane,extra_trees,919,350,9,9.381,7.017,727.9,"{""max_features"": 1.0, ""min_samples_leaf"": 10, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Sulfolane,hist_gb,919,350,12,10.948,9.763,727.9,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/THF,median,1177,92,1,0.011,0.01,327.3,{},0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/THF,knn,1177,92,10,1.605,0.883,327.3,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/THF,ridge,1177,92,7,0.103,0.096,632.4,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/THF,ridge_raw,1177,92,7,0.174,0.111,632.4,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/THF,extra_trees,1177,92,9,9.908,7.513,632.4,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/THF,hist_gb,1177,92,12,11.672,10.735,632.4,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Tetraglyme,median,1229,40,1,0.02,0.011,631.0,{},0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Tetraglyme,knn,1229,40,10,1.467,0.904,631.0,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Tetraglyme,ridge,1229,40,7,0.197,0.139,327.3,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Tetraglyme,ridge_raw,1229,40,7,0.265,0.135,327.3,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Tetraglyme,extra_trees,1229,40,9,12.03,9.96,327.3,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Tetraglyme,hist_gb,1229,40,12,10.271,9.803,327.3,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Triglyme,median,1022,247,1,0.005,0.005,631.0,{},0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Triglyme,knn,1022,247,10,0.672,0.602,631.0,"{""n_neighbors"": 20, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Triglyme,ridge,1022,247,7,0.128,0.1,568.1,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Triglyme,ridge_raw,1022,247,7,0.181,0.14,631.0,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Triglyme,extra_trees,1022,247,9,10.854,8.842,568.1,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_v,component/Triglyme,hist_gb,1022,247,12,12.987,10.857,631.0,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DMC,median,1193,204,1,0.008,0.008,318.1,{},0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DMC,knn,1193,204,10,0.847,0.734,327.3,"{""n_neighbors"": 20, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DMC,ridge,1193,204,7,0.107,0.101,727.9,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DMC,ridge_raw,1193,204,7,0.121,0.113,631.0,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DMC,extra_trees,1193,204,9,6.599,5.354,305.4,"{""max_features"": 0.33, ""min_samples_leaf"": 10, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DMC,hist_gb,1193,204,12,15.025,12.022,318.1,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DME,median,1030,367,1,0.005,0.005,268.0,{},0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DME,knn,1030,367,10,0.759,0.657,568.1,"{""n_neighbors"": 3, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DME,ridge,1030,367,7,0.122,0.114,268.0,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DME,ridge_raw,1030,367,7,0.103,0.097,683.6,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DME,extra_trees,1030,367,9,5.851,4.789,318.4,"{""max_features"": 0.33, ""min_samples_leaf"": 3, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DME,hist_gb,1030,367,12,13.671,10.741,320.8,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DMSO,median,1257,140,1,0.009,0.009,632.4,{},0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DMSO,knn,1257,140,10,1.045,0.88,755.3,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DMSO,ridge,1257,140,7,0.144,0.122,632.4,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DMSO,ridge_raw,1257,140,7,0.131,0.113,727.9,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DMSO,extra_trees,1257,140,9,7.257,5.821,631.0,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/DMSO,hist_gb,1257,140,12,14.589,11.609,683.6,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/EC,median,1104,293,1,0.005,0.005,268.0,{},0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/EC,knn,1104,293,10,0.763,0.679,268.0,"{""n_neighbors"": 20, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/EC,ridge,1104,293,7,0.12,0.104,632.4,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/EC,ridge_raw,1104,293,7,0.147,0.122,727.9,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/EC,extra_trees,1104,293,9,5.787,4.613,632.4,"{""max_features"": 0.33, ""min_samples_leaf"": 10, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/EC,hist_gb,1104,293,12,13.601,10.665,727.9,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/EMC,median,1281,116,1,0.006,0.006,568.1,{},0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/EMC,knn,1281,116,10,0.964,0.816,568.1,"{""n_neighbors"": 20, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/EMC,ridge,1281,116,7,0.159,0.141,327.3,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/EMC,ridge_raw,1281,116,7,0.142,0.119,327.3,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/EMC,extra_trees,1281,116,9,7.333,5.837,268.0,"{""max_features"": 0.33, ""min_samples_leaf"": 3, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/EMC,hist_gb,1281,116,12,12.925,10.984,268.0,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/FEC,median,1355,42,1,0.01,0.01,755.3,{},0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/FEC,knn,1355,42,10,1.128,0.928,755.3,"{""n_neighbors"": 20, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/FEC,ridge,1355,42,7,0.172,0.142,327.3,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/FEC,ridge_raw,1355,42,7,0.132,0.107,327.3,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/FEC,extra_trees,1355,42,9,7.614,6.101,333.6,"{""max_features"": 0.33, ""min_samples_leaf"": 3, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/FEC,hist_gb,1355,42,12,12.996,11.173,335.8,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiBMB,median,1357,40,1,0.011,0.01,568.1,{},0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiBMB,knn,1357,40,10,1.191,0.927,568.1,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiBMB,ridge,1357,40,7,0.105,0.092,755.3,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiBMB,ridge_raw,1357,40,7,0.136,0.11,755.3,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiBMB,extra_trees,1357,40,9,8.676,6.806,755.3,"{""max_features"": 1.0, ""min_samples_leaf"": 3, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiBMB,hist_gb,1357,40,12,12.246,11.057,755.3,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiBPFPB,median,1079,318,1,0.01,0.009,568.1,{},0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiBPFPB,knn,1079,318,10,0.961,0.72,568.1,"{""n_neighbors"": 3, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiBPFPB,ridge,1079,318,7,0.126,0.108,568.1,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiBPFPB,ridge_raw,1079,318,7,0.164,0.135,568.1,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiBPFPB,extra_trees,1079,318,9,7.336,5.703,568.1,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiBPFPB,hist_gb,1079,318,12,10.721,9.6,568.1,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiPF6,median,1138,259,1,0.006,0.006,318.4,{},0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiPF6,knn,1138,259,10,1.068,0.784,318.4,"{""n_neighbors"": 20, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiPF6,ridge,1138,259,7,0.134,0.116,632.4,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiPF6,ridge_raw,1138,259,7,0.211,0.124,632.4,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiPF6,extra_trees,1138,259,9,7.514,5.734,632.4,"{""max_features"": 1.0, ""min_samples_leaf"": 3, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiPF6,hist_gb,1138,259,12,13.011,10.883,305.4,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiTFSI,median,1250,147,1,0.01,0.009,318.4,{},0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiTFSI,knn,1250,147,10,1.115,0.896,318.4,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiTFSI,ridge,1250,147,7,0.233,0.14,631.0,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiTFSI,ridge_raw,1250,147,7,0.148,0.13,631.0,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiTFSI,extra_trees,1250,147,9,7.674,6.101,631.0,"{""max_features"": 0.66, ""min_samples_leaf"": 3, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,component_transfer,molar_x,component/LiTFSI,hist_gb,1250,147,12,12.867,10.955,318.4,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,conc_high,molal_w,conc_high/all,median,7980,1431,1,0.013,0.012,320.8,{},0,0
+20261020T003227-a6e313,conc_high,molal_w,conc_high/all,knn,7980,1431,10,3.025,2.967,755.3,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,conc_high,molal_w,conc_high/all,ridge,7980,1431,7,0.08,0.08,568.1,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,conc_high,molal_w,conc_high/all,ridge_raw,7980,1431,7,0.081,0.081,727.9,"{""alpha"": 0.01}",0,0
+20261020T003227-a6e313,conc_high,molal_w,conc_high/all,extra_trees,7980,1431,9,20.415,19.68,737.6,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,conc_high,molal_w,conc_high/all,hist_gb,7980,1431,12,10.624,10.244,331.6,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,conc_high,molar_x,conc_high/all,median,1179,147,1,0.005,0.005,320.8,{},0,0
+20261020T003227-a6e313,conc_high,molar_x,conc_high/all,knn,1179,147,10,0.162,0.143,727.9,"{""n_neighbors"": 3, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,conc_high,molar_x,conc_high/all,ridge,1179,147,7,0.035,0.035,318.4,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,conc_high,molar_x,conc_high/all,ridge_raw,1179,147,7,0.033,0.033,631.0,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,conc_high,molar_x,conc_high/all,extra_trees,1179,147,9,1.469,1.442,320.8,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,conc_high,molar_x,conc_high/all,hist_gb,1179,147,12,2.592,2.488,755.3,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/0,median,8570,1901,1,0.014,0.014,568.1,{},0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/0,knn,8570,1901,10,44.252,33.998,333.5,"{""n_neighbors"": 5, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/0,ridge,8570,1901,7,0.334,0.307,334.0,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/0,ridge_raw,8570,1901,7,0.387,0.339,356.0,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/0,extra_trees,8570,1901,9,60.456,48.606,1058.3,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/0,hist_gb,8570,1901,12,44.998,34.056,632.4,"{""l2_regularization"": 1.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/1,median,8339,2132,1,0.022,0.014,305.4,{},0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/1,knn,8339,2132,10,43.384,32.301,755.3,"{""n_neighbors"": 5, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/1,ridge,8339,2132,7,0.356,0.321,727.9,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/1,ridge_raw,8339,2132,7,0.358,0.319,318.4,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/1,extra_trees,8339,2132,9,58.391,46.581,1025.8,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/1,hist_gb,8339,2132,12,43.376,32.414,342.8,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/2,median,8337,2134,1,0.014,0.013,631.0,{},0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/2,knn,8337,2134,10,43.713,32.705,318.1,"{""n_neighbors"": 5, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/2,ridge,8337,2134,7,0.381,0.319,631.0,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/2,ridge_raw,8337,2134,7,0.362,0.322,346.1,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/2,extra_trees,8337,2134,9,57.982,46.264,997.2,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/2,hist_gb,8337,2134,12,43.552,32.607,727.9,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/3,median,8293,2178,1,0.023,0.02,318.4,{},0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/3,knn,8293,2178,10,43.091,32.17,320.7,"{""n_neighbors"": 5, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/3,ridge,8293,2178,7,0.319,0.278,631.0,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/3,ridge_raw,8293,2178,7,0.365,0.318,347.8,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/3,extra_trees,8293,2178,9,58.005,46.268,1039.0,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/3,hist_gb,8293,2178,12,43.12,32.265,349.4,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/4,median,8354,2117,1,0.014,0.014,755.3,{},0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/4,knn,8354,2117,10,26.978,25.755,755.3,"{""n_neighbors"": 3, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/4,ridge,8354,2117,7,0.426,0.355,342.8,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/4,ridge_raw,8354,2117,7,0.48,0.392,320.7,"{""alpha"": 0.001}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/4,extra_trees,8354,2117,9,39.326,37.928,1021.2,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,interp_formulation,molal_w,interp/4,hist_gb,8354,2117,12,27.318,26.068,342.8,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/0,median,1071,198,1,0.006,0.006,727.9,{},0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/0,knn,1071,198,10,0.814,0.69,342.8,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/0,ridge,1071,198,7,0.168,0.123,320.7,"{""alpha"": 0.001}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/0,ridge_raw,1071,198,7,0.137,0.111,755.3,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/0,extra_trees,1071,198,9,9.225,7.478,727.9,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/0,hist_gb,1071,198,12,12.056,10.22,356.7,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/1,median,1105,164,1,0.01,0.006,632.4,{},0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/1,knn,1105,164,10,0.909,0.746,632.4,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/1,ridge,1105,164,7,0.131,0.123,349.4,"{""alpha"": 0.001}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/1,ridge_raw,1105,164,7,0.109,0.098,755.3,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/1,extra_trees,1105,164,9,9.891,8.139,357.2,"{""max_features"": 0.66, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/1,hist_gb,1105,164,12,10.8,9.546,248.5,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/2,median,1109,160,1,0.072,0.055,246.5,{},0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/2,knn,1109,160,10,1.234,0.733,257.6,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/2,ridge,1109,160,7,0.138,0.125,349.4,"{""alpha"": 0.001}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/2,ridge_raw,1109,160,7,0.18,0.162,245.7,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/2,extra_trees,1109,160,9,9.414,8.199,356.6,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/2,hist_gb,1109,160,12,9.633,9.004,755.3,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/3,median,1097,172,1,0.005,0.005,349.4,{},0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/3,knn,1097,172,10,0.846,0.696,349.4,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/3,ridge,1097,172,7,0.155,0.126,342.8,"{""alpha"": 0.001}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/3,ridge_raw,1097,172,7,0.131,0.113,342.8,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/3,extra_trees,1097,172,9,9.727,8.077,632.4,"{""max_features"": 0.66, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/3,hist_gb,1097,172,12,11.639,9.943,342.8,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/4,median,1098,171,1,0.005,0.005,349.4,{},0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/4,knn,1098,171,10,1.024,0.692,349.4,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/4,ridge,1098,171,7,0.123,0.112,349.4,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/4,ridge_raw,1098,171,7,0.134,0.12,349.4,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/4,extra_trees,1098,171,9,9.647,8.383,349.4,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,interp_formulation,molar_v,interp/4,hist_gb,1098,171,12,10.965,9.722,255.3,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/0,median,1231,166,1,0.006,0.006,245.7,{},0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/0,knn,1231,166,10,1.077,0.825,257.6,"{""n_neighbors"": 3, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/0,ridge,1231,166,7,0.156,0.133,349.4,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/0,ridge_raw,1231,166,7,0.153,0.128,255.3,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/0,extra_trees,1231,166,9,7.514,6.413,356.6,"{""max_features"": 0.66, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/0,hist_gb,1231,166,12,11.609,10.496,251.0,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/1,median,1185,212,1,0.005,0.005,245.7,{},0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/1,knn,1185,212,10,0.981,0.747,342.8,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/1,ridge,1185,212,7,0.144,0.122,245.7,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/1,ridge_raw,1185,212,7,0.134,0.121,727.9,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/1,extra_trees,1185,212,9,7.268,6.337,373.2,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/1,hist_gb,1185,212,12,11.441,10.34,357.2,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/2,median,1141,256,1,0.005,0.005,755.3,{},0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/2,knn,1141,256,10,0.788,0.634,755.3,"{""n_neighbors"": 20, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/2,ridge,1141,256,7,0.137,0.128,632.4,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/2,ridge_raw,1141,256,7,0.222,0.155,255.3,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/2,extra_trees,1141,256,9,7.032,6.182,727.9,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/2,hist_gb,1141,256,12,11.683,10.556,245.7,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/3,median,1195,202,1,0.005,0.005,349.4,{},0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/3,knn,1195,202,10,1.099,0.844,349.4,"{""n_neighbors"": 3, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/3,ridge,1195,202,7,0.241,0.158,632.4,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/3,ridge_raw,1195,202,7,0.245,0.164,255.3,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/3,extra_trees,1195,202,9,6.262,5.64,632.4,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/3,hist_gb,1195,202,12,11.769,10.827,255.3,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/4,median,1188,209,1,0.005,0.005,755.3,{},0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/4,knn,1188,209,10,0.695,0.644,755.3,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/4,ridge,1188,209,7,0.138,0.119,342.8,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/4,ridge_raw,1188,209,7,0.154,0.131,257.6,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/4,extra_trees,1188,209,9,7.119,6.303,353.3,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,interp_formulation,molar_x,interp/4,hist_gb,1188,209,12,11.087,10.183,261.2,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1403730,median,10146,100,1,0.022,0.015,349.4,{},0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1403730,knn,10146,100,10,3.328,2.757,450.5,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1403730,ridge,10146,100,7,0.238,0.209,390.0,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1403730,ridge_raw,10146,100,7,0.235,0.217,299.5,"{""alpha"": 1000.0}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1403730,extra_trees,10146,100,9,39.823,37.922,1167.0,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1403730,hist_gb,10146,100,12,26.223,23.944,364.5,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1833611,median,8041,292,1,0.023,0.013,632.4,{},0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1833611,knn,8041,292,10,1.782,1.458,487.7,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1833611,ridge,8041,292,7,0.229,0.208,294.8,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1833611,ridge_raw,8041,292,7,0.234,0.218,349.4,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1833611,extra_trees,8041,292,9,42.883,40.361,727.9,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1833611,hist_gb,8041,292,12,25.335,23.036,287.6,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1914757,median,9661,100,1,0.021,0.02,274.2,{},0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1914757,knn,9661,100,10,2.017,1.651,632.4,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1914757,ridge,9661,100,7,0.229,0.213,298.2,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1914757,ridge_raw,9661,100,7,0.266,0.236,309.0,"{""alpha"": 0.001}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1914757,extra_trees,9661,100,9,51.306,48.722,1098.8,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/1.1914757,hist_gb,9661,100,12,28.084,25.699,311.0,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/2.0271802jes,median,10143,60,1,0.02,0.018,349.4,{},0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/2.0271802jes,knn,10143,60,10,3.302,2.724,412.4,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/2.0271802jes,ridge,10143,60,7,0.211,0.189,323.8,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/2.0271802jes,ridge_raw,10143,60,7,0.31,0.257,329.8,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/2.0271802jes,extra_trees,10143,60,9,44.954,42.369,1029.4,"{""max_features"": 0.66, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,source_transfer,molal_w,source/doi:10.1149/2.0271802jes,hist_gb,10143,60,12,26.162,23.943,331.6,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1016/j.jpowsour.2011.06.030,median,1358,11,1,0.009,0.009,487.7,{},0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1016/j.jpowsour.2011.06.030,knn,1358,11,10,0.473,0.422,632.4,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1016/j.jpowsour.2011.06.030,ridge,1358,11,7,0.116,0.111,311.0,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1016/j.jpowsour.2011.06.030,ridge_raw,1358,11,7,0.112,0.106,412.5,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1016/j.jpowsour.2011.06.030,extra_trees,1358,11,9,7.352,6.401,487.7,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1016/j.jpowsour.2011.06.030,hist_gb,1358,11,12,11.767,10.692,331.6,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1016/j.jpowsour.2011.07.071,median,1266,53,1,0.005,0.005,287.6,{},0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1016/j.jpowsour.2011.07.071,knn,1266,53,10,0.458,0.408,450.5,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1016/j.jpowsour.2011.07.071,ridge,1266,53,7,0.158,0.136,287.6,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1016/j.jpowsour.2011.07.071,ridge_raw,1266,53,7,0.134,0.114,364.5,"{""alpha"": 0.001}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1016/j.jpowsour.2011.07.071,extra_trees,1266,53,9,6.272,5.402,311.0,"{""max_features"": 1.0, ""min_samples_leaf"": 3, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1016/j.jpowsour.2011.07.071,hist_gb,1266,53,12,10.523,9.467,412.5,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/1.1344281,median,981,84,1,0.007,0.007,364.5,{},0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/1.1344281,knn,981,84,10,0.427,0.391,260.2,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/1.1344281,ridge,981,84,7,0.262,0.128,287.6,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/1.1344281,ridge_raw,981,84,7,0.208,0.197,249.1,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/1.1344281,extra_trees,981,84,9,5.231,4.963,331.1,"{""max_features"": 0.66, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/1.1344281,hist_gb,981,84,12,10.647,9.587,364.5,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 15}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/1.1527939,median,781,103,1,0.059,0.056,245.4,{},0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/1.1527939,knn,781,103,10,0.385,0.323,632.4,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/1.1527939,ridge,781,103,7,0.111,0.094,287.6,"{""alpha"": 0.001}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/1.1527939,ridge_raw,781,103,7,0.116,0.096,450.5,"{""alpha"": 0.01}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/1.1527939,extra_trees,781,103,9,5.622,4.797,287.6,"{""max_features"": 0.66, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/1.1527939,hist_gb,781,103,12,9.293,8.338,450.5,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/2.0571912jes,median,1278,13,1,0.017,0.014,632.4,{},0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/2.0571912jes,knn,1278,13,10,0.65,0.446,632.4,"{""n_neighbors"": 10, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/2.0571912jes,ridge,1278,13,7,0.222,0.177,632.4,"{""alpha"": 0.001}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/2.0571912jes,ridge_raw,1278,13,7,0.157,0.132,632.4,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/2.0571912jes,extra_trees,1278,13,9,5.666,5.093,632.4,"{""max_features"": 0.66, ""min_samples_leaf"": 3, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,source_transfer,molar_x,source/doi:10.1149/2.0571912jes,hist_gb,1278,13,12,9.342,9.035,258.0,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,temp_high,molal_w,temp_high/all,median,8599,689,1,0.011,0.011,270.4,{},0,0
+20261020T003227-a6e313,temp_high,molal_w,temp_high/all,knn,8599,689,10,2.962,2.902,412.5,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,temp_high,molal_w,temp_high/all,ridge,8599,689,7,0.086,0.085,364.5,"{""alpha"": 10.0}",0,0
+20261020T003227-a6e313,temp_high,molal_w,temp_high/all,ridge_raw,8599,689,7,0.085,0.085,294.2,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,temp_high,molal_w,temp_high/all,extra_trees,8599,689,9,15.641,15.515,1019.5,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,temp_high,molal_w,temp_high/all,hist_gb,8599,689,12,10.635,10.537,314.4,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,temp_high,molal_w,temp_high/all,arrhenius_local,8599,689,1,0.124,0.124,279.6,{},0,0
+20261020T003227-a6e313,temp_high,molar_v,temp_high/all,median,1011,228,1,0.005,0.005,287.6,{},0,0
+20261020T003227-a6e313,temp_high,molar_v,temp_high/all,knn,1011,228,10,0.142,0.142,314.4,"{""n_neighbors"": 3, ""tie_policy"": ""deterministic"", ""weights"": ""distance""}",0,0
+20261020T003227-a6e313,temp_high,molar_v,temp_high/all,ridge,1011,228,7,0.035,0.035,450.5,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,temp_high,molar_v,temp_high/all,ridge_raw,1011,228,7,0.036,0.036,294.2,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,temp_high,molar_v,temp_high/all,extra_trees,1011,228,9,2.518,2.484,287.6,"{""max_features"": 1.0, ""min_samples_leaf"": 3, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,temp_high,molar_v,temp_high/all,hist_gb,1011,228,12,3.236,3.178,412.5,"{""l2_regularization"": 0.0, ""learning_rate"": 0.05, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,temp_high,molar_v,temp_high/all,arrhenius_local,1011,228,1,0.021,0.021,331.3,{},0,0
+20261020T003227-a6e313,temp_high,molar_x,temp_high/all,median,900,384,1,0.005,0.005,487.7,{},0,0
+20261020T003227-a6e313,temp_high,molar_x,temp_high/all,knn,900,384,10,0.131,0.129,412.5,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,temp_high,molar_x,temp_high/all,ridge,900,384,7,0.033,0.033,294.2,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,temp_high,molar_x,temp_high/all,ridge_raw,900,384,7,0.033,0.033,487.7,"{""alpha"": 0.01}",0,0
+20261020T003227-a6e313,temp_high,molar_x,temp_high/all,extra_trees,900,384,9,1.445,1.434,349.1,"{""max_features"": 0.33, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,temp_high,molar_x,temp_high/all,hist_gb,900,384,12,2.863,2.84,287.6,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,temp_high,molar_x,temp_high/all,arrhenius_local,900,384,1,0.051,0.051,246.2,{},0,0
+20261020T003227-a6e313,temp_low,molal_w,temp_low/all,median,7675,1787,1,0.03,0.012,284.2,{},0,0
+20261020T003227-a6e313,temp_low,molal_w,temp_low/all,knn,7675,1787,10,3.794,3.726,400.4,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,temp_low,molal_w,temp_low/all,ridge,7675,1787,7,0.079,0.079,331.6,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,temp_low,molal_w,temp_low/all,ridge_raw,7675,1787,7,0.08,0.08,632.4,"{""alpha"": 1.0}",0,0
+20261020T003227-a6e313,temp_low,molal_w,temp_low/all,extra_trees,7675,1787,9,17.031,16.887,661.0,"{""max_features"": 1.0, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,temp_low,molal_w,temp_low/all,hist_gb,7675,1787,12,8.756,8.686,364.5,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,temp_low,molal_w,temp_low/all,arrhenius_local,7675,1787,1,0.136,0.135,355.6,{},0,0
+20261020T003227-a6e313,temp_low,molar_v,temp_low/all,median,896,359,1,0.005,0.005,287.6,{},0,0
+20261020T003227-a6e313,temp_low,molar_v,temp_low/all,knn,896,359,10,0.171,0.17,632.4,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,temp_low,molar_v,temp_low/all,ridge,896,359,7,0.032,0.032,284.2,"{""alpha"": 0.1}",0,0
+20261020T003227-a6e313,temp_low,molar_v,temp_low/all,ridge_raw,896,359,7,0.032,0.032,287.6,"{""alpha"": 100.0}",0,0
+20261020T003227-a6e313,temp_low,molar_v,temp_low/all,extra_trees,896,359,9,2.105,2.08,364.5,"{""max_features"": 1.0, ""min_samples_leaf"": 3, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,temp_low,molar_v,temp_low/all,hist_gb,896,359,12,2.824,2.802,331.6,"{""l2_regularization"": 0.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 31}",0,0
+20261020T003227-a6e313,temp_low,molar_v,temp_low/all,arrhenius_local,896,359,1,0.022,0.021,412.5,{},0,0
+20261020T003227-a6e313,temp_low,molar_x,temp_low/all,median,1080,246,1,0.005,0.005,246.2,{},0,0
+20261020T003227-a6e313,temp_low,molar_x,temp_low/all,knn,1080,246,10,0.148,0.148,331.6,"{""n_neighbors"": 1, ""tie_policy"": ""deterministic"", ""weights"": ""uniform""}",0,0
+20261020T003227-a6e313,temp_low,molar_x,temp_low/all,ridge,1080,246,7,0.033,0.033,294.2,"{""alpha"": 0.01}",0,0
+20261020T003227-a6e313,temp_low,molar_x,temp_low/all,ridge_raw,1080,246,7,0.035,0.034,400.4,"{""alpha"": 0.01}",0,0
+20261020T003227-a6e313,temp_low,molar_x,temp_low/all,extra_trees,1080,246,9,1.921,1.915,330.1,"{""max_features"": 0.66, ""min_samples_leaf"": 1, ""n_estimators"": 200}",0,0
+20261020T003227-a6e313,temp_low,molar_x,temp_low/all,hist_gb,1080,246,12,3.44,3.428,632.4,"{""l2_regularization"": 1.0, ""learning_rate"": 0.1, ""max_iter"": 300, ""max_leaf_nodes"": 63}",0,0
+20261020T003227-a6e313,temp_low,molar_x,temp_low/all,arrhenius_local,1080,246,1,0.014,0.014,355.6,{},0,0

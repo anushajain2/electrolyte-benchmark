@@ -1,0 +1,12 @@
+source_group_id,source_doi_a,source_doi_b,tier,numerical_evidence,bibliographic_note,same_author_group
+doi:10.1016/S0378-7753(03)00153-8,10.1016/S0378-7753(03)00153-8,10.1021/JE020219O,suspected_reuse,R12: 93/116 comparable points within 5%,,True
+doi:10.1016/S0378-7753(03)00153-8,10.1016/S0378-7753(03)00153-8,10.1021/je0498863,suspected_reuse,R12: 67/91 comparable points within 5%,,True
+doi:10.1016/S0378-7753(03)00153-8,10.1016/S0378-7753(03)00153-8,10.1149/1.1566019,suspected_reuse,R12: 51/95 comparable points within 5%,,True
+doi:10.1016/S0378-7753(03)00153-8,10.1016/S0378-7753(03)00153-8,10.1149/1.1630593,suspected_reuse,R12: 71/90 comparable points within 5%,,True
+doi:10.1016/S0378-7753(03)00153-8,10.1021/JE020219O,10.1021/je0498863,conservative_grouping,,,True
+doi:10.1016/S0378-7753(03)00153-8,10.1021/JE020219O,10.1149/1.1566019,suspected_reuse,R09: 48 near-identical points; R12: 805/933 comparable points within 5%,"reported_unverified: An external reviewer reports that the JCED paper states it complements another publication using the same set of measurements. Not yet checked against the paper text, so this pair stays at the suspected-reuse tier. Set status to 'documented' (with a quotation and page) once verified.",True
+doi:10.1016/S0378-7753(03)00153-8,10.1021/JE020219O,10.1149/1.1630593,conservative_grouping,,,True
+doi:10.1016/S0378-7753(03)00153-8,10.1021/je0498863,10.1149/1.1566019,conservative_grouping,,,True
+doi:10.1016/S0378-7753(03)00153-8,10.1021/je0498863,10.1149/1.1630593,suspected_reuse,R12: 723/1022 comparable points within 5%,,True
+doi:10.1016/S0378-7753(03)00153-8,10.1149/1.1566019,10.1149/1.1630593,conservative_grouping,,,True
+doi:10.1149/2.0271802jes,10.1149/2.0271802jes,10.1149/2.0981803jes,suspected_reuse,R09: 17 near-identical points; R12: 40/40 comparable points within 5%,,True

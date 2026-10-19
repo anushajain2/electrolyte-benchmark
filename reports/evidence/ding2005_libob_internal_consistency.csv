@@ -1,0 +1,12 @@
+measurement_id,original_row_id,half,w,temperature_K,concentration,conductivity_original,flags
+calisol23:9847,9847,PC,0.0,233.75,0.132352941,0.096774194,exact_copy_inconsistent_with_same_temperature
+calisol23:10075,10075,PC-EC,0.1,302.55,0.719139637,0.087301587,lower_than_a_colder_row;exact_copy_inconsistent_with_same_temperature
+calisol23:10076,10076,PC-EC,0.1,312.45,0.718692329,0.241622575,lower_than_a_colder_row
+calisol23:10077,10077,PC-EC,0.1,322.35,0.717989418,0.484126984,lower_than_a_colder_row
+calisol23:10078,10078,PC-EC,0.1,332.15,0.710832503,2.953262787,lower_than_a_colder_row;exact_copy_inconsistent_with_same_temperature
+calisol23:10107,10107,PC-EC,0.1,282.85,1.043277612,0.065255732,exact_copy_inconsistent_with_same_temperature
+calisol23:10108,10108,PC-EC,0.1,292.65,1.042958106,0.175485009,lower_than_a_colder_row;exact_copy_inconsistent_with_same_temperature
+calisol23:10109,10109,PC-EC,0.1,302.55,1.042702502,0.26366843,lower_than_a_colder_row
+calisol23:10110,10110,PC-EC,0.1,312.45,1.041999591,0.50617284,lower_than_a_colder_row
+calisol23:10111,10111,PC-EC,0.1,322.35,1.042798354,0.925044092,lower_than_a_colder_row
+calisol23:10112,10112,PC-EC,0.1,332.15,1.033820259,3.328042328,exact_copy_inconsistent_with_same_temperature

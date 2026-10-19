@@ -160,7 +160,7 @@ def test_manifests_are_deterministic(project, tmp_path):
 
     root2 = tmp_path / "copy"
     shutil.copytree(project.root, root2, ignore=shutil.ignore_patterns("splits", "results"))
-    cfg2 = load_config(root2 / "configs" / "benchmark_v0.3.yaml")
+    cfg2 = load_config(root2 / "configs" / "benchmark_v0.5.yaml")
     make_splits(cfg2)
     for p in sorted(project.p("splits").glob("manifest__*.csv.gz")):
         assert p.read_bytes() == (cfg2.p("splits") / p.name).read_bytes(), p.name

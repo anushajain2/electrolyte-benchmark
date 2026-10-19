@@ -1,0 +1,13 @@
+{
+ "track": "molal_w",
+ "analyses": [
+  "ranking_shift",
+  "extrapolation_profile",
+  "transfer_gaps",
+  "source_familiarity",
+  "familiarity_contrast",
+  "source_diversity",
+  "failure_cases",
+  "failure_records"
+ ]
+}
