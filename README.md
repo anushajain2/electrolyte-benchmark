@@ -11,13 +11,14 @@ The release contains data provenance, curated tables (rebuilt locally from pinne
 | Version | Config | Results | What changed |
 | --- | --- | --- | --- |
 | **v0.3** (current) | `configs/benchmark_v0.3.yaml` | `results/v0.3`, `reports/v0.3/report.html` | Correction release: temperature and concentration boundaries applied to reported values (v0.2 compared values rounded to 0.1); paired comparisons on one common set of (fold, measurement) cases; incomplete models excluded from rankings; deterministic k-NN ties; stricter `verify` and a `reproduce` command; cache keyed on data values |
+| v0.4 (label-reliability sensitivity) | `configs/benchmark_v0.4.yaml`, `_rows_only.yaml` | `results/v0.4`, `results/v0.4-rows-only`, `reports/v0.4/report.html` | Adds R13 (10 rows with confirmed wrong temperatures) and R14 (values below 0.2 mS/cm excluded for linear-axis sources), based on reading one original paper. Reported as a sensitivity release; v0.3 remains the reference |
 | v0.3 sensitivity runs | `configs/benchmark_v0.3_include_quarantine.yaml`, `_noR11.yaml`, `_linking_v01.yaml` | `results/v0.3-*` | Quarantined source included; R11 disabled; v0.1 source linking |
 | v0.2 (superseded, tag `v0.2`) | `configs/benchmark_v0.2.yaml` | `results/v0.2` | Provenance-based source grouping (R12) with evidence tiers, author-group holdout, local (T, c) support, robustness analyses, ridge audit |
 | v0.2, v0.1 linking | `configs/benchmark_v0.2_linking_v01.yaml` | `results/v0.2-linking-v01` | Sensitivity run for v0.2 |
 | v0.1 | `configs/benchmark_v0.1.yaml` | `results/v0.1` | Original release plus rule R11 (suspected numerical artifacts) |
 | v0.1 pre-R11 | `configs/benchmark_v0.1_preR11.yaml` | `results/v0.1-preR11` | The original v0.1 run, regenerated without R11 |
 
-Only the v0.1 thresholds were fixed before any test error was seen. v0.2 (after an external review) and v0.3 (after a code review) were made after earlier test results had been seen, so they are revisions, not blind re-evaluations. Every earlier version is kept and rebuilds from its own config. The v0.3 report shows the versions side by side. Findings: `reports/findings_v0.3.md` (current); `findings_v0.2.md` and `findings_v0.1.md` are superseded records.
+Only the v0.1 thresholds were fixed before any test error was seen. v0.2 (after an external review) and v0.3 (after a code review) were made after earlier test results had been seen, so they are revisions, not blind re-evaluations. Every earlier version is kept and rebuilds from its own config. The v0.3 report shows the versions side by side. Findings: `reports/findings_v0.3.md` (reference) and `reports/findings_v0.4.md` (label-reliability sensitivity); `findings_v0.2.md` and `findings_v0.1.md` are superseded records. Checks against original papers: `DATA.md`, `reports/evidence/`.
 
 ## Quick start
 

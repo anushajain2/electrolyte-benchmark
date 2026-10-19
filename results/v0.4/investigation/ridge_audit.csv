@@ -1,0 +1,4 @@
+component,alpha,scaler_fitted_on_training_rows_only,n_test,mae_log10,mean_bias_log10,mae_log10_features_clipped_to_training_range,max_abs_z,feature_with_max_abs_z,n_features_with_abs_z_gt_5
+TFP,0.1,True,534,36.30386562690194,-36.30386562690194,0.9635897249127511,373.5749178685747,solv_var_mw,7
+EMC,1000.0,True,1137,1.3876100908549278,1.2169942495844692,0.2168658802040178,396.0790650333344,solv_var_mw,7
+EC,0.001,True,2499,1.2429954337697098,1.1613332620388797,0.17742767528125442,376.0615217832,solv_var_mw,8

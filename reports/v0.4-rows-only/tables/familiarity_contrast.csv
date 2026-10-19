@@ -1,0 +1,7 @@
+model,reserved_target,subset,is_primary_contrast,exploratory,n_target_sources,mean_effect_log10,ci_low,ci_high,n_sources_positive,repeat_sd_mean
+extra_trees,False,all,False,False,6,0.145668,0.082304,0.203574,6,0.006993
+extra_trees,False,supported_by_both,True,False,4,0.035523,0.006941,0.064106,4,0.005576
+extra_trees,False,supported_by_both__well_matched_targets,False,True,0,,,,0,
+ridge,False,all,False,False,6,0.987109,0.033453,2.864538,6,0.658769
+ridge,False,supported_by_both,False,False,4,0.030815,0.013327,0.045487,4,0.009256
+ridge,False,supported_by_both__well_matched_targets,False,True,0,,,,0,

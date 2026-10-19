@@ -1,0 +1,47 @@
+{
+  "run_id": "20261019T234345-74b266",
+  "command": "investigate",
+  "package_version": "0.3.0",
+  "benchmark_version": "0.4.0",
+  "config_path": "configs/benchmark_v0.4.yaml",
+  "config_sha256": "680748174f0a56d6f40bebd4a59e4627de9a3105263560a11dedbe0370e0d306",
+  "started_utc": "2026-10-19T18:13:45Z",
+  "wall_seconds": 56.178,
+  "cpu_seconds": 16.877,
+  "peak_rss_mb": 1905.3,
+  "python": "3.12.13",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1",
+    "scipy": "1.18.1",
+    "rdkit": "2026.09.1",
+    "pyarrow": "26.0.0"
+  },
+  "inputs": {},
+  "outputs": {
+    "results/v0.4/investigation/ranking_shift.csv": "415008f5f12274c3131f4f627c1cc710a559705a50226c4a1318c4cb3d08d28a",
+    "results/v0.4/investigation/extrapolation_profile.csv": "8119d0eb61a126377d57f851fe840db79adb9e21a1d79709951b70793a35a4d1",
+    "results/v0.4/investigation/transfer_gaps.csv": "2707e795543641ef7270444fac537912ebf53a291e357d4846a97b0950fe9389",
+    "results/v0.4/investigation/source_familiarity.csv": "db2edcb46071e0dac30fff32db1c018ade1b1fa1a41593ddcec9de150c2df1fc",
+    "results/v0.4/investigation/familiarity_contrast.csv": "64db7570f239e9614bc22ce58c618c01aa1f8dbed564deae0cc71c2e1aa43c6d",
+    "results/v0.4/investigation/source_diversity.csv": "9263a96e70907afedee256b043f9f52fed0e861e17ed496c303b289fd9e91e0a",
+    "results/v0.4/investigation/failure_cases.csv": "a5e6db4e580076f04b89c6830fc3bb55bff2ff1dfc4817dbe5929f571f24139f",
+    "results/v0.4/investigation/failure_records.csv": "2b3c9e7076f448402de35228bf3afe4809d9b4b284b8415eb0a461392fcbf8ac",
+    "results/v0.4/investigation/familiarity_logo.csv": "71e0a4e80562ec01e08325d0548162172533223ec5e6522af5a7411732465b29",
+    "results/v0.4/investigation/support_sensitivity.csv": "79835a42115c1ed5ce9aeb3b58c545f31e0f6da561421d017796dccd058b8e22",
+    "results/v0.4/investigation/support_sensitivity_summary.csv": "a7385ff8ea679bbe0727b0ea3d92acc5c0d6e7e9bad59ae26aa00a21a8491be5",
+    "results/v0.4/investigation/condition_logo.csv": "6805c4606792414686a4693c04313a41ec69a902a4d6595b011865a17b3e051b",
+    "results/v0.4/investigation/ridge_audit.csv": "8dd6dfbc692977f357eb6657839da0bf19064a2bfc34568f7b5a42299c54b91e",
+    "results/v0.4/investigation/ridge_audit_contributions.csv": "f06a25d23c9fca1cf25344300ff078508b859cc139d9e1bcdf177568fca060ed"
+  },
+  "notes": {
+    "include_reserved": false,
+    "primary_contrast": {
+      "analysis": "source_familiarity",
+      "model": "extra_trees",
+      "subset": "supported_by_both"
+    }
+  }
+}

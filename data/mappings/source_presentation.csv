@@ -1,0 +1,10 @@
+source_doi,presentation,status,evidence
+10.1149/1.1833611,linear_axis_figure,verified,"Read the paper (J. Electrochem. Soc. 152, A132, 2005; open access at the publisher): conductivity appears only in figures, Fig. 2 plots kappa on a linear 0-10 mS/cm axis against molality at 11 temperatures. Compared with the paper's own fitted functions (Table II), CALiSol values below 0.1 mS/cm differ by a factor 2.5-3.5 (median), above 1 mS/cm by ~2% (data/evidence, reports/evidence)"
+10.1149/1.1566019,linear_axis_figure,inferred_stated_parallel,"The LiBOB paper (10.1149/1.1833611) states it 'parallels two earlier ones in both structure and content'; its refs 1-2 are this paper (LiPF6) and 10.1149/1.1630593 (LiBF4). Full text not read (paywalled)"
+10.1149/1.1630593,linear_axis_figure,inferred_stated_parallel,"As above: named by the LiBOB paper as an earlier paper of parallel structure. Also contains a nonpositive digitized value"
+10.1021/je0498863,linear_axis_figure,inferred_from_values,"Contains 4 nonpositive digitized conductivities, which a logarithmic axis or a table cannot produce. Full text not read"
+10.1016/S0378-7753(03)00153-8,linear_axis_figure,inferred_from_values,"Contains a nonpositive value and a 1.11e-16 value (floating-point zero). Full text not read"
+10.1149/1.1513556,linear_axis_figure,inferred_from_values,"Contains a nonpositive digitized conductivity. Full text not read"
+10.1016/S0013-4686(99)00431-4,linear_axis_figure,inferred_from_values,"Contains a nonpositive digitized conductivity. Full text not read"
+10.1149/1.1872737,linear_axis_figure,inferred_from_values,"Contains nonpositive digitized conductivities. Full text not read"
+10.1021/JE020219O,log_axis_or_table,inferred_from_values,"Reports values down to ~1e-6 mS/cm alongside values above 10 mS/cm, which cannot be read from a linear axis; title reports glass-transition measurements. Full text not read"

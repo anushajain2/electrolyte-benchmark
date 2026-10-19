@@ -84,6 +84,8 @@ CURATION_RULES = {
     "R09": "Exact copies inside one source (identical chemistry, ratio within 0.005, concentration within 0.001, T within 0.05 K, identical conductivity) are collapsed to the first row. Across sources, matches within 0.5% conductivity are suspected reuse when a pair of papers shares at least 3 such points: rows are kept, share a duplicate group, and the two source groups are merged. Isolated agreements are logged only.",
     "R10": "Nonpositive reported conductivities preserved as excluded, flagged records; no positive value is invented.",
     "R12": "v0.2+: two papers are linked into one source group (a conservative provenance-based grouping, not proof of one campaign) when at least min_comparable point pairs at comparable conditions exist (T within 1 K, c within 0.03, fractions within 0.02) and at least min_agreement of them agree within 5% in conductivity; agreeing points become one duplicate group.",
+    "R13": "v0.4+: rows confirmed wrong against the original paper are excluded (reason confirmed_compilation_error); each list in the config cites its evidence.",
+    "R14": "v0.4+: for sources whose conductivities were digitized from linear-axis figures (data/mappings/source_presentation.csv), values below the digitization floor (0.2 mS/cm) are excluded (below_digitization_floor): against one paper's own fit they differ by a median factor of 1.4-3.7, versus about 2% above 1 mS/cm.",
     "R11": "Reported conductivities below 1e-9 mS/cm (e.g. 1.11e-16) are treated as suspected numerical artifacts of a digitized zero and excluded like reported zeros (R10). Added in v0.1 after failure-case tracing; affects 3 rows; not yet traced to the original figures.",
 }
 

@@ -120,6 +120,18 @@ class Normalizer:
         self.cur = cfg["curation"]
         self.species = {(r.dataset_id, r.raw_name.strip()): r for r in species.itertuples(index=False)}
         self.quarantine = {q["doi"]: q["reason"] for q in self.cur.get("quarantine_sources", [])}
+        # v0.4+: individual rows confirmed wrong against the original paper (R13)
+        self.quarantine_rows = {}
+        for q in self.cur.get("quarantine_rows", []):
+            for rid in q["original_row_ids"]:
+                self.quarantine_rows[(q["dataset_id"], str(rid))] = q["reason"]
+        # v0.4+: digitization floor for sources plotted on linear axes (R14)
+        floor = self.cur.get("digitization_floor")
+        self.floor_threshold, self.floor_sources = None, set()
+        if floor:
+            pres = pd.read_csv(cfg.root / floor["presentation_map"])
+            self.floor_sources = set(pres[pres.presentation.isin(floor["apply_to_presentation"])].source_doi)
+            self.floor_threshold = float(floor["threshold_mS_cm"])
 
     def _sp(self, dataset_id: str, raw: str):
         return self.species.get((dataset_id, raw.strip()))
@@ -223,6 +235,14 @@ class Normalizer:
             flags.append(self.quarantine[rec.source_doi].split(":")[0])
         if "suspected_measurement_error" in rec.source_flags and self.cur.get("rahmanian_exclude_suspected_error", True):
             reasons.append("suspected_measurement_error_in_source")
+        if (ds, str(rec.original_row_id)) in self.quarantine_rows:
+            reasons.append("confirmed_compilation_error")
+            flags.append(self.quarantine_rows[(ds, str(rec.original_row_id))])
+            prov.append("R13")
+        if self.floor_threshold is not None and rec.source_doi in self.floor_sources and pd.notna(k) and 0 < out["conductivity_mS_cm"] < self.floor_threshold:
+            reasons.append("below_digitization_floor")
+            flags.append("linear_axis_low_value")
+            prov.append("R14")
 
         if rec.ratio_basis == "w":
             prov.append("R07")

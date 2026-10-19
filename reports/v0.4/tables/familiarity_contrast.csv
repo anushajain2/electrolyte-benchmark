@@ -1,0 +1,15 @@
+model,reserved_target,subset,is_primary_contrast,exploratory,n_target_sources,mean_effect_log10,ci_low,ci_high,n_sources_positive,repeat_sd_mean
+extra_trees,False,all,False,False,6,0.141657,0.081701,0.202675,6,0.006494
+extra_trees,False,supported_by_both,True,False,4,0.02012,0.007386,0.032854,4,0.002667
+extra_trees,False,supported_by_both__local_narrow,False,True,4,0.011335,-0.005929,0.028599,3,0.006075
+extra_trees,False,supported_by_both__local_tol05,False,True,4,0.016221,-0.000412,0.032854,3,0.004626
+extra_trees,False,supported_by_both__local_tol20,False,True,4,0.019578,0.006302,0.032854,4,0.001279
+extra_trees,False,supported_by_both__marginal_v01,False,True,4,0.020213,0.007571,0.032854,4,0.002676
+extra_trees,False,supported_by_both__well_matched_targets,False,True,0,,,,0,
+ridge,False,all,False,False,6,0.462579,0.024999,1.309645,6,0.387951
+ridge,False,supported_by_both,False,False,4,0.021886,0.005106,0.040335,3,0.005077
+ridge,False,supported_by_both__local_narrow,False,True,4,0.020943,0.004405,0.038082,3,0.008824
+ridge,False,supported_by_both__local_tol05,False,True,4,0.020948,0.004221,0.040335,3,0.006331
+ridge,False,supported_by_both__local_tol20,False,True,4,0.022155,0.005657,0.040335,3,0.005112
+ridge,False,supported_by_both__marginal_v01,False,True,4,0.021884,0.005104,0.040335,3,0.00508
+ridge,False,supported_by_both__well_matched_targets,False,True,0,,,,0,

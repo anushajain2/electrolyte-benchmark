@@ -38,6 +38,8 @@ Published counts (13,825 CALiSol observations from 27 DOIs; 5,035 Rahmanian expe
 | R09 | Exact in-source copies collapsed (none found). Cross-source matches (same chemistry, ratio ±0.005, c ±0.001, T ±0.05 K, κ ±0.5%) mark suspected reuse; a pair of papers sharing ≥3 such points becomes one source group. |
 | R10 | Nonpositive reported conductivities kept as excluded, flagged records; no positive value is invented. |
 | R11 | Values below 1e-9 mS/cm are treated as **suspected numerical artifacts** and **excluded** (not censored, never entered into the log target). The three affected values are 1.11e-16 (= 2⁻⁵³) twice and 1.78e-15 (= 2⁻⁴⁹): powers of two at machine-precision scale, a strong warning sign of arithmetic on a zero, but not proof that the original reported zero. The threshold is a policy choice; its distance from the smallest smooth-sweep values (~1e-6 mS/cm near 200 K) does not validate it independently. Added after failure-case tracing; not yet traced to the original figures. Both pre- and post-R11 results are kept. |
+| R13 (v0.4) | Rows confirmed wrong against the original paper are excluded (`confirmed_compilation_error`). v0.4 lists 10 rows of `10.1149/1.1833611` whose temperatures are mislabeled (evidence in `reports/evidence/`). |
+| R14 (v0.4) | For sources digitized from linear-axis figures (`data/mappings/source_presentation.csv`), values below 0.2 mS/cm are excluded (`below_digitization_floor`). Threshold from comparing one paper's CALiSol values with its own published fit: median disagreement 0.14–0.57 log10 below 0.2 mS/cm versus ~0.01 above 1 mS/cm. |
 | R12 (v0.2) | Provenance-based grouping: two papers are linked when ≥20 point pairs are comparable (T ±1 K, c ±0.03, solvent fractions ±0.02) and ≥50% agree within 5% in conductivity; linked papers and their connected components form one source group, and agreeing points become one duplicate group so they cannot straddle any split. This is a conservative leakage grouping, not proof of one experimental campaign; each pair's evidence tier (documented / suspected reuse / conservative grouping) is in `reports/v0.2/provenance_pairs.csv`. Thresholds set after the v0.1 review; the v0.1 rule and author-group holdouts are reported as alternative grouping schemes. |
 
 ### Exclusions (first failing rule)
@@ -69,6 +71,16 @@ Disputed CALiSol mappings are quarantined, not guessed (`review_status = dispute
 **v0.2 grouping.** Of 27 CALiSol papers, 26 keep at least one included row and 12 fall in the primary track (basis eligibility). With provenance-based grouping (R12) those 12 papers form 7 source groups (v0.1 rule: 10), 4 of which are testable in source transfer, and 3 author groups. One author group (Ding/Jow/Xu, 8 of the 10 v0.1 source groups) supplies 10,108 of 10,481 rows. Campaign evidence is in `data/processed/v0.2/campaign_links.csv`; author metadata in `data/mappings/source_metadata.csv` and the reviewed grouping in `data/mappings/source_author_groups.csv`.
 
 Most CALiSol values are digitized from figures, so temperatures and concentrations often carry digitization noise (e.g. 577 distinct concentration values in one paper). A formulation identity rounds solvent fractions and concentration to 0.01 for the key only; reported values are untouched.
+
+## Checks against original papers
+
+Only one of the five papers needed for the open data issues was freely readable: Ding, Xu & Jow, *J. Electrochem. Soc.* 152, A132 (2005), `10.1149/1.1833611` (LiBOB). Its conductivities appear only in figures on a linear axis; its Table II gives fitted functions κ(m, w) at each measured temperature. The fit coefficients are transcribed in `data/evidence/ding2005_libob_pc_ec_tableII.csv` and `scripts/check_ding2005_libob.py` compares every CALiSol row of the paper's PC-EC data with them:
+
+* above 1 mS/cm CALiSol matches the paper's fit to ~1–3%; below 0.2 mS/cm the disagreement is a median factor of 1.4–3.7 (digitization near the axis);
+* 10 rows carry wrong temperatures (rule R13);
+* the stored 1.78e-15 value is a near-axis reading of a value the fit puts at ~0.02 mS/cm.
+
+Still paywalled: `S0378-7753(03)00153-8` (rows 417–418, overview of several campaigns), `10.1007/s10008-002-0300-9` (quarantined source), `10.1021/je020219o` (reported companion-paper statement), `10.1016/0378-7753(91)80004-H` (disputed solvent names).
 
 ## Known limitations
 

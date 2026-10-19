@@ -25,3 +25,6 @@ results/*/tables_confirm/row_errors.parquet
 
 # Local run logs
 reports/full_run_log.txt
+
+# Row-level evidence tables contain CALiSol values; rebuilt by scripts/check_ding2005_libob.py
+reports/evidence/*_rows.csv

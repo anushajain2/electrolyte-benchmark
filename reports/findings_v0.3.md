@@ -71,7 +71,7 @@ All models are scored on the same 1,787 cold-side cases (6 groups scored). Diffe
 - **Removing any one source group and refitting does not change the ranking.** Arrhenius stays at 0.15–0.27, ridge at 0.20–0.28, and extra trees at 0.39–0.58.
 - **The Arrhenius baseline's information requirement.** It fits each test formulation's own warm-side measurements (at least three, guaranteed by the task's eligibility rule). The other models see the same training rows, so it uses no extra information, but it cannot be applied to a formulation with no warm-side data.
 - **What the evidence supports.** The reversal persists across source groups and at matched extrapolation distances. This does not fully separate distance, chemistry and source.
-- **The physics is documented, not discovered here.** The coldest data come from a paper that measured glass-transition temperatures (`10.1021/JE020219O`). The finding is that tree ensembles flatten below the coldest training point and every model class tested is biased high there.
+- **The physics is documented, not discovered here.** The coldest data come from a paper that measured glass-transition temperatures (`10.1021/JE020219O`). The finding is that tree ensembles flatten below the coldest training point. (v0.3 originally added that every model class is biased high there; v0.4 shows that ridge is not once labels below the digitization floor are removed, see `findings_v0.4.md` and I-20.)
 - **Above the training range** extra trees is best or tied (ridge +0.082 [0.065, 0.110], Arrhenius +0.045 [−0.005, 0.123]).
 
 ### 3. Matching coverage changes the interpretation of source transfer
@@ -129,7 +129,7 @@ Ridge's frozen component-transfer error is 5.50 (TFP: 43.6 log10). The audit tra
 ### Data issues still open
 
 - **Suspected numerical artifacts (R11)** are not yet traced to the original figures (I-15).
-- **Suspected compilation error:** `10.1149/1.1833611` rows 10075–10078 (I-11).
+- **Compilation error, confirmed in v0.4:** `10.1149/1.1833611` rows 10075–10078 and 10107–10112 carry wrong temperatures (I-11).
 - **Quarantined source** with a suspected unit error (I-01); the sensitivity run above shows what including it does.
 - **Reported companion-paper statement** for `JE020219O` is unverified (I-17).
 
@@ -138,7 +138,7 @@ Checking these against the original papers is the most valuable remaining step.
 ### Practical consequences
 
 - Count provenance-based groups and author groups, not papers or rows, before claiming source transfer.
-- Under cold-temperature extrapolation, prefer temperature-aware baselines to tree ensembles, and expect all tested models to be biased high near the glass transition.
+- Under cold-temperature extrapolation, prefer temperature-aware baselines to tree ensembles. Treat labels below ~0.2 mS/cm read from linear-axis figures as unreliable (v0.4).
 - Treat "generalization to new solvents or salts" on CALiSol-derived data as a combined chemistry and source result.
 - Check very small conductivities, and suspected unit errors, before log-scale training. Report how the main results move when they are included.
 
