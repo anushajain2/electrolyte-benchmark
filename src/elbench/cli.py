@@ -71,6 +71,12 @@ def cmd_report(cfg, args):
     _log(f"report: {path}")
 
 
+def cmd_overview(cfg, args):
+    from .overview import overview
+
+    _log(f"overview: {overview(cfg)}")
+
+
 def cmd_verify(cfg, args):
     from .report import verify_reproduction
 
@@ -93,7 +99,7 @@ def cmd_workbench(cfg, args):
 
 
 def cmd_all(cfg, args):
-    for fn in (cmd_ingest, cmd_curate, cmd_audit, cmd_make_splits, cmd_train, cmd_evaluate, cmd_investigate, cmd_report):
+    for fn in (cmd_ingest, cmd_curate, cmd_audit, cmd_make_splits, cmd_train, cmd_evaluate, cmd_investigate, cmd_report, cmd_overview):
         fn(cfg, args)
 
 
@@ -128,6 +134,7 @@ def main(argv: list[str] | None = None) -> None:
     add("evaluate", cmd_evaluate)
     add("investigate", cmd_investigate)
     add("report", cmd_report)
+    add("overview", cmd_overview)
     add("verify", cmd_verify)
     add("reproduce", cmd_reproduce)
     add("workbench", cmd_workbench)

@@ -18,6 +18,7 @@
   "label_evaluation_filtering",
   "label_cases_removed",
   "label_training_cleaning",
+  "temperature_ablation",
   "selective_risk_coverage",
   "selective_dev_threshold",
   "selective_rejection"

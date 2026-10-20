@@ -90,7 +90,27 @@ These results are exploratory because every test label here was inspected in ear
 - provenance and label-quality inspection;
 - a Markdown export.
 
-When baselines are within 0.05 log10 of each other, it names them all as candidates. It runs locally because scoring needs CALiSol labels, which are not redistributed. A hosted version could show only aggregate results. It has not yet been tested with researchers.
+Every baseline within 0.05 log10 (about 12%) of the lowest error is shortlisted. This is a practical shortlist rule, not a statistical equivalence test. It runs locally because scoring needs CALiSol labels, which are not redistributed. A hosted version could show only aggregate results. It has not yet been tested with researchers.
+
+### 7. Temperature-representation ablation (added in v0.5.1)
+
+Each model is refit on the same outer folds, with the configurations chosen for the full feature set and one seed, after removing 1/T, T, or both (`results/v0.5/investigation/temperature_ablation.csv`).
+
+| Task | Model | all features | T only | 1/T only | no temperature |
+| --- | --- | --- | --- | --- | --- |
+| temp_low | extra trees | 0.536 | 0.540 | 0.539 | 0.747 |
+| temp_low | ridge | 0.249 | 0.334 | 0.267 | 0.845 |
+| temp_high | extra trees | 0.114 | 0.121 | 0.120 | 0.465 |
+| temp_high | ridge | 0.195 | 0.514 | 0.351 | 0.568 |
+| interp_formulation | extra trees | 0.047 | 0.062 | 0.062 | 0.340 |
+| interp_formulation | ridge | 0.155 | 0.199 | 0.183 | 0.325 |
+
+- **The cold-extrapolation reversal is mainly a model-family effect.** Extra trees barely changes between T and 1/T, because trees predict a constant beyond the training range of any feature. Ridge with T alone (0.334) still beats extra trees with every feature (0.536).
+- **1/T strengthens the linear model.** Under cold extrapolation, ridge with 1/T alone (0.267) is close to its full-feature error.
+- **Ridge needs both columns above the training range.** Under warm extrapolation, dropping either column more than doubles its error: together, T and 1/T let a linear model bend.
+- **These are temperature tasks.** Removing temperature makes every model fail.
+
+This is a diagnostic, not a retuned comparison. `METHODS.md` explains the inputs and the Arrhenius baseline's limits.
 
 ### Carried over
 

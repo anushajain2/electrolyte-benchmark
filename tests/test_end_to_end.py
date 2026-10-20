@@ -8,6 +8,7 @@ from elbench.curate import curate
 from elbench.evaluate import evaluate
 from elbench.ingest import ingest
 from elbench.investigate import investigate
+from elbench.overview import overview
 from elbench.report import report, verify_reproduction
 from elbench.splits import make_splits
 from elbench.audit import audit
@@ -53,6 +54,15 @@ def test_fresh_run_reproduces_reference(tmp_path):
     assert {"condition_distance", "random", "oracle"} <= set(rc.signal)
     cl = pd.read_csv(a.p("results") / "investigation" / "condition_logo.csv")
     assert set(cl.left_out_group) > {"(none)"}
+    ab = pd.read_csv(a.p("results") / "investigation" / "temperature_ablation.csv")
+    assert {"all features", "T only (no 1/T)", "1/T only (no T)", "no temperature"} == set(ab.variant)
+    assert ab.group_mean_mae_log10.notna().all()
+
+    # the public overview page is built from aggregate tables only: no measurement ids or raw values
+    page = overview(a).read_text()
+    meas_ids = pd.read_parquet(a.p("processed") / "measurements.parquet").measurement_id
+    assert not any(m in page for m in meas_ids)
+    assert (a.root / "docs" / "settings_overview.png").stat().st_size > 10_000
 
     # cached re-run of train is a no-op that keeps results identical
     before = (a.p("results") / "tables" / "summary.csv").read_bytes()

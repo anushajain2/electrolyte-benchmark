@@ -552,6 +552,10 @@ def investigate(cfg: Config, n_jobs: int = -1, include_reserved: bool = False) -
 
         res["label_evaluation_filtering"], res["label_cases_removed"] = evaluation_filtering(cfg, meas)
         res["label_training_cleaning"] = training_cleaning(cfg, meas, X, n_jobs)
+    if "temperature_ablation" in cfg["investigation"] and not include_reserved:
+        from .ablation import temperature_ablation
+
+        res["temperature_ablation"] = temperature_ablation(cfg, meas, X, n_jobs)
     if "selective" in cfg["investigation"] and not include_reserved:
         from .selective import run_selective
 

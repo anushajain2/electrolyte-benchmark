@@ -1,4 +1,4 @@
-# Data card: electrolyte generalization benchmark (v0.1 and v0.2)
+# Data card: electrolyte generalization benchmark (current: v0.5)
 
 ## Sources
 

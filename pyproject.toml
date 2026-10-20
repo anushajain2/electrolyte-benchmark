@@ -1,6 +1,6 @@
 [project]
 name = "elbench"
-version = "0.3.0"
+version = "0.5.1"
 description = "Electrolyte generalization benchmark: ionic conductivity of liquid Li electrolytes under source, component and condition shift"
 readme = "README.md"
 requires-python = ">=3.11,<3.13"

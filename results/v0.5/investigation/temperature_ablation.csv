@@ -1,0 +1,25 @@
+task_id,model,variant,group_mean_mae_log10,mean_bias_log10,n_groups
+interp_formulation,extra_trees,all features,0.04722736795541586,0.0054380979426437645,7
+interp_formulation,extra_trees,T only (no 1/T),0.0617668777750774,0.00901852524585404,7
+interp_formulation,extra_trees,1/T only (no T),0.06162074037628761,0.00917681732600506,7
+interp_formulation,extra_trees,no temperature,0.3404845559745601,0.04996181240108921,7
+interp_formulation,ridge,all features,0.15531281237522804,-0.002475381324880177,7
+interp_formulation,ridge,T only (no 1/T),0.19947134797230132,-0.003881485336364077,7
+interp_formulation,ridge,1/T only (no T),0.18340416177489383,-0.0033767132195692265,7
+interp_formulation,ridge,no temperature,0.3250941620753412,-0.004000158170279251,7
+temp_high,extra_trees,all features,0.11411817960181976,-0.10563891883315779,5
+temp_high,extra_trees,T only (no 1/T),0.12092904720094724,-0.11330765831185159,5
+temp_high,extra_trees,1/T only (no T),0.1203564198102484,-0.11275639973012844,5
+temp_high,extra_trees,no temperature,0.4648495479082467,-0.4648495479082467,5
+temp_high,ridge,all features,0.19530230047925287,-0.1257040848641498,5
+temp_high,ridge,T only (no 1/T),0.5135263894312188,0.5103175143268579,5
+temp_high,ridge,1/T only (no T),0.3507159388336351,0.338772075696059,5
+temp_high,ridge,no temperature,0.5676912174848963,-0.5670711460456525,5
+temp_low,extra_trees,all features,0.5357398044296253,0.5357398044296253,6
+temp_low,extra_trees,T only (no 1/T),0.5400617118779407,0.5400617118779407,6
+temp_low,extra_trees,1/T only (no T),0.5390716403362061,0.5390716403362061,6
+temp_low,extra_trees,no temperature,0.7472383487927617,0.7471861028482009,6
+temp_low,ridge,all features,0.2488390732614583,0.08358306688044242,6
+temp_low,ridge,T only (no 1/T),0.3335825965908357,0.30486345094872286,6
+temp_low,ridge,1/T only (no T),0.26747743308729377,0.1851718283817424,6
+temp_low,ridge,no temperature,0.8448418418717277,0.8448418418717277,6

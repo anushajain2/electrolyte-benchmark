@@ -5,8 +5,8 @@ type: software
 authors:
   - family-names: Jain
     given-names: Anusha
-version: "0.3.0"
-date-released: "2026-10-19"
+version: "0.5.1"
+date-released: "2026-10-20"
 license: MIT
 repository-code: "https://github.com/anushajain2/electrolyte-benchmark"
 keywords:

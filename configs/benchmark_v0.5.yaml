@@ -258,6 +258,10 @@ investigation:
     thresholds: [0.1, 0.2, 0.5]
     training_threshold: 0.2
     models: [extra_trees, ridge]
+  # v0.5.1: temperature-representation ablation (refits only; rows and splits unchanged).
+  temperature_ablation:
+    tasks: [temp_low, temp_high, interp_formulation]
+    models: [ridge, extra_trees]
   # Exploratory selective prediction for condition extrapolation.
   selective:
     tasks: [temp_low, temp_high]

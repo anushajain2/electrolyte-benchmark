@@ -82,7 +82,7 @@ def main(config_path: str) -> None:  # pragma: no cover - UI
     meas, srcmeta, pres = data()
     st.sidebar.title("Workbench")
     st.sidebar.caption(f"benchmark {cfg['benchmark_version']} · config {cfg.sha256[:12]}")
-    task = st.sidebar.selectbox("Setting", list(SETTINGS), format_func=lambda k: SETTINGS[k]["title"])
+    task = st.sidebar.selectbox("Your situation", list(SETTINGS), format_func=lambda k: SETTINGS[k]["title"])
     page = st.sidebar.radio("Step", ["1 · What can be established", "2 · Published baselines", "3 · Evaluate your predictions", "4 · Inspect a result", "5 · Export"])
     S = SETTINGS[task]
     elig = T["elig"][(T["elig"].task_id == task) & (T["elig"].track_id == track)]
@@ -110,7 +110,7 @@ def main(config_path: str) -> None:  # pragma: no cover - UI
             )
         st.subheader("Which approach deserves further validation?")
         ranked = summ[summ.complete.astype(bool) & summ.model.isin(MAIN_MODELS + ["arrhenius_local"])].sort_values("group_mean_mae_log10") if "complete" in summ else summ
-        st.dataframe(ranked[["model", "group_mean_mae_log10", "group_median_mae_log10", "worst_quartile_mae_log10", "frac_within_factor2", "n_rows", "n_groups"]], hide_index=True)
+        show(st, ranked[["model", "group_mean_mae_log10", "group_median_mae_log10", "worst_quartile_mae_log10", "frac_within_factor2", "n_rows", "n_groups"]])
         if len(ranked):
             st.success(recommendation(ranked))
 
@@ -119,18 +119,19 @@ def main(config_path: str) -> None:  # pragma: no cover - UI
         b = T["bootstrap"][(T["bootstrap"].task_id == task) & (T["bootstrap"].track_id == track) & (T["bootstrap"].subset == "all")]
         comp = "with_local" if (b.comparison == "with_local").any() else "main"
         st.subheader("Ranking with paired intervals (difference against the reference model)")
-        st.dataframe(b[b.comparison == comp][["model", "n_groups", "n_common_rows", "group_mean_mae_log10", "ci_low", "ci_high", "diff_vs_reference", "diff_ci_low", "diff_ci_high", "note"]], hide_index=True)
+        show(st, b[b.comparison == comp][["model", "n_groups", "n_common_rows", "group_mean_mae_log10", "ci_low", "ci_high", "diff_vs_reference", "diff_ci_low", "diff_ci_high", "note"]])
         st.subheader("Per source group")
         gm = T["group_metrics"][(T["group_metrics"].task_id == task) & (T["group_metrics"].track_id == track)]
-        st.dataframe(gm.pivot_table(index="group_id", columns="model", values="mae_log10").round(3))
+        show(st, gm.pivot_table(index="group_id", columns="model", values="mae_log10").round(3), cfg.root)
         if len(T["condition_logo"]) and task in set(T["condition_logo"].task_id):
             st.subheader("Removing one source group at a time (refit)")
             cl = T["condition_logo"][T["condition_logo"].task_id == task]
-            st.dataframe(cl.pivot_table(index="left_out_group", columns="model", values="group_mean_mae_log10").round(3))
+            show(st, cl.pivot_table(index="left_out_group", columns="model", values="group_mean_mae_log10").round(3), cfg.root)
         if len(T["selective_risk_coverage"]) and task in set(T["selective_risk_coverage"].task_id):
             st.subheader("Selective prediction (exploratory): error when the least confident predictions are rejected")
             rc = T["selective_risk_coverage"][T["selective_risk_coverage"].task_id == task]
-            st.dataframe(rc.pivot_table(index=["model", "signal"], columns="target_coverage", values="group_mean_mae_log10").round(3))
+            st.caption("Coverage = share of test cases that still receive a prediction after the least confident are rejected.")
+            show(st, rc.pivot_table(index=["model", "signal"], columns="target_coverage", values="group_mean_mae_log10").round(3))
         fr = T["failure_records"]
         if len(fr):
             st.subheader("Traced failure examples")
@@ -166,17 +167,17 @@ def main(config_path: str) -> None:  # pragma: no cover - UI
                 st.error(f"Rejected: {e}")
                 st.stop()
             st.subheader("Diagnostics")
-            st.dataframe(out["diagnostics"], hide_index=True)
+            show(st, out["diagnostics"])
             st.write(out.get("comparison_status", ""))
             st.subheader("Score")
-            st.dataframe(out["summary"], hide_index=True)
+            show(st, out["summary"])
             if "risk_coverage" in out:
                 st.subheader("Error versus coverage")
-                st.dataframe(out["risk_coverage"], hide_index=True)
+                show(st, out["risk_coverage"])
             if "comparison" in out:
                 st.subheader("Paired comparison with eligible baselines (same cases)")
-                st.dataframe(out["comparison"], hide_index=True)
-                st.dataframe(out["comparison_cases"], hide_index=True)
+                show(st, out["comparison"])
+                show(st, out["comparison_cases"])
             st.session_state["last_eval"] = {"task": task, "mode": mode, "file": up.name, "out": {k: v for k, v in out.items() if isinstance(v, pd.DataFrame)}, "status": out.get("comparison_status", ""), "checks": checks}
 
     elif page.startswith("4"):
@@ -227,15 +228,32 @@ def main(config_path: str) -> None:  # pragma: no cover - UI
 
 
 def recommendation(ranked: pd.DataFrame, tie_log10: float = 0.05) -> str:
-    """Name the lowest-error approaches without overstating small differences."""
+    """Shortlist the lowest-error approaches without overstating small differences.
+
+    The rule is practical, not statistical: every model within ``tie_log10``
+    (0.05 log10, about 12%) of the lowest group-mean error is shortlisted."""
+    from elbench.labels import model_label
+
     best = ranked.iloc[0]
     close = ranked[ranked.group_mean_mae_log10 <= best.group_mean_mae_log10 + tie_log10]
     if len(close) > 1:
-        names = ", ".join(f"**{m}** ({v:.3f})" for m, v in zip(close.model, close.group_mean_mae_log10))
-        return (f"Candidates for further validation: {names} group-mean MAE log10, within {tie_log10} log10 of each other, "
-                "so this benchmark does not separate them. Validate them on your own data.")
-    return (f"Candidate for further validation: **{best.model}** (group-mean MAE {best.group_mean_mae_log10:.3f} log10, about a factor of "
-            f"{10 ** best.group_mean_mae_log10:.2f}). The next model is more than {tie_log10} log10 worse. This is evidence for validation, not a guarantee.")
+        names = ", ".join(f"**{model_label(m)}** ({v:.3f})" for m, v in zip(close.model, close.group_mean_mae_log10))
+        return (f"Shortlist for further validation: {names} (mean error, log10). They are within {tie_log10} log10 (about 12%) of the lowest error. "
+                "This is a practical shortlist rule, not a statistical equivalence test; validate them on your own data.")
+    return (f"Shortlist for further validation: **{model_label(best.model)}** (mean error {best.group_mean_mae_log10:.3f} log10, about a factor of "
+            f"{10 ** best.group_mean_mae_log10:.2f}). Every other model is more than {tie_log10} log10 worse. This is evidence for validation, not a guarantee.")
+
+
+def show(st, df: pd.DataFrame, root=None, **kw) -> None:
+    """Display a table with readable column, model and source-group names."""
+    from elbench.labels import MODEL_LABELS, friendly_columns, source_label
+
+    out = friendly_columns(df.reset_index() if df.index.name or isinstance(df.index, pd.MultiIndex) else df)
+    out = out.rename(columns={c: MODEL_LABELS[c] for c in out.columns if c in MODEL_LABELS})
+    for c in ("Source group", "group_id", "left_out_group"):
+        if c in out and root is not None:
+            out[c] = out[c].map(lambda g: source_label(g, root) if str(g).startswith("doi:") else g)
+    st.dataframe(out, hide_index=True, **kw)
 
 
 def unit_check(pred: pd.DataFrame, cases: pd.DataFrame, meas: pd.DataFrame) -> list[tuple[str, str]]:

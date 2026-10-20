@@ -86,10 +86,10 @@ def test_workbench_markdown_table():
     assert t.splitlines()[0] == "| model | mae |" and "0.1235" in t
 
 
-def test_workbench_recommendation_does_not_separate_near_ties():
+def test_workbench_shortlist_names_near_ties_without_claiming_equivalence():
     from elbench.workbench import recommendation
 
     tie = recommendation(pd.DataFrame({"model": ["arrhenius_local", "ridge", "extra_trees"], "group_mean_mae_log10": [0.229, 0.249, 0.536]}))
-    assert "arrhenius_local" in tie and "ridge" in tie and "extra_trees" not in tie and "does not separate" in tie
+    assert "Per-formulation Arrhenius" in tie and "Ridge" in tie and "Extra Trees" not in tie and "not a statistical equivalence test" in tie
     clear = recommendation(pd.DataFrame({"model": ["extra_trees", "ridge"], "group_mean_mae_log10": [0.05, 0.16]}))
-    assert "extra_trees" in clear and "ridge" not in clear
+    assert "Extra Trees" in clear and "Ridge" not in clear

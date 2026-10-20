@@ -1,0 +1,20 @@
+{
+ "ok": true,
+ "tolerance": 0.005,
+ "checks": [
+  "mode: compare /Users/anusha/Documents/code/electrolyte-benchmark/reports/v0.5/tables with /Users/anusha/Documents/code/electrolyte-benchmark/reports/reference/v0.5 (no rerun)",
+  "summary.csv.group_mean_mae_log10: OK (0 missing on both sides, max abs diff 0.00e+00)",
+  "summary.csv.sample_mae_log10: OK (0 missing on both sides, max abs diff 0.00e+00)",
+  "summary.csv.worst_quartile_mae_log10: OK (0 missing on both sides, max abs diff 0.00e+00)",
+  "summary.csv.invalid_rate: OK (0 missing on both sides, max abs diff 0.00e+00)",
+  "summary.csv.n_rows: counts identical",
+  "summary.csv.n_groups: counts identical",
+  "bootstrap.csv.group_mean_mae_log10: OK (0 missing on both sides, max abs diff 0.00e+00)",
+  "bootstrap.csv.diff_vs_reference: OK (0 missing on both sides, max abs diff 0.00e+00)",
+  "bootstrap.csv.n_groups: counts identical",
+  "bootstrap.csv.n_common_rows: counts identical",
+  "familiarity_contrast.csv.mean_effect_log10: OK (2 missing on both sides, max abs diff 0.00e+00)",
+  "familiarity_contrast.csv.n_target_sources: counts identical",
+  "familiarity_contrast.csv.n_sources_positive: counts identical"
+ ]
+}

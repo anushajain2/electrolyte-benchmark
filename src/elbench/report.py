@@ -98,37 +98,64 @@ def markdown(md: str) -> str:
 # --------------------------------------------------------------------------
 # figures
 # --------------------------------------------------------------------------
-def _group_dotplot(gm: pd.DataFrame, task: str, track: str, models: list[str]):
-    import matplotlib.pyplot as plt
+# Fixed colour per model (entity), validated palette slots 1-3; other models stay in tables.
+MODEL_COLORS = {"extra_trees": "#2a78d6", "ridge": "#eb6834", "arrhenius_local": "#1baf7a"}
 
+
+def _group_dotplot(gm: pd.DataFrame, task: str, track: str, models: list[str], root=None, papers_per_group=None):
+    import matplotlib.pyplot as plt
+    from matplotlib.transforms import blended_transform_factory
+
+    from .labels import group_label, model_label, task_label
+
+    models = [m for m in models if m in MODEL_COLORS]
     g = gm[(gm.task_id == task) & (gm.track_id == track) & gm.model.isin(models)]
     groups = g.groupby("group_id").n.first().sort_values(ascending=False).index.tolist()
-    fig, ax = plt.subplots(figsize=(7.5, max(2.2, 0.36 * len(groups) + 1)))
-    cmap = plt.get_cmap("tab10")
+    fig, ax = plt.subplots(figsize=(7.8, max(2.4, 0.42 * len(groups) + 1.4)))
     for j, m in enumerate(models):
         gg = g[g.model == m].set_index("group_id").reindex(groups)
-        y = np.arange(len(groups)) + (j - (len(models) - 1) / 2) * 0.12
-        ax.scatter(gg.mae_log10, y, s=22, color=cmap(j), label=m, zorder=3)
-    ax.axvline(np.log10(2), color="0.5", lw=0.8, ls="--")
-    ax.text(np.log10(2), -0.9, " factor 2", fontsize=7, color="0.4")
+        y = np.arange(len(groups)) + (j - (len(models) - 1) / 2) * 0.18
+        ax.scatter(gg.mae_log10, y, s=48, color=MODEL_COLORS[m], edgecolor="white", linewidth=1.5, label=model_label(m), zorder=3)
+    ax.axvline(np.log10(2), color="0.55", lw=0.9, ls="--", zorder=1)
+    ax.text(np.log10(2), 1.0, " factor-of-2 error", transform=blended_transform_factory(ax.transData, ax.transAxes), fontsize=7, color="0.35", va="bottom")
     labels = []
     for gid in groups:
         n = int(g[g.group_id == gid].n.iat[0])
         lab = g[g.group_id == gid].interpretation_label.iat[0]
-        short = {"supported_comparison": "", "combined_shift": " [combined]", "insufficient_support": " [insufficient]"}.get(lab, "")
-        labels.append(f"{str(gid).replace('doi:', '')} (n={n}){short}")
-    ax.set_yticks(range(len(groups)), labels, fontsize=7)
+        short = {"supported_comparison": "", "combined_shift": " [combined shift]", "insufficient_support": " [insufficient]"}.get(lab, "")
+        name = group_label(gid, root, (papers_per_group or {}).get(gid, 1)) if root and str(gid).startswith("doi:") else str(gid)
+        labels.append(f"{name} ({n} cases){short}")
+    ax.set_yticks(range(len(groups)), labels, fontsize=7.5)
     ax.invert_yaxis()
-    ax.set_xlabel("MAE log10(conductivity), per group", fontsize=8)
+    if g.mae_log10.max() > 2:  # a few huge failures would flatten the rest: switch to a log axis
+        ax.set_xscale("log")
+        ax.set_xlim(left=g.mae_log10.min() * 0.7)
+        xlab = "Mean error per group, log10(conductivity), log scale  (lower is better)"
+    else:
+        ax.set_xlim(left=0)
+        xlab = "Mean error per group, log10(conductivity)  (lower is better)"
+    ax.set_xlabel(xlab, fontsize=8)
     ax.tick_params(axis="x", labelsize=7)
-    ax.grid(axis="x", color="0.9", zorder=0)
-    ax.legend(fontsize=7, ncol=len(models), loc="lower center", bbox_to_anchor=(0.5, 1.0), frameon=False)
-    ax.set_title(f"{task} / {track}", fontsize=9, pad=22)
+    ax.grid(axis="x", color="0.92", zorder=0)
+    for side in ("top", "right"):
+        ax.spines[side].set_visible(False)
+    ax.legend(fontsize=7.5, ncol=len(models), loc="upper center", bbox_to_anchor=(0.5, -0.16), frameon=False)
+    ax.set_title(f"{task_label(task)}: error by source group", fontsize=9.5, loc="left", pad=14)
+    fig.tight_layout()
     return fig
 
 
-def _familiarity_fig(fam: pd.DataFrame, model: str):
+GROUP_PLOT_CAPTIONS = {
+    "temp_low": "Takeaway: in every source group, the temperature-aware baselines (Ridge, per-formulation Arrhenius) have lower error than Extra Trees below the coldest training temperature.",
+    "temp_high": "Takeaway: above the training range, Extra Trees is best or tied in most groups; the per-formulation Arrhenius fit is not consistently better.",
+    "interp_formulation": "Takeaway: for new formulations of familiar chemistry, Extra Trees has the lowest error in every group.",
+}
+
+
+def _familiarity_fig(fam: pd.DataFrame, model: str, root=None):
     import matplotlib.pyplot as plt
+
+    from .labels import model_label, source_label
 
     f = fam[(fam.model == model)]
     per = f.groupby("target_source").agg(with_=("mae_supported_by_both_with_source", "mean"), without=("mae_supported_by_both_without_source", "mean"), sd=("effect_supported_by_both", "std")).sort_values("without")
@@ -137,11 +164,11 @@ def _familiarity_fig(fam: pd.DataFrame, model: str):
     ax.hlines(y, per.with_, per.without, color="0.7", lw=2, zorder=1)
     ax.scatter(per.with_, y, color="#2f5d8a", label="with other data from target source", zorder=3)
     ax.scatter(per.without, y, color="#c26b2b", label="without (size- and chemistry-matched)", zorder=3)
-    ax.set_yticks(y, [s.replace("doi:", "") for s in per.index], fontsize=7)
+    ax.set_yticks(y, [source_label(s, root) if root else s.replace("doi:", "") for s in per.index], fontsize=7)
     ax.set_xlabel("MAE log10 on target test rows supported by both training sets", fontsize=8)
     ax.legend(fontsize=7, loc="lower center", bbox_to_anchor=(0.5, 1.0), frameon=False, ncol=2)
     ax.grid(axis="x", color="0.9", zorder=0)
-    ax.set_title(f"Source familiarity ({model})", fontsize=9, pad=20)
+    ax.set_title(f"Source familiarity ({model_label(model)})", fontsize=9, pad=20)
     return fig
 
 
@@ -156,17 +183,21 @@ def _risk_coverage_fig(rc: pd.DataFrame):
         for j, m in enumerate(models):
             ax = axes[i][j]
             g = rc[(rc.task_id == t) & (rc.model == m)]
+            from .labels import SIGNAL_LABELS, model_label, task_label
+
+            colors = {"condition_distance": "#2a78d6", "feature_distance": "#eb6834", "ensemble_spread": "#1baf7a", "random": "0.45", "oracle": "0.65"}
             for sgl, h in g.groupby("signal"):
                 h = h.sort_values("target_coverage")
-                ax.plot(h.target_coverage, h.group_mean_mae_log10, styles.get(sgl, "-"), ms=3, lw=1.1, label=sgl, color="0.5" if sgl in ("random", "oracle") else None)
+                ax.plot(h.target_coverage, h.group_mean_mae_log10, styles.get(sgl, "-"), ms=4, lw=1.4, label=SIGNAL_LABELS.get(sgl, sgl), color=colors.get(sgl, "0.3"))
             ax.invert_xaxis()
-            ax.set_title(f"{t} / {m}", fontsize=8)
-            ax.set_xlabel("coverage", fontsize=7)
-            ax.set_ylabel("MAE log10 (retained)", fontsize=7)
+            ax.set_title(f"{task_label(t)}\n{model_label(m)}", fontsize=8)
+            ax.set_xlabel("coverage (share of cases predicted)", fontsize=7)
+            ax.set_ylabel("mean error, log10 (kept cases)", fontsize=7)
             ax.tick_params(labelsize=7)
             ax.grid(color="0.92")
-    axes[0][0].legend(fontsize=6)
-    fig.tight_layout()
+    h, l = axes[0][0].get_legend_handles_labels()
+    fig.legend(h, l, fontsize=7, loc="lower center", ncol=3, frameon=False, bbox_to_anchor=(0.5, -0.02))
+    fig.tight_layout(rect=(0, 0.06, 1, 1))
     return fig
 
 
@@ -394,6 +425,7 @@ def _sensitivity_sections(cfg: Config, track: str) -> list[str]:
         rc = pd.read_csv(inv / "selective_risk_coverage.csv")
         B.append("<h3>L. Selective prediction for condition extrapolation (exploratory)</h3>")
         B.append("<p>Can unreliable predictions be identified before their labels are known? Each base model's test predictions are ranked by a confidence signal and the least confident are rejected. "
+                 "<b>Coverage</b> is the share of test cases that still receive a prediction. "
                  "<code>oracle</code> sorts by the actual error and is only a bound. All test labels here were inspected in earlier versions, so these results are exploratory.</p>")
         B.append(H.fig_img(_risk_coverage_fig(rc), "risk coverage"))
         if (inv / "selective_dev_threshold.csv").exists():
@@ -401,6 +433,19 @@ def _sensitivity_sections(cfg: Config, track: str) -> list[str]:
         if (inv / "selective_rejection.csv").exists():
             rj = pd.read_csv(inv / "selective_rejection.csv")
             B.append("<p>Who gets rejected (development-fixed threshold):</p>" + H.table(rj.pivot_table(index=["task_id", "by", "value"], columns=["model", "signal"], values="rejection_rate").reset_index()))
+    if (inv / "temperature_ablation.csv").exists():
+        from .labels import friendly_columns
+
+        ab = pd.read_csv(inv / "temperature_ablation.csv")
+        B.append("<h3>M. Temperature-representation ablation</h3>")
+        B.append("<p>Is the cold-extrapolation reversal about how temperature is represented, or about the model family? Each model is refit on the same folds with temperature columns removed. "
+                 "Takeaway: Extra Trees barely changes between T and 1/T (trees predict a constant beyond the training range of any feature). "
+                 "Ridge with T alone still beats Extra Trees under cold extrapolation (0.33 vs 0.54 log10), so the reversal is mainly a model-family effect. "
+                 "Ridge does depend on having both columns: T and 1/T together let a linear model bend, and dropping either hurts most under warm extrapolation. "
+                 "Removing temperature entirely makes every model fail, which confirms the task is genuinely about temperature.</p>")
+        piv = ab.pivot_table(index=["task_id", "model"], columns="variant", values="group_mean_mae_log10").round(3)
+        piv = piv[[c for c in ("all features", "T only (no 1/T)", "1/T only (no T)", "no temperature") if c in piv]]
+        B.append(H.table(friendly_columns(piv.reset_index())))
     if (inv / "ridge_audit.csv").exists():
         B.append("<h3>J. Ridge numerical audit (component holdout; post-hoc diagnostic)</h3>")
         B.append("<p>Scaler statistics are checked against the training rows; z-scores show how far the held-out component's descriptors lie outside the training distribution; "
@@ -438,6 +483,7 @@ def report(cfg: Config) -> Path:
     con_c = pd.read_csv(inv / "familiarity_contrast__confirm.csv") if (inv / "familiarity_contrast__confirm.csv").exists() else None
     exposure = pd.read_csv(res / "reserved_exposure_log.csv") if (res / "reserved_exposure_log.csv").exists() else pd.DataFrame()
     findings_path = cfg.root / cfg["paths"].get("findings", "reports/findings_v0.1.md")
+    papers_per_group = meas[meas.inclusion_status == "included"].groupby("source_group_id").source_doi.nunique().to_dict()
     findings = findings_path.read_text() if findings_path.exists() else "_Findings not yet written._"
     track = cfg["investigation"]["primary_track"]
 
@@ -488,8 +534,9 @@ def report(cfg: Config) -> Path:
             B.append(f"<h4>{H.esc(task)} <span class='chip'>{H.esc(lev.iat[0] if len(lev) else '')}</span></h4>")
             B.append(H.table(_fmt_task_table(summary, boot, task, tr)))
             if tr == track:
-                models = [m for m in MAIN_MODELS if m != "median"] + ([m for m in LOCAL_MODELS if task.startswith("temp")])
-                B.append(H.fig_img(_group_dotplot(gm, task, tr, models), f"group errors {task}"))
+                models = ["extra_trees", "ridge"] + (["arrhenius_local"] if task.startswith("temp") else [])
+                B.append(H.fig_img(_group_dotplot(gm, task, tr, models, cfg.root, papers_per_group), f"group errors {task}"))
+                B.append(f"<p class='muted'>{H.esc(GROUP_PLOT_CAPTIONS.get(task, 'Each dot is one source group; further left is better.'))} Each dot is one source group's mean error; groups are provenance-based groupings of papers, not established independent laboratories.</p>")
 
     # ---- reserved external confirmation (run once, logged)
     conf = res / "tables_confirm"
@@ -531,7 +578,7 @@ def report(cfg: Config) -> Path:
              "one adds the target source's remaining formulations, the other replaces them with rows from other sources drawn from the same chemistry system wherever possible. "
              "Effect = MAE(without) − MAE(with), positive when familiarity with the source helps. The predeclared primary contrast uses extra_trees on test rows inside the common support of both training sets.</p>")
     B.append(H.table(con))
-    B.append(H.fig_img(_familiarity_fig(fam, "extra_trees"), "source familiarity"))
+    B.append(H.fig_img(_familiarity_fig(fam, "extra_trees", cfg.root), "source familiarity"))
     per = fam.groupby(["target_source", "model"]).agg(
         effect_supported=("effect_supported_by_both", "mean"), effect_sd=("effect_supported_by_both", "std"), effect_all=("effect_all", "mean"),
         n_test=("n_test", "first"), n_supported_by_both=("n_test_supported_by_both", "mean"), same_system_replacement=("replacement_same_system_frac", "mean"),
@@ -543,8 +590,11 @@ def report(cfg: Config) -> Path:
         B.append(H.table(fam_c[fam_c.reserved_target].groupby("model")[["effect_all", "effect_supported_by_both", "n_test_supported_by_both", "replacement_same_system_frac", "test_in_support_A", "test_in_support_B"]].agg(["mean", "std"]).round(4), index=True))
     B.append("<h3>D. Source diversity at a matched budget (exploratory)</h3>")
     B.append(H.table(div.groupby(["target_source", "k_sources"]).agg(repeats=("repeat", "size"), mae_mean=("mae_log10", "mean"), mae_sd=("mae_log10", "std"), test_in_support=("test_in_support", "mean"), candidate_sources=("n_candidate_sources", "first")).reset_index()))
-    if len(div):
+    if div.k_sources.nunique() > 1:
         B.append(H.fig_img(_diversity_fig(div), "source diversity"))
+    else:
+        B.append("<p class='muted'>Only one training source is eligible per target at this budget, so diversity cannot be varied here; no figure is drawn. "
+                 "The table is kept so the absence of evidence is visible.</p>")
 
     # ---- failure cases
     B.extend(_sensitivity_sections(cfg, track))
@@ -575,7 +625,7 @@ def report(cfg: Config) -> Path:
     B.append("<pre><code>uv sync --extra dev\nuv run elbench all\nuv run elbench verify</code></pre>")
     B.append(f"<p class='muted'>Generated {time.strftime('%Y-%m-%d')} by elbench {cfg['benchmark_version']}; config sha256 {cfg.sha256[:16]}.</p>")
     path = rep / "report.html"
-    path.write_text(H.page("Electrolyte generalization benchmark v0.1", "\n".join(B), "Phase 1 technical report: data provenance, frozen splits, CPU baselines and a source/chemistry entanglement investigation"))
+    path.write_text(H.page(f"Electrolyte generalization benchmark v{cfg['benchmark_version']}", "\n".join(B), "Phase 1 technical report: data provenance, frozen splits, CPU baselines and a source/chemistry entanglement investigation"))
     man.add_output(path)
     man.write(rep / "runs")
     return path

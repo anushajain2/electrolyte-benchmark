@@ -1,4 +1,4 @@
-# Issue log (v0.1–v0.5)
+# Issue log (v0.1–v0.5.1)
 
 Changes that alter rows, unit rules, source groups or split membership require a new benchmark version (v0.2+). Each item states its current handling in v0.1.
 
@@ -26,6 +26,7 @@ Changes that alter rows, unit rules, source groups or split membership require a
 | I-21 | Process | Upstream report of the 10 confirmed rows is drafted but not submitted to the CALiSol maintainers. | Draft in `reports/evidence/calisol_upstream_report.md`. | Submit after human review. |
 | I-22 | Selective prediction | Development-fixed rejection thresholds transfer poorly to the test boundary (75% target became 71–99% realized), because the development boundary lies only 10 K below its training data. | Reported as exploratory. | A development split that mimics the test extrapolation distance, or thresholds stated in kelvin from domain knowledge. |
 | I-23 | Product | The workbench has not been used by researchers. | Built and checked locally (all five steps render; scoring path tested on real data). | Observe two or three researchers on a concrete task; record misunderstandings and changes. |
+| I-24 | Models | The cold-extrapolation reversal could have been an artifact of the temperature representation. | v0.5.1 ablation: Extra Trees is insensitive to T vs 1/T, and Ridge with T alone still beats it, so the reversal is mainly a model-family effect (`results/v0.5/investigation/temperature_ablation.csv`). | Ablation reuses full-feature configurations and one seed; a retuned ablation would firm this up. |
 | I-10 | Scope | Phase 2 (selective prediction, rejection, molecular model) not implemented. | Phase 2 gate evidence reported in the report. | Separate Phase 2 work with its own development/calibration route. |
 
 ## Fixed in v0.3 (found by code review of v0.2)
