@@ -8,7 +8,7 @@ No change to rows, rules, groups, splits or reference metrics; `elbench verify` 
 
 - Temperature-representation ablation (`src/elbench/ablation.py`, `results/v0.5/investigation/temperature_ablation.csv`; report section M).
 - `METHODS.md`: what the 32 input columns are, what they cannot represent, and where the per-formulation Arrhenius fit works and fails.
-- Aggregate-only overview page (`docs/index.html`, `elbench overview`) and a README figure.
+- Aggregate-only overview page (`docs/index.html`, `elbench overview`) and a README figure. Served with the report on GitHub Pages: https://anushajain2.github.io/electrolyte-benchmark/docs/
 - README reorganised around the findings; version history moved here.
 - Readable model, task and source names in report figures and workbench tables (`src/elbench/labels.py`). The workbench shortlist wording now says it is a practical rule, not a statistical equivalence test.
 - Fixes to stale metadata: report title, package and citation version, data-card title, notebook config.

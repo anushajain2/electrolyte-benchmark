@@ -58,8 +58,8 @@ Rows 10075–10078 and 10107–10112 of CALiSol-23 (Ding, Xu & Jow 2005, LiBOB i
 
 | | |
 | --- | --- |
-| **[Overview page](docs/index.html)** | One page with the three situations, three charts and their tables. Aggregate results only (serve `docs/`, or open the file locally). |
-| **[Full report](reports/v0.5/report.html)** | Every task, per-group results, robustness checks, label-effect and selective-prediction investigations, failure cases. Download and open in a browser. |
+| **[Overview page](https://anushajain2.github.io/electrolyte-benchmark/docs/)** | One page with the three situations, three charts and their tables. Aggregate results only. |
+| **[Full report](https://anushajain2.github.io/electrolyte-benchmark/reports/v0.5/report.html)** | Every task, per-group results, robustness checks, label-effect and selective-prediction investigations, failure cases. |
 | **[Evaluate your own model](#evaluate-your-own-model)** | Score predictions on the frozen tasks from Python ([notebook](notebooks/example_usage.ipynb)) or in the local workbench. |
 
 Written findings: [`reports/findings_v0.5.md`](reports/findings_v0.5.md). How the inputs and baselines work: [`METHODS.md`](METHODS.md). Data card: [`DATA.md`](DATA.md). Open issues: [`ISSUES.md`](ISSUES.md). Version history: [`CHANGELOG.md`](CHANGELOG.md).
@@ -158,7 +158,7 @@ src/elbench/                  pipeline, models, evaluation, investigation, repor
 splits/v0.*/                  frozen manifests + leakage check record, per version
 results/v0.*/                 run records, tables, investigation (predictions and models are rebuilt, not committed)
 reports/                      findings, reports, coverage audit, evidence, reference tables for `verify`
-docs/                         aggregate-only overview page and README figure
+docs/                         aggregate-only overview page and README figure (served by GitHub Pages)
 tests/                        unit, invariant and end-to-end tests
 ```
 
