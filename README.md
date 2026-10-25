@@ -2,13 +2,69 @@
 
 [![tests](https://github.com/anushajain2/electrolyte-benchmark/actions/workflows/tests.yml/badge.svg)](https://github.com/anushajain2/electrolyte-benchmark/actions/workflows/tests.yml)
 
-**Which model should you trust to predict the ionic conductivity of a liquid lithium electrolyte you have not fully measured?** This benchmark answers that question separately for each situation: new formulations of familiar chemistry, colder or hotter temperatures than you measured, higher concentration, a new solvent or salt, or data from a new source. It also says where the public data cannot answer it.
+**[Overview page](https://anushajain2.github.io/electrolyte-benchmark/docs/) · [Full report](https://anushajain2.github.io/electrolyte-benchmark/reports/v0.5/report.html) · [Methods](METHODS.md) · [Changelog](CHANGELOG.md)**
 
-The short answer is that the right choice depends on what you already measured. The model that does best on new formulations does worst on temperatures colder than it has seen.
+This README starts in plain language and gets more technical as it goes. Read as far as you need.
 
-## Findings
+## What this is, in plain terms
 
-All numbers are from the v0.5 reference, primary track (molality recipes). Error is the mean absolute error of log10(conductivity), averaged per source group: 0.1 log10 is about 26%, and 0.3 log10 is a factor of 2.
+Every lithium battery contains a liquid, the **electrolyte**, that carries electric charge between the two ends of the battery. How easily it carries that charge is called its **conductivity**. A battery with a poorly conducting electrolyte charges slowly and loses power, especially in the cold.
+
+Chemists design electrolytes by mixing salts and solvents, and there are far more possible recipes than anyone can measure. So researchers increasingly use computer models trained on past measurements to estimate the conductivity of recipes nobody has tested yet.
+
+The catch is that a model can look very accurate in one kind of test and fail in another. Being good at filling in the gaps between recipes it has seen does not make a model good at predicting what happens at a temperature colder than any in its training data.
+
+This project is a **fair test** (a "benchmark") for such models. It:
+
+1. collects published conductivity measurements of liquid lithium electrolytes (mainly the public CALiSol-23 collection);
+2. sets up separate tests that mimic real situations: a new recipe, colder or hotter conditions, a stronger salt concentration, a new ingredient, or data from a lab the model has never seen;
+3. checks how well common prediction methods do in each situation;
+4. makes sure the tests are honest. Data from the same lab or the same set of experiments is never split between training and test, much as a student should be examined on questions from a different textbook, not the one they studied. Where the public data is too thin for a fair test, the benchmark says so instead of reporting a number.
+
+## What it found, in plain terms
+
+- **There is no single best method.** The method that is best at estimating new recipes made from familiar ingredients is the *worst* at estimating conductivity in the cold: its estimates are about 3.4 times too high. A much simpler approach that follows how conductivity normally falls as a liquid gets colder, fitted to each recipe's own warmer measurements, is off by a factor of about 1.7 instead.
+- **There are fewer independent tests than it seems.** The data comes from 27 papers, but many share authors or reuse the same measurements. Once that is accounted for, only 4 groups of papers can serve as a genuinely "new lab" test.
+- **Some apparent improvements were an easier test, not better data.** Removing unreliable low readings made errors look smaller, but much of that came from dropping hard test cases.
+- **The public dataset contains errors.** Ten measurements were recorded at the wrong temperature. This was confirmed against the original paper, and they are left out here.
+
+The answer to *"which model should I trust?"* therefore depends on what you have already measured and what you want to predict.
+
+![Mean error by setting for Extra Trees, Ridge and per-formulation Arrhenius](docs/settings_overview.png)
+
+*Each row is one kind of test; each dot is a method's typical error (further left is better; the dashed line marks estimates off by a factor of 2). Extra Trees (blue) is best in the first row but worst in the cold-extrapolation row.*
+
+## Who might use this
+
+- **Battery and electrolyte researchers** deciding which prediction method to try first for their situation, and what data that method needs.
+- **Machine-learning researchers** who want a conductivity benchmark with realistic, leak-free tests and honest uncertainty, instead of a random split of the data.
+- **Maintainers of the dataset**, as a reproducible record of the checks made against original papers.
+
+## Start here
+
+| | |
+| --- | --- |
+| **[Overview page](https://anushajain2.github.io/electrolyte-benchmark/docs/)** | One page with the three most common situations, three charts and their tables. No raw measurements. |
+| **[Full report](https://anushajain2.github.io/electrolyte-benchmark/reports/v0.5/report.html)** | Every test, per-group results, robustness checks, label-quality and selective-prediction investigations, failure cases. |
+| **[Evaluate your own model](#evaluate-your-own-model)** | Score your own predictions on the frozen tests from Python ([notebook](notebooks/example_usage.ipynb)) or in the local workbench. |
+
+Written findings: [`reports/findings_v0.5.md`](reports/findings_v0.5.md). How the inputs and baselines work: [`METHODS.md`](METHODS.md). Data card: [`DATA.md`](DATA.md). Open issues: [`ISSUES.md`](ISSUES.md). Version history: [`CHANGELOG.md`](CHANGELOG.md).
+
+## A few terms used below
+
+| Term | Meaning |
+| --- | --- |
+| Ionic conductivity (mS/cm) | How easily the electrolyte carries charge. Typical room-temperature values are 1–15 mS/cm; in the cold they can fall a hundredfold. |
+| Formulation | One specific recipe: which salt and solvents, in which proportions, at which salt concentration. |
+| Extrapolation | Predicting outside the range of the training data, for example colder than any measured temperature. |
+| Error in log10 | Errors are measured on a logarithmic scale, so being 2× too high and 2× too low count the same. 0.1 log10 is about 26%; 0.3 log10 is a factor of 2. |
+| Source group | Papers linked because they share measurements or one experimental campaign. They are always kept on the same side of a train/test split. |
+| Arrhenius fit | A straight line through log(conductivity) against 1/temperature for one formulation, the textbook way conductivity changes with temperature over a modest range. |
+| Baselines | The reference methods scored here: Extra Trees and gradient boosting (tree ensembles), Ridge (a linear model), k-nearest neighbours, the training median, and the per-formulation Arrhenius fit. |
+
+## Findings in detail
+
+All numbers are from the v0.5 reference, primary track (molality recipes). Error is the mean absolute error of log10(conductivity), averaged per source group so that one large paper cannot dominate.
 
 ### 1. For colder temperatures, the ranking flips
 
@@ -45,24 +101,6 @@ Claims about "transfer to new labs" rest on that many units, and the results are
 ### 4. Ten CALiSol rows carry wrong temperatures
 
 Rows 10075–10078 and 10107–10112 of CALiSol-23 (Ding, Xu & Jow 2005, LiBOB in EC/PC) hold values that belong to temperatures 30–70 K colder than stated. Two independent checks find exactly these ten rows: the paper's own fitted functions, and internal consistency. They are **excluded from the v0.5 reference** (rule R13), each with a review record (`data/evidence/corrections_review_record.csv`). A report for the dataset maintainers is drafted but not yet submitted.
-
-![Mean error by setting for Extra Trees, Ridge and per-formulation Arrhenius](docs/settings_overview.png)
-
-## Who this is for
-
-- **Electrolyte researchers** choosing a model to screen formulations. They need to know which approach to validate first for their situation and what data it requires.
-- **ML researchers** who want a conductivity benchmark with provenance-aware splits, coverage checks and per-group uncertainty, instead of a random split.
-- **Dataset maintainers**, as a reproducible record of the checks run against original papers.
-
-## Start here
-
-| | |
-| --- | --- |
-| **[Overview page](https://anushajain2.github.io/electrolyte-benchmark/docs/)** | One page with the three situations, three charts and their tables. Aggregate results only. |
-| **[Full report](https://anushajain2.github.io/electrolyte-benchmark/reports/v0.5/report.html)** | Every task, per-group results, robustness checks, label-effect and selective-prediction investigations, failure cases. |
-| **[Evaluate your own model](#evaluate-your-own-model)** | Score predictions on the frozen tasks from Python ([notebook](notebooks/example_usage.ipynb)) or in the local workbench. |
-
-Written findings: [`reports/findings_v0.5.md`](reports/findings_v0.5.md). How the inputs and baselines work: [`METHODS.md`](METHODS.md). Data card: [`DATA.md`](DATA.md). Open issues: [`ISSUES.md`](ISSUES.md). Version history: [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Run it yourself
 
@@ -113,7 +151,7 @@ result = score_predictions(cfg, "source_transfer", "molal_w", pd.concat(preds))
 
 The workbench (`elbench workbench`) wraps the same API around one question: *given the measurements I already have, which approach deserves further validation?* It runs locally because scoring needs CALiSol labels, which are not redistributed. It has not yet been tested with researchers.
 
-## Methodology and limitations
+## Methodology and limitations (technical)
 
 **Data.** CALiSol-23 (27 papers, 13,825 rows) is the backbone. The Rahmanian et al. automated-lab dataset (5,035 measurements) is reserved for external confirmation. Raw files are pinned and checksummed. Original values and units are kept next to canonical ones, every transformation cites a rule id, and excluded rows stay visible with a reason.
 
